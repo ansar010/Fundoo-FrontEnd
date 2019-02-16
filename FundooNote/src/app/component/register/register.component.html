@@ -1,0 +1,40 @@
+<div class="bkg-animated">
+  <div class="center example-container">
+    <mat-card>
+
+      <mat-card-header>
+        <!-- card title -->
+        <mat-card-title class="header">FUNDOO APP</mat-card-title>
+        <!--card subtitle  -->
+        <mat-card-subtitle>Please fill this form for register</mat-card-subtitle>
+        <!-- end of subtitle -->
+      </mat-card-header>
+      <mat-card-content>
+        <!-- <form [formGroup]="registerForm"> -->
+
+        <form [formGroup]="registerForm">
+
+          <mat-form-field>
+            <input matInput placeholder="Username" formControlName=name [(ngModel)]="user.name" name="name" required>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="email" formControlName="email" [(ngModel)]="user.email" type="email"
+              name="email" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password contains 6 to 10 letters" formControlName="password"
+              [(ngModel)]="user.password" type="password" name="password" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="mobileNumber" formControlName="phoneNumber" [(ngModel)]="user.phoneNumber"
+              type="text" name="phoneNumber" required>
+          </mat-form-field>
+          <br>
+          <button mat-raised-button type="button" color="primary" (click)="register()"
+            [disabled]="!registerForm.valid">submit</button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

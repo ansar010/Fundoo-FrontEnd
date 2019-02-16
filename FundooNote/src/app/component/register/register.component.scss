@@ -1,0 +1,42 @@
+html, body {
+    margin: 0; padding: 0;
+  }
+  .bkg-animated {
+    background: gray url(https://subtlepatterns.com/patterns/geometry2.png) repeat 0 0;
+    width: 100%;
+    margin: 0;
+   // text-align: center;
+    height: 600px;
+    padding-top: 120px;
+    box-sizing: border-box;
+    animation: slide 20s linear infinite;
+  }
+  
+  .bkg-animated h1 {
+    font-family: sans-serif;
+  }
+  
+  @keyframes slide {
+      from { background-position: 0 0; }
+      to { background-position: -400px 0; }
+  }
+  .center{
+    margin-top: 0;
+    margin-bottom: auto;
+    margin-left:auto;
+    margin-right: auto;
+    width: 30%; 
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+  .header {
+    color:cadetblue;
+    font-size: x-large;
+    
+  }
