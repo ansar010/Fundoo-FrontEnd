@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoginModel } from 'src/app/model/login.model';
+import { Router } from '@angular/router';
+import { UserServiceService } from 'src/app/services/user-service.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +12,59 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginModel: LoginModel = new LoginModel();
+  loginForm: FormGroup;
+  loading;
 
-  ngOnInit() {
+  constructor(private formBuilder: FormBuilder, private router: Router,
+    private userService: UserServiceService, private snackBar: MatSnackBar) {
+
   }
 
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group(
+      {
+        'email': [this.loginModel.email,
+        [
+          Validators.required,
+          Validators.email
+        ]],
+        'password': [this.loginModel.password,
+        [
+          Validators.required,
+          Validators.min(6),
+          Validators.max(10)
+        ]
+
+        ]
+
+      }
+    );
+  }
+
+  userLogin(): void {
+    console.log(this.loginModel);
+    this.loading = true;
+
+    this.userService.loginCall(this.loginModel).subscribe(
+      response => {
+        this.loading = false;
+
+        if (response.body.statusCode === 200) {
+          this.snackBar.open(response.body.statusMessge, 'logged-In', { duration: 2000, });
+          console.log(response.header);
+
+          //localStorage.setItem('jwtToken', response.header.get('jwtToken'));
+        }
+      },
+      error => {
+        this.loading = false;
+
+        this.snackBar.open('fail', 'Login Fails', {
+          duration: 2000,
+        });
+        console.log('Error', error);
+      }
+    );
+  }
 }

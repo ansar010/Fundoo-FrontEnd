@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   user: User = new User();
   registerForm: FormGroup;
-
+  loading;
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserServiceService, private snackBar: MatSnackBar) {
@@ -57,8 +57,10 @@ export class RegisterComponent implements OnInit {
 
   register(): void {
     console.log(this.user);
+    this.loading = true;
     this.userService.registerCall(this.user).subscribe(
       response => {
+        this.loading = false;
         if (response.statusCode === 200) {
           this.snackBar.open('verification mail sent', 'Registerd', {
             duration: 2000,
@@ -67,6 +69,8 @@ export class RegisterComponent implements OnInit {
       },
 
       error => {
+        this.loading = false;
+
         this.snackBar.open('AlreadyExixt', 'Registeration Fails', {
           duration: 2000,
         });

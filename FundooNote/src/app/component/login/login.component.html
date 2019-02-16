@@ -1,3 +1,40 @@
-<p>
-  login works!
-</p>
+<div class="bkg-animated">
+    <div class="center example-container">
+        <mat-card>
+            <mat-card-header>
+                <!-- card title -->
+                <mat-card-title class="header">FUNDOO APP</mat-card-title>
+                <!--card subtitle  -->
+                <mat-card-subtitle>Login Page</mat-card-subtitle>
+                <!-- end of subtitle -->
+            </mat-card-header>
+
+            <mat-card-content>
+
+                <form [formGroup]="loginForm">
+
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder=" Enter email" formControlName="email"
+                            [(ngModel)]="loginModel.email" type="email" name="email" required>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput placeholder="Enter password" formControlName="password"
+                            [(ngModel)]="loginModel.password" type="password" name="password" required>
+                    </mat-form-field>
+
+                    <br>
+                    <button style="margin:5px;" mat-raised-button type="button" color="primary" (click)="userLogin()"
+                        [disabled]="!loginForm.valid">login</button>
+
+                    <button style="margin:5px;" mat-raised-button type="button" color="primary"
+                        routerLink="/register">Register</button>
+
+                    <button style="margin:5px;" mat-raised-button type="button" color="primary">Forget Password</button>
+                </form>
+                <mat-spinner *ngIf="loading">
+                </mat-spinner>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
