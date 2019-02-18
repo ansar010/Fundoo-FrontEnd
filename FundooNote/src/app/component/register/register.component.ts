@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
 
         'name': [this.user.name,
         [
-          Validators.required
+          Validators.required,
         ]
         ],
 

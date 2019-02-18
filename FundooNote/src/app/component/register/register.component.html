@@ -14,15 +14,17 @@
           <mat-form-field>
             <input matInput placeholder="Username" formControlName=name [(ngModel)]="user.name" name="name" required>
           </mat-form-field>
+          <br>
           <mat-form-field class="example-full-width">
             <input matInput placeholder="email" formControlName="email" [(ngModel)]="user.email" type="email"
               name="email" required>
           </mat-form-field>
+          <br>
           <mat-form-field>
             <input matInput placeholder="Password contains 6 to 10 letters" formControlName="password"
               [(ngModel)]="user.password" type="password" name="password" required>
           </mat-form-field>
-
+          <br>
           <mat-form-field>
             <input matInput placeholder="mobileNumber" formControlName="phoneNumber" [(ngModel)]="user.mobileNumber"
               type="text" name="phoneNumber" required>
@@ -30,9 +32,9 @@
           <br>
           <button mat-raised-button type="button" color="primary" (click)="register()"
             [disabled]="!registerForm.valid">submit
-           
 
-       </button>
+
+          </button>
 
           <button style="margin:10px;" mat-raised-button type="button" color="primary"
             onclick="history.go(-1);">Back</button>

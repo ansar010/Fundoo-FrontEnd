@@ -47,14 +47,15 @@ export class LoginComponent implements OnInit {
     this.loading = true;
 
     this.userService.loginCall(this.loginModel).subscribe(
-      response => {
+      (response: any) => {
         this.loading = false;
+        console.log(response);
 
         if (response.body.statusCode === 200) {
           this.snackBar.open(response.body.statusMessge, 'logged-In', { duration: 2000, });
-          console.log(response.header);
+          // console.log(response.header.get('jwtToken'));
 
-          //localStorage.setItem('jwtToken', response.header.get('jwtToken'));
+          localStorage.setItem('token', response.headers.get('jwtToken'));
         }
       },
       error => {

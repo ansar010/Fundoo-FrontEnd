@@ -10,13 +10,17 @@ import { HomeComponent } from './component/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
+import { ForgetPasswordComponent } from './component/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgetPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

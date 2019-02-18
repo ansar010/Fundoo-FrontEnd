@@ -17,7 +17,7 @@
                         <input matInput placeholder=" Enter email" formControlName="email"
                             [(ngModel)]="loginModel.email" type="email" name="email" required>
                     </mat-form-field>
-
+                    <br>
                     <mat-form-field>
                         <input matInput placeholder="Enter password" formControlName="password"
                             [(ngModel)]="loginModel.password" type="password" name="password" required>
@@ -30,7 +30,8 @@
                     <button style="margin:5px;" mat-raised-button type="button" color="primary"
                         routerLink="/register">Register</button>
 
-                    <button style="margin:5px;" mat-raised-button type="button" color="primary">Forget Password</button>
+                    <button style="margin:5px;" mat-raised-button type="button" color="primary"
+                        routerLink="/forgetPassword">Forget Password</button>
                 </form>
                 <mat-spinner *ngIf="loading">
                 </mat-spinner>
