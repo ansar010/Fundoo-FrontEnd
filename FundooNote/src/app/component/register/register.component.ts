@@ -71,7 +71,6 @@ export class RegisterComponent implements OnInit {
 
       error => {
         this.loading = false;
-        console.log('Error message->' + error.value.)
         console.log('Error data->' + error.statusMessage);
         this.snackBar.open('AlreadyExist', 'Registeration Fails', {
           duration: 2000,
