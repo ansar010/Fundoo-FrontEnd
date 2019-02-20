@@ -11,7 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { ForgetPasswordComponent } from './component/forget-password/forget-password.component';
-import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+ import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
     ResetPasswordComponent
   ],
   imports: [
+    FlexLayoutModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

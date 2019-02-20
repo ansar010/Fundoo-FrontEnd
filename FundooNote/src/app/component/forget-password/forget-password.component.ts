@@ -41,9 +41,7 @@ export class ForgetPasswordComponent implements OnInit {
 
         if (response.statusCode === 200) {
           this.snackBar.open(response.statusMessge, 'logged-In', { duration: 2000, });
-          // console.log(response.header.get('jwtToken'));
-          // localStorage.setItem('token', response.headers.get('jwtToken'));
-
+          this.router.navigate(['login']);
         }
       },
       error => {
@@ -53,6 +51,7 @@ export class ForgetPasswordComponent implements OnInit {
           duration: 2000,
         });
         console.log('Error', error);
+
       }
     );
   }

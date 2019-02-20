@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
     this.loading = true;
 
     this.userService.loginCall(this.loginModel).subscribe(
-      (response: any) => {
+      response => {
         this.loading = false;
         console.log(response);
 
@@ -56,16 +56,21 @@ export class LoginComponent implements OnInit {
           // console.log(response.header.get('jwtToken'));
 
           localStorage.setItem('token', response.headers.get('jwtToken'));
-        }
-      },
-      error => {
-        this.loading = false;
+        } else if (response.body.statusCode === -200) {
+          this.loading = false;
+          this.snackBar.open(response.body.statusMessge, 'Login-Fail', { duration: 2000, });
 
-        this.snackBar.open('fail', 'Login Fails', {
-          duration: 2000,
-        });
-        console.log('Error', error);
-      }
-    );
+        }
+      });
+
+      //   error => {
+    //     this.loading = false;
+
+    //     this.snackBar.open('fail', 'Login Fails', {
+    //       duration: 2000,
+    //     });
+    //     console.log('Error', error);
+    //   }
+    // );
   }
 }

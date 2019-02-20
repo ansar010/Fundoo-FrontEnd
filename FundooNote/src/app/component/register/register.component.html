@@ -1,6 +1,6 @@
 <div class="bkg-animated">
-  <div class="center example-container">
-    <mat-card>
+  <div class="box">
+    <mat-card fxFlex="30%">
 
       <mat-card-header>
         <!-- card title -->
@@ -20,9 +20,20 @@
               name="email" required>
           </mat-form-field>
           <br>
-          <mat-form-field>
-            <input matInput placeholder="Password contains 6 to 10 letters" formControlName="password"
-              [(ngModel)]="user.password" type="password" name="password" required>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder=" Enter password" formControlName='password'
+              [type]="!hide ? 'password' : 'text'" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+            <mat-error *ngIf="password.invalid">Password is required</mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder=" confirm password" formControlName='confirmpassword'
+              [type]="!hide ? 'password' : 'text'" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+
+            <mat-error *ngIf="confirmpassword.invalid">PassWord Does Not Match</mat-error>
           </mat-form-field>
           <br>
           <mat-form-field>

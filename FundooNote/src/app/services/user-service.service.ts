@@ -22,12 +22,11 @@ export class UserServiceService {
   constructor(private http: HttpClient) { }
 
   public registerCall(user: User): any {
-    console.log(user);
+   // console.log(user);
     return this.http.post<User>(this.url + 'register', user);
   }
 
   public loginCall(login: LoginModel): any {
-
     console.log(login);
     return this.http.post(this.url + 'login', login,
       { headers: new HttpHeaders().set('jwtToken', ''), observe: 'response' });
@@ -35,17 +34,10 @@ export class UserServiceService {
 
   public forgetPasswordCall(forgetpasswordModel: ForgetPassword): any {
 
-    // return this.http.post<ForgetPassword>(this.url + 'forgetPassword', forgetpasswordModel,
-    //         { headers: new HttpHeaders().set('jwtToken', ''), observe: 'response' });
-
     return this.http.post<ForgetPassword>(this.url + 'forgetpassword', forgetpasswordModel, httpOptions);
   }
-  public resetPasswordCall(resetpasswordModel: ResetPassword, token: string): any {
 
-    // return this.http.post<ForgetPassword>(this.url + 'forgetpassword', forgetpasswordModel,
-    //         { headers: new HttpHeaders().set('jwtToken', ''), observe: 'response' });
-
-    return this.http.post<ResetPassword>(this.url + 'resetpassword/' + token, resetpasswordModel, httpOptions);
+  public resetPasswordCall(password: String, token: string): any {
+    return this.http.put<ResetPassword>(this.url + 'resetpassword/' + token + '/' + password, httpOptions);
   }
-
 }

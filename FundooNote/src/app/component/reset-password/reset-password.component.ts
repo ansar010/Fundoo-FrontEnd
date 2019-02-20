@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ResetPassword } from 'src/app/model/resetP.model';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/model/user.model';
 import { UserServiceService } from 'src/app/services/user-service.service';
+import {Util } from 'src/app/utility/util';
 
 @Component({
   selector: 'app-reset-password',
@@ -11,62 +12,56 @@ import { UserServiceService } from 'src/app/services/user-service.service';
   styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
-  resetpasswordModel: ResetPassword = new ResetPassword();
-  resetPForm: FormGroup;
-  loading;
+
+  user: User;
+  resetForm: FormGroup;
   token: string;
 
-  constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar,
-    private userServices: UserServiceService, router: Router,
-    private activeRoute: ActivatedRoute) {
-    this.token = this.activeRoute.snapshot.params['token'];
-  }
+  password = new FormControl('', [Validators.required]);
+  confirmpassword = new FormControl('', [Validators.required]);
+
+  constructor(
+    private userService: UserServiceService,
+    private snackbar: MatSnackBar,
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+
+  ) { }
 
   ngOnInit() {
-    this.resetPForm = this.formBuilder.group(
-      {
-        'password': [this.resetpasswordModel.password,
-        [
-          Validators.min(6),
-          Validators.max(10),
-          Validators.required
+    this.resetForm = this.formBuilder.group({
+      password: [],
+      confirmpassword: ['', Validators.required, Util.MatchPassword]
+    });
 
-        ]],
+    this.route.params.subscribe(param => {
+      this.token = param.token;
+    });
 
-        'confirmpassword': [this.resetpasswordModel.password,
-        [
-          Validators.min(6),
-          Validators.max(10),
-          Validators.required
-
-        ]]
-      }
-    );
   }
 
-  resetPassword(): void {
-    this.loading = true;
-    this.userServices.resetPasswordCall(this.resetpasswordModel, this.token).subscribe(
-      (response: any) => {
-        this.loading = false;
-        console.log(response);
 
-        if (response.statusCode === 200) {
-          this.snackBar.open(response.statusMessge, 'logged-In', { duration: 2000, });
-          // console.log(response.header.get('jwtToken'));
 
-          // localStorage.setItem('token', response.headers.get('jwtToken'));
-        }
+  onResetPassword() {
+    console.log(this.resetForm.value);
+
+
+    this.userService.resetPasswordCall(this.resetForm.value.password, this.token)
+      .subscribe(data => {
+        this.snackbar.open('Reset password SuccessFully', 'end now!!!!',
+          {
+            duration: 1000,
+          });
+
+        this.router.navigate(['/login']);
+
       },
-      error => {
-        this.loading = false;
-
-        this.snackBar.open('fail', 'Login Fails', {
-          duration: 2000,
+        error => {
+          this.snackbar.open('Password Not Inserted!!', 'End now', {
+            duration: 1000,
+          });
         });
-        console.log('Error', error);
-      }
-    );
-  }
 
+  }
 }

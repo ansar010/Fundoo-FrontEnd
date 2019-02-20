@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user.model';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { MatSnackBar } from '@angular/material';
+import { Util } from 'src/app/utility/util';
 
 @Component({
   selector: 'app-register',
@@ -14,6 +15,9 @@ export class RegisterComponent implements OnInit {
   user: User = new User();
   registerForm: FormGroup;
   loading;
+
+  password = new FormControl('', [Validators.required]);
+  confirmpassword = new FormControl('', [Validators.required]);
 
   constructor(private formBuilder: FormBuilder,
     private userService: UserServiceService, private snackBar: MatSnackBar) {
@@ -29,13 +33,8 @@ export class RegisterComponent implements OnInit {
           Validators.email
         ]],
 
-        'password': [this.user.password,
-        [
-          Validators.required,
-          Validators.maxLength(10),
-          Validators.minLength(6)
-        ]
-        ],
+        password: [],
+        confirmpassword: ['', Validators.required, Util.MatchPassword],
 
         'name': [this.user.name,
         [
@@ -58,11 +57,13 @@ export class RegisterComponent implements OnInit {
   register(): void {
     console.log(this.user);
     this.loading = true;
+    this.user.password = this.registerForm.value.password;
     this.userService.registerCall(this.user).subscribe(
-      response => {
+       data => {
+       // console.log('Response value ' + data.statusCode , data.statusMessage);
         this.loading = false;
-        if (response.statusCode === 200) {
-          this.snackBar.open('verification mail sent', 'Registerd', {
+        if (data.statusCode === 200) {
+          this.snackBar.open(data.statusMessage, 'Registerd', {
             duration: 2000,
           });
         }
@@ -70,8 +71,9 @@ export class RegisterComponent implements OnInit {
 
       error => {
         this.loading = false;
-
-        this.snackBar.open('AlreadyExixt', 'Registeration Fails', {
+        console.log('Error message->' + error.value.)
+        console.log('Error data->' + error.statusMessage);
+        this.snackBar.open('AlreadyExist', 'Registeration Fails', {
           duration: 2000,
         });
         console.log('Error', error);
