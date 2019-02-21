@@ -35,13 +35,13 @@ export class ForgetPasswordComponent implements OnInit {
   forgetPassword(): void {
     this.loading = true;
     this.userServices.forgetPasswordCall(this.forgetpasswordModel).subscribe(
-      (response: any) => {
+      data => {
         this.loading = false;
-        console.log(response);
+        console.log(data);
 
-        if (response.statusCode === 200) {
-          this.snackBar.open(response.statusMessge, 'logged-In', { duration: 2000, });
-          this.router.navigate(['login']);
+        if (data.statusCode === 200) {
+          this.snackBar.open(data.statusMessage, '!', { duration: 2000, });
+          this.router.navigate(['/login']);
         }
       },
       error => {

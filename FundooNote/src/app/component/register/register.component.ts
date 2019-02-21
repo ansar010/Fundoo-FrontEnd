@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { UserServiceService } from 'src/app/services/user-service.service';
 import { MatSnackBar } from '@angular/material';
 import { Util } from 'src/app/utility/util';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,9 @@ export class RegisterComponent implements OnInit {
   confirmpassword = new FormControl('', [Validators.required]);
 
   constructor(private formBuilder: FormBuilder,
-    private userService: UserServiceService, private snackBar: MatSnackBar) {
+    private userService: UserServiceService,
+    private snackBar: MatSnackBar,
+    private router: Router) {
   }
 
   ngOnInit() {
@@ -60,22 +63,21 @@ export class RegisterComponent implements OnInit {
     this.user.password = this.registerForm.value.password;
     this.userService.registerCall(this.user).subscribe(
        data => {
-       // console.log('Response value ' + data.statusCode , data.statusMessage);
+        console.log('Response value ' + data.statusCode , data.statusMessage);
         this.loading = false;
         if (data.statusCode === 200) {
           this.snackBar.open(data.statusMessage, 'Registerd', {
             duration: 2000,
           });
         }
+        this.router.navigate(['/login']);
       },
 
       error => {
         this.loading = false;
-        console.log('Error data->' + error.statusMessage);
         this.snackBar.open('AlreadyExist', 'Registeration Fails', {
           duration: 2000,
         });
-        console.log('Error', error);
       }
     );
   }

@@ -47,30 +47,30 @@ export class LoginComponent implements OnInit {
     this.loading = true;
 
     this.userService.loginCall(this.loginModel).subscribe(
-      response => {
+      (response): any => {
         this.loading = false;
         console.log(response);
 
         if (response.body.statusCode === 200) {
-          this.snackBar.open(response.body.statusMessge, 'logged-In', { duration: 2000, });
+          this.snackBar.open(response.body.statusMessage, 'logged-In', { duration: 2000, });
           // console.log(response.header.get('jwtToken'));
 
           localStorage.setItem('token', response.headers.get('jwtToken'));
-        } else if (response.body.statusCode === -200) {
+         } else {
           this.loading = false;
-          this.snackBar.open(response.body.statusMessge, 'Login-Fail', { duration: 2000, });
-
+          this.snackBar.open(response.body.statusMessage, 'login-fails', { duration: 2000, });
         }
-      });
 
-      //   error => {
-    //     this.loading = false;
+      },
+      error => {
+        this.loading = false;
 
-    //     this.snackBar.open('fail', 'Login Fails', {
-    //       duration: 2000,
-    //     });
-    //     console.log('Error', error);
-    //   }
-    // );
+        this.snackBar.open('Email not verified', 'Login Fails', {
+          duration: 2000,
+        });
+        console.log('Error', error);
+      }
+    );
   }
+
 }

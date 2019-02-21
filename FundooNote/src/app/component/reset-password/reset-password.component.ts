@@ -16,6 +16,7 @@ export class ResetPasswordComponent implements OnInit {
   user: User;
   resetForm: FormGroup;
   token: string;
+  loading;
 
   password = new FormControl('', [Validators.required]);
   confirmpassword = new FormControl('', [Validators.required]);
@@ -45,15 +46,18 @@ export class ResetPasswordComponent implements OnInit {
 
   onResetPassword() {
     console.log(this.resetForm.value);
-
+    this.loading = true;
 
     this.userService.resetPasswordCall(this.resetForm.value.password, this.token)
       .subscribe(data => {
-        this.snackbar.open('Reset password SuccessFully', 'end now!!!!',
+        this.loading = false;
+        console.log('data ->' + data);
+        if (data.statusCode === 200) {
+        this.snackbar.open(data.statusMessage, 'end now!!!!',
           {
-            duration: 1000,
+            duration: 2000,
           });
-
+        }
         this.router.navigate(['/login']);
 
       },
