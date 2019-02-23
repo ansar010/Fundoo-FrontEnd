@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginModel } from 'src/app/model/login.model';
 import { Router } from '@angular/router';
-import { UserServiceService } from 'src/app/services/user-service.service';
 import { MatSnackBar } from '@angular/material';
+import { HttpserviceService } from 'src/app/services/httpservice.service';
 
 @Component({
   selector: 'app-login',
@@ -16,8 +16,10 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loading;
 
-  constructor(private formBuilder: FormBuilder, private router: Router,
-    private userService: UserServiceService, private snackBar: MatSnackBar) {
+  constructor(private formBuilder: FormBuilder,
+     private router: Router,
+    private snackBar: MatSnackBar,
+    private httpService: HttpserviceService) {
 
   }
 
@@ -45,32 +47,30 @@ export class LoginComponent implements OnInit {
   userLogin(): void {
     console.log(this.loginModel);
     this.loading = true;
+    this.httpService.postRequest('login', this.loginModel).subscribe(
+          data => {
+            this.loading = false;
+             console.log(data);
+            // console.log(data.statusCode);
+             if (data.statusCode === 200) {
+               this.snackBar.open(data.statusMessage, 'logged-In', { duration: 2000, });
+               // console.log(response.header.get('jwtToken'));
+               localStorage.setItem('token', data.token);
+              }
+            //  } else {
+            //   this.loading = false;
+            //   this.snackBar.open(response.body.statusMessage, 'login-fails', { duration: 2000, });
+            // }
+          },
+          error => {
+            this.loading = false;
 
-    this.userService.loginCall(this.loginModel).subscribe(
-      (response): any => {
-        this.loading = false;
-        console.log(response);
-
-        if (response.body.statusCode === 200) {
-          this.snackBar.open(response.body.statusMessage, 'logged-In', { duration: 2000, });
-          // console.log(response.header.get('jwtToken'));
-
-          localStorage.setItem('token', response.headers.get('jwtToken'));
-         } else {
-          this.loading = false;
-          this.snackBar.open(response.body.statusMessage, 'login-fails', { duration: 2000, });
-        }
-
-      },
-      error => {
-        this.loading = false;
-
-        this.snackBar.open('Email not verified', 'Login Fails', {
-          duration: 2000,
-        });
-        console.log('Error', error);
-      }
-    );
+             this.snackBar.open('Email not verified', 'Login Fails', {
+               duration: 2000,
+             });
+             console.log('Error', error);
+           }
+         );
   }
 
 }

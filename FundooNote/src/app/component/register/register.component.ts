@@ -5,6 +5,7 @@ import { UserServiceService } from 'src/app/services/user-service.service';
 import { MatSnackBar } from '@angular/material';
 import { Util } from 'src/app/utility/util';
 import { Router } from '@angular/router';
+import { HttpserviceService } from 'src/app/services/httpservice.service';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
   confirmpassword = new FormControl('', [Validators.required]);
 
   constructor(private formBuilder: FormBuilder,
-    private userService: UserServiceService,
+    private httpService: HttpserviceService,
     private snackBar: MatSnackBar,
     private router: Router) {
   }
@@ -61,8 +62,10 @@ export class RegisterComponent implements OnInit {
     console.log(this.user);
     this.loading = true;
     this.user.password = this.registerForm.value.password;
-    this.userService.registerCall(this.user).subscribe(
+
+    this.httpService.postRequest('register', this.user).subscribe(
        data => {
+         console.log(data);
         console.log('Response value ' + data.statusCode , data.statusMessage);
         this.loading = false;
         if (data.statusCode === 200) {

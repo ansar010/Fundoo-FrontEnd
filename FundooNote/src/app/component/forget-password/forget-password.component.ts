@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ForgetPassword } from 'src/app/model/forgetP.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { UserServiceService } from 'src/app/services/user-service.service';
 import { Router } from '@angular/router';
+import { HttpserviceService } from 'src/app/services/httpservice.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -16,8 +16,9 @@ export class ForgetPasswordComponent implements OnInit {
   forgetPForm: FormGroup;
   loading;
 
-  constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar,
-    private userServices: UserServiceService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
+    private httpService: HttpserviceService, private router: Router) { }
 
   ngOnInit() {
     this.forgetPForm = this.formBuilder.group(
@@ -34,7 +35,8 @@ export class ForgetPasswordComponent implements OnInit {
 
   forgetPassword(): void {
     this.loading = true;
-    this.userServices.forgetPasswordCall(this.forgetpasswordModel).subscribe(
+
+    this.httpService.postRequest('forgetpassword', this.forgetpasswordModel).subscribe(
       data => {
         this.loading = false;
         console.log(data);

@@ -3,8 +3,8 @@ import { MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user.model';
-import { UserServiceService } from 'src/app/services/user-service.service';
 import {Util } from 'src/app/utility/util';
+import { HttpserviceService } from 'src/app/services/httpservice.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -22,7 +22,7 @@ export class ResetPasswordComponent implements OnInit {
   confirmpassword = new FormControl('', [Validators.required]);
 
   constructor(
-    private userService: UserServiceService,
+    private httpService: HttpserviceService,
     private snackbar: MatSnackBar,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -48,7 +48,8 @@ export class ResetPasswordComponent implements OnInit {
     console.log(this.resetForm.value);
     this.loading = true;
 
-    this.userService.resetPasswordCall(this.resetForm.value.password, this.token)
+    this.httpService.putRequest('resetpassword/' + this.token + '/', this.resetForm.value.password)
+   // this.userService.resetPasswordCall(this.resetForm.value.password, this.token)
       .subscribe(data => {
         this.loading = false;
         console.log('data ->' + data);
