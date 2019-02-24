@@ -72,15 +72,27 @@ export class RegisterComponent implements OnInit {
           this.snackBar.open(data.statusMessage, 'Registerd', {
             duration: 2000,
           });
+          this.router.navigate(['/login']);
+
+        } else if (data.statusCode === -200) {
+          this.loading = false;
+          this.snackBar.open(data.statusMessage, 'Registration fail', {
+            duration: 3000
+          });
         }
-        this.router.navigate(['/login']);
       },
 
       error => {
         this.loading = false;
-        this.snackBar.open('AlreadyExist', 'Registeration Fails', {
+        this.snackBar.open('Network Problem', 'Registeration Fails', {
           duration: 2000,
         });
+        // console.log(error);
+        // if (error.error.statusCode === 200) {
+        // this.snackBar.open(error.error.statusMessage, 'Registeration Fails', {
+        //      duration: 2000,
+        //    });
+        //   }
       }
     );
   }
