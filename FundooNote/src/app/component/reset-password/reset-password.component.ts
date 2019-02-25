@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user.model';
-import {Util } from 'src/app/utility/util';
+import { Util } from 'src/app/utility/util';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(
     private httpService: HttpserviceService,
-    private snackbar: MatSnackBar,
+    private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -48,25 +48,32 @@ export class ResetPasswordComponent implements OnInit {
     console.log(this.resetForm.value);
     this.loading = true;
 
-    this.httpService.putRequest('resetpassword/' + this.token + '/', this.resetForm.value.password)
-   // this.userService.resetPasswordCall(this.resetForm.value.password, this.token)
-      .subscribe(data => {
-        this.loading = false;
-        console.log('data ->' + data);
-        if (data.statusCode === 200) {
-        this.snackbar.open(data.statusMessage, 'end now!!!!',
-          {
+    this.httpService.putRequest('resetpassword/' + this.token , this.resetForm.value.password)
+      // this.userService.resetPasswordCall(this.resetForm.value.password, this.token)
+      .subscribe(
+        data => {
+          this.loading = false;
+          console.log('data ->' + data);
+          if (data.statusCode === 200) {
+            this.snackBar.open(data.statusMessage, 'end now!!!!',
+              {
+                duration: 2000,
+              });
+            this.router.navigate(['/login']);
+          } else if (data.statusCode === -200) {
+            this.loading = false;
+            this.snackBar.open(data.statusMessage, 'fail-to-Reset', {
+              duration: 3000
+            });
+          }
+        },
+        error => {
+          this.loading = false;
+          this.snackBar.open('Network Problem', 'login Fails', {
             duration: 2000,
           });
         }
-        this.router.navigate(['/login']);
-
-      },
-        error => {
-          this.snackbar.open('Password Not Inserted!!', 'End now', {
-            duration: 1000,
-          });
-        });
-
+      );
   }
 }
+

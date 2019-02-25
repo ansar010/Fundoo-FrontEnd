@@ -87,12 +87,6 @@ export class RegisterComponent implements OnInit {
         this.snackBar.open('Network Problem', 'Registeration Fails', {
           duration: 2000,
         });
-        // console.log(error);
-        // if (error.error.statusCode === 200) {
-        // this.snackBar.open(error.error.statusMessage, 'Registeration Fails', {
-        //      duration: 2000,
-        //    });
-        //   }
       }
     );
   }

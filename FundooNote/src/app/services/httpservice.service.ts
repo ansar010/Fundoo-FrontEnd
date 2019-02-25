@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+
+const httpOptions = {
+  headers: new HttpHeaders().set('Content-Type', 'application/json')
+    .set('Access-Control-Allow-Origin', '*')
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +20,7 @@ export class HttpserviceService {
   }
 
   public putRequest(url, data): any {
-    return this.http.put(environment.baseUrl + url, data);
+    return this.http.put(environment.baseUrl + url, data, httpOptions);
   }
 
   public getRequest(url, data): any {
