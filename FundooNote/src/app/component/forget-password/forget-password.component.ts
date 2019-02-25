@@ -41,10 +41,10 @@ export class ForgetPasswordComponent implements OnInit {
         this.loading = false;
         console.log(data);
 
-        if (data.statusCode === 200) {
+        if (data.statusCode === 100) {
           this.snackBar.open(data.statusMessage, '!', { duration: 2000, });
           this.router.navigate(['/login']);
-        } else if (data.statusCode === -200) {
+        } else {
           this.loading = false;
           this.snackBar.open(data.statusMessage, 'Process fail', {
             duration: 3000

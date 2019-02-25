@@ -49,7 +49,6 @@ export class RegisterComponent implements OnInit {
         'phoneNumber': [this.user.mobileNumber,
         [
           Validators.required,
-          Validators.minLength(6),
           Validators.maxLength(10)
         ]
         ]
@@ -68,13 +67,13 @@ export class RegisterComponent implements OnInit {
          console.log(data);
         console.log('Response value ' + data.statusCode , data.statusMessage);
         this.loading = false;
-        if (data.statusCode === 200) {
+        if (data.statusCode === 100) {
           this.snackBar.open(data.statusMessage, 'Registerd', {
             duration: 2000,
           });
           this.router.navigate(['/login']);
 
-        } else if (data.statusCode === -200) {
+        } else {
           this.loading = false;
           this.snackBar.open(data.statusMessage, 'Registration fail', {
             duration: 3000

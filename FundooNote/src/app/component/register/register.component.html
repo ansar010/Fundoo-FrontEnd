@@ -22,18 +22,17 @@
           <br>
           <mat-form-field class="example-full-width">
             <input matInput placeholder=" Enter password" formControlName='password'
-              [type]="!hide ? 'password' : 'text'" required>
+              [type]="!hide ? 'password' : 'text'" required minlength="6" maxlength="10">
             <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-
-            <mat-error *ngIf="password.invalid">Password is required</mat-error>
+            <mat-error *ngIf="password.invalid">Password is required , min 6 and max 10</mat-error>
           </mat-form-field>
           <br>
           <mat-form-field class="example-full-width">
             <input matInput placeholder=" confirm password" formControlName='confirmpassword'
-              [type]="!hide ? 'password' : 'text'" required>
+              [type]="!hide ? 'password' : 'text'" required minlength="6" maxlength="10">
             <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
 
-            <mat-error *ngIf="confirmpassword.invalid">PassWord Does Not Match</mat-error>
+            <mat-error *ngIf="confirmpassword.invalid">Password Does Not Match</mat-error>
           </mat-form-field>
           <br>
           <mat-form-field>

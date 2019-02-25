@@ -54,13 +54,13 @@ export class ResetPasswordComponent implements OnInit {
         data => {
           this.loading = false;
           console.log('data ->' + data);
-          if (data.statusCode === 200) {
+          if (data.statusCode === 100) {
             this.snackBar.open(data.statusMessage, 'end now!!!!',
               {
                 duration: 2000,
               });
             this.router.navigate(['/login']);
-          } else if (data.statusCode === -200) {
+          } else {
             this.loading = false;
             this.snackBar.open(data.statusMessage, 'fail-to-Reset', {
               duration: 3000
