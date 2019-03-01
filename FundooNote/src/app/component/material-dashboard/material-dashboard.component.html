@@ -1,0 +1,124 @@
+<mat-toolbar class="dashboardToolBar">
+  <div class="iconAndTitle">
+
+    <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Main Menu">
+      <mat-icon class="mat-18">menu</mat-icon>
+    </button>
+    <img class="fundooIcon" src="/../assets/fundoo_dp.png">
+
+    <div class="dashboardTitle">{{headerName}}</div>
+
+  </div>
+
+  <div class="searchToolBar">
+
+    <button mat-icon-button>
+      <mat-icon class="mat-18">search</mat-icon>
+    </button>
+    <input class="searchInputBar" type="text" placeholder="search">
+
+  </div>
+
+  <div >
+
+      <button mat-icon-button matTooltip="Refresh">
+          <!-- <mat-icon class="mat-18">dashboard</mat-icon> -->
+          <mat-icon class="refresh">refresh</mat-icon>
+        </button>
+      <button mat-icon-button matTooltip="List view"> 
+          <mat-icon class="view_list">view_list</mat-icon>
+          <!-- <mat-icon class="settings">settings</mat-icon> -->
+        </button>
+        <button mat-icon-button class="settings" [matMenuTriggerFor]="settingsForHeader" matTooltip="Settings" >
+            <!-- <mat-icon class="mat-18">dashboard</mat-icon> -->
+            <mat-icon class="settings">settings</mat-icon>
+          </button>
+  </div>
+  <div>
+    <button mat-icon-button matTooltip="Google Apps">
+      <mat-icon class="mat-18">apps</mat-icon>
+      <!-- <mat-icon class="settings">settings</mat-icon> -->
+    </button>
+    <button mat-icon-button matTooltip="Notifications">
+        <mat-icon class="mat-18">notifications</mat-icon>
+        <!-- <mat-icon class="settings">settings</mat-icon> -->
+      </button>
+    
+      <button mat-icon-button class="accountButton"  [matMenuTriggerFor]="accountMenu" matTooltip="Google Account">
+       
+          <mat-icon class="account_circle">account_circle</mat-icon>
+        </button>
+  </div>
+
+  
+  <!-- <button class="accountButton" [matMenuTriggerFor]="accountMenu">R</button> -->
+
+</mat-toolbar>
+
+<mat-menu #settingsForHeader="matMenu">
+   
+    <button mat-menu-item (click)="settings()">Settings</button>
+    <button mat-menu-item (click)="sendFeedback()">Send FeedBack</button>
+    <button mat-menu-item (click)="help()">Help</button>
+    <button mat-menu-item (click)="appDownload()">App Download</button>
+    <button mat-menu-item (click)="keyboardShortcuts()">Keyboard Shortcut</button>
+
+  </mat-menu>
+<mat-menu #accountMenu="matMenu">
+  <span>{{userName}}</span>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon (click)="logout()" class="mat-18">power_settings_new</mat-icon> Logout
+  </button>
+</mat-menu>
+
+      <mat-drawer-container class="example-container">
+          <mat-drawer #sidenav mode="side" opened="true">
+      <div>
+        <button mat-button [routerLink]="['addNote']"  (click)="headerName= 'Fundoo Notes'" [ngClass]="{'sideNavListItems': headerName!='Fundoo Notes', 'sideNavlistItemsColored': headerName=='Fundoo Notes'}">
+          <mat-icon >lightbulb_outline</mat-icon> Notes
+            
+    </button>
+        
+      </div>
+      <div>
+        <button mat-button  [routerLink]="['remainder']"  (click)="headerName= 'Remainders'" [ngClass]="{'sideNavListItems': headerName!='Remainders', 'sideNavlistItemsColored': headerName=='Remainders'}">
+          <mat-icon>notifications_none</mat-icon> Remainders
+        </button>
+      </div>
+      
+          <mat-divider></mat-divider>
+          <!-- <div class="textSize">
+              <p >LABELS
+              </p>
+            </div> -->
+            <p  class="textSize">LABELS</p>
+            
+        <button class="sideNavListItems" mat-button (click)="openDialog()" >
+
+          <mat-icon >edit</mat-icon> Edit Labels
+        </button>
+        <!-- <button mat-raised-button (click)="openDialog()">Edit Lanels</button> -->
+        <mat-divider></mat-divider>
+      <div>
+        
+        <button mat-button  [routerLink]="['archive']"  (click)="headerName= 'Archive'" [ngClass]="{'sideNavListItems': headerName!='Archive', 'sideNavlistItemsColored': headerName=='Archive'}">
+          <mat-icon>archive</mat-icon> Archive
+        </button>
+      </div>
+      <div>
+        <button mat-button  [routerLink]="['trash']"  (click)="headerName= 'Trash'" [ngClass]="{'sideNavListItems': headerName!='Trash', 'sideNavlistItemsColored': headerName=='Trash'}">
+          <mat-icon>delete</mat-icon> Trash
+        </button>
+      </div>
+    </mat-drawer>
+    <mat-drawer-content>
+
+      <router-outlet></router-outlet>
+
+</mat-drawer-content>
+
+    </mat-drawer-container>
+     
+    <!-- </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container> -->

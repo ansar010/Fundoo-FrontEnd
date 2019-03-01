@@ -13,6 +13,10 @@ import { Router, RouterModule } from '@angular/router';
 import { ForgetPasswordComponent } from './component/forget-password/forget-password.component';
  import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NoteComponent } from './component/note/note.component';
+import { MaterialDashboardComponent } from './component/material-dashboard/material-dashboard.component';
+import { NoteBarComponent } from './component/note-bar/note-bar.component';
+import { AddNoteComponent } from './component/add-note/add-note.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LoginComponent,
     RegisterComponent,
     ForgetPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AddNoteComponent,
+    NoteComponent,
+    MaterialDashboardComponent,
+    NoteBarComponent
   ],
   imports: [
     FlexLayoutModule,

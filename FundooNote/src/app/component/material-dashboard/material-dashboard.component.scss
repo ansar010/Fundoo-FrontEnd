@@ -1,0 +1,168 @@
+.dashboardToolBar {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  
+  .iconAndTitle {
+    display: flex;
+  
+  }
+  
+  .dashboardTitle {
+    vertical-align: middle;
+    line-height: 49px;
+    width: 100%
+  }
+  
+  .searchToolBar {
+  
+    display: flex;
+    /* //margin: auto; */
+    width: 50%;
+  }
+  
+  .searchInputBar {
+    border-radius: 25px;
+    width: 150%;
+    /* // border: none; */
+    /* outline: none; */
+    padding: 1%;
+    border: 2px solid #73AD21;
+  }
+  
+  .mat-toolbar-single-row {
+    height: 64px;
+  }
+  /* 
+  // .navListItems {
+  //   padding: 10px !important;
+  // } */
+  
+  .accountButton {
+    width: 0px;
+    height: 0px;
+    border: 1px solid;
+    border-radius: 0px;
+    font-size: x-large;
+  
+  }
+  
+  /* // .sideBar {
+  //   display: flex;
+  //   // width: 0px;
+  //   height: 500px;
+  // }
+  // .sideNav{
+  //     height: 500px   ;
+  // } */
+  
+  .sidenavBar {
+    position: absolute;
+    min-width: 300px;
+    top: 80px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #ffffff;
+  }
+  
+  .sideNavList {
+    width: 300px;
+    height: 98.6%;
+    background-color: #ffffff;
+  }
+  
+  .sideNavListItems,
+  .sideNavlistItemsColored {
+    border-top-right-radius: 100px;
+    border-bottom-right-radius: 100px;
+    width: 300px;
+    font-size: 15px;
+    padding: 8px;
+    background-color: #ffffff;
+    color: #5f6368;
+    align-items: baseline;
+    text-align: left;
+  }
+  
+  .sideNavlistItemsColored {
+    background-color: #f8e6af !important;
+    color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .sideNavListItems .mat-icon,
+  .sideNavlistItemsColored .mat-icon {
+    padding-left: 10px;
+    padding-right: 25px;
+  }
+  
+  .sideNavListItems:hover {
+    background-color: #e6e6e6;
+  }
+  
+  .sidenavContent {
+    background-color: rgb(255, 255, 255); 
+    /* // max-width: 600px; */
+    max-width: -webkit-fill-available;
+    margin-left: 200px;
+  }
+  .center{
+  
+    margin-top: 5%;
+    margin-bottom: auto;
+    margin-left:auto;
+    margin-right: auto;
+    width: 50%; 
+    }
+    .example-container {
+      position: absolute;
+      min-width: 250 px;
+      top: 80px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      background-color: #ffffff;
+      }
+  
+  .noteInputBar {
+  
+    /* display: flex;
+    padding: 1%; 
+    border: 2px ;
+    width: 40%; */
+    width:600px;
+    margin:0 auto;
+    margin-top: 10px;
+    }
+  
+    .addNoteInput {
+      border: none;
+      outline: none;
+      resize: none;
+      width: 575px;
+      font-size: 14px;
+    
+    }
+  
+    .editLabel
+    {
+        font-size: 15px;
+        left:10cm;
+    }
+    
+    .textSize
+    {
+      
+      /* margin-top: 5%;
+      margin-bottom: auto;
+      margin-left:20%;
+      margin-right: auto;
+      width: 100%;  */
+      /* padding-right: 25px; */
+      /* padding-left: 10px; */
+      margin-left:15%;
+  
+    font-size: 15px;
+    color:#5f6368  
+  }

@@ -56,7 +56,8 @@ export class LoginComponent implements OnInit {
                this.snackBar.open(data.statusMessage, 'logged-In', { duration: 2000, });
                // console.log(response.header.get('jwtToken'));
                localStorage.setItem('token', data.token);
-              } else {
+               this.router.navigate(['/dashBoard'])       ;
+                     } else {
                 this.loading = false;
                 this.snackBar.open(data.statusMessage, 'login fail', {
                   duration: 3000

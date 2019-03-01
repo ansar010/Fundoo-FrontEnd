@@ -1,0 +1,97 @@
+.takeanote{
+    resize: unset;
+ border:none;
+outline: none;
+outline-style: none;
+box-shadow: none;
+border-color: transparent;
+border: solid 0px transparent;
+scale:none;
+max-height: 400px;
+overflow-y: auto; 
+width: 100%
+}
+.takeNote{
+    resize: unset;
+    border:none;
+   outline: none;
+   outline-style: none;
+   box-shadow: none;
+   border-color: transparent;
+   border: solid 0px transparent;
+   scale:none;
+   max-height: 400px;
+   overflow-y: auto; 
+   width: 100%
+  }
+  .center{
+    margin-top: 20%;
+    margin-bottom: auto;
+    margin-left:auto;
+    margin-right: auto;
+    width: 20%; 
+  }
+  .noteBarCenter
+{
+  margin-top: 1%;
+  margin-bottom: auto;
+  margin-left:5%;
+  margin-right: auto;
+  width: 25%; 
+}
+.inputDiv {
+
+  border: none;
+  outline: none;
+  resize: none;
+  width:100%;
+}
+.pinIcon {
+  /*   
+    height: 10px;
+    margin-left: auto;
+     */
+     margin-left: 20%;
+
+     border: none;
+     outline : none
+    }
+
+  .addNoteInput {
+    border: none;
+    outline: none;
+    resize: none;
+    width: 200px;
+    font-size: 14px;
+    
+    }
+    .addNoteTitleInput{
+  
+      border: none;
+      outline: none;
+      resize: none;
+      width: 60%;
+      font-size: 14px;
+      
+      
+      }
+
+
+  .addNoteInputDiv {
+    opacity: 0.7;
+    margin: auto;
+    }
+
+
+
+.addNote {
+
+  margin: 9px auto 0 auto;
+  border-color: white;
+  box-shadow: 0px 1px 5px;
+  vertical-align: middle;
+  border-radius: 8px;
+  width: 300px;
+  padding: 10px;
+  opacity: .7;
+}

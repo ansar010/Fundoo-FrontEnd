@@ -6,6 +6,9 @@ import { HomeComponent } from './component/home/home.component';
 import { ForgetPasswordComponent } from './component/forget-password/forget-password.component';
 import { ResetPassword } from './model/resetP.model';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+import { MaterialDashboardComponent } from './component/material-dashboard/material-dashboard.component';
+import { NoteComponent } from './component/note/note.component';
+import { NoteBarComponent } from './component/note-bar/note-bar.component';
 
 const routes: Routes = [
   {
@@ -28,9 +31,30 @@ const routes: Routes = [
   {
     path: 'resetPassword/:token',
     component: ResetPasswordComponent
-  }
-];
+  },
+  {
+    path: 'dashBoard',
+    component: MaterialDashboardComponent,
+    children: [
+      {
 
+        path: '',
+        component: NoteComponent
+      },
+      {
+        path: 'addNote',
+        component: NoteComponent,
+        // children: [
+        //   {
+        //     path: '',
+        //     component: NoteBarComponent
+        //   }
+        // ]
+      }
+    ]
+  }
+
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
