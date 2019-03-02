@@ -1,0 +1,26 @@
+<div class="container">
+  <mat-toolbar color="FFFFFF" class="toolbarDesign" >
+    <mat-toolbar-row>
+      <div class="iconAndTitle">
+        <button mat-icon-button>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div>
+          <img _ngcontent-c1="" alt="fundoo_Logo" class="fundooIcon" src="src/assets/logoFundoo.png"
+            style="width:40px;height:40px">
+        </div>
+        <div class="dashboardTitle">{{headerName}}</div>
+      </div>
+
+      <div  fxLayout="row" fxLayoutAlign="center center" fxFlex="60">
+        <mat-form-field class="example-full-width" #matSuffix appearance="outline" [style.fontSize.px]=12 >
+         <!-- <button mat-icon-button>
+          <mat-icon style="font-size:8px;">search</mat-icon>
+         </button> -->
+          <input matInput placeholder="" >
+        </mat-form-field>
+      </div>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

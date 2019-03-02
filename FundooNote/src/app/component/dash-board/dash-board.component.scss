@@ -1,3 +1,23 @@
+.menu-spacer {
+    flex: 1 1 auto;
+  }
+  .gb_5d.gb_3d {
+    opacity: .54;
+}
+.container {
+    display: flex; /* or inline-flex */
+  }
+
+.toolbarDesign {
+  display: flex;
+  height: 30%;
+  }
+  .example-full-width {
+    width: 100%;
+    padding-left: 20%;
+  }
+//Style ...
+
 .dashboardToolBar {
     display: flex;
     justify-content: space-between;
@@ -10,6 +30,7 @@
   }
   
   .dashboardTitle {
+    padding-left:10px ;
     vertical-align: middle;
     line-height: 49px;
     width: 100%
@@ -53,6 +74,7 @@
   //   // width: 0px;
   //   height: 500px;
   // }
+  
   // .sideNav{
   //     height: 500px   ;
   // } */
@@ -165,4 +187,6 @@
   
     font-size: 15px;
     color:#5f6368  
-  }
+    }
+    
+  
