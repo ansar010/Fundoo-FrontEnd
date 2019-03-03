@@ -1,0 +1,5 @@
+fundoo-note@0.0.0 /home/ansar/Fundoo/Front-End/Fundoo-FrontEnd/FundooNote
+├── UNMET PEER DEPENDENCY @angular/cdk@7.3.3
+├── UNMET PEER DEPENDENCY @angular/common@7.2.7 invalid
+└── UNMET PEER DEPENDENCY @angular/core@6.1.10
+
