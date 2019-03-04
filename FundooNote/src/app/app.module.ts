@@ -11,8 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { ForgetPasswordComponent } from './component/forget-password/forget-password.component';
- import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { TestComponent } from './component/test/test.component';
+import 'hammerjs';
 import { DashBoardComponent } from './component/dash-board/dash-board.component';
 
 @NgModule({
@@ -23,8 +25,8 @@ import { DashBoardComponent } from './component/dash-board/dash-board.component'
     RegisterComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
-    DashBoardComponent,
-
+    TestComponent,
+    DashBoardComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -35,7 +37,7 @@ import { DashBoardComponent } from './component/dash-board/dash-board.component'
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

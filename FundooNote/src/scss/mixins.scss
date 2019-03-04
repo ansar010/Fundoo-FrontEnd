@@ -1,0 +1,78 @@
+
+@mixin search() {
+    font: normal 16px,sans-serif;
+    flex: 1 1 auto;
+    padding: 11px 16px 11px 16px;
+    color: rgb(0, 0, 0);
+    opacity: 1;
+    width: stretch;
+    height: 46px;
+    background-color:rgb(245, 245, 245);
+    border:0px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 20px;
+    padding-left: 1%;
+    padding-right: 3%;
+}
+@mixin titleDisplay() {
+    padding-left: 10%;
+    padding-top: 7%;
+    opacity: 0.51;
+    font-size: 17px;
+    vertical-align: middle;
+    display: inline-block;
+    font-family:$font-family;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden !important; 
+    width: 83px;
+    cursor: pointer;
+}
+@mixin edit() {
+    border: none;
+    border-color: transparent;
+    outline: none;
+    width: 100%;
+    word-wrap: break-word;
+    letter-spacing: .01428571em;
+    font-family: 'Google Sans','Roboto',Arial,sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+}
+@mixin boxes(){
+    border: none;
+    border-color: transparent;
+    outline: none;
+    word-wrap: break-word;
+}
+@mixin titleDescription(){
+    font-family: 'Google Sans','Roboto',Arial,sans-serif;
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+}
+@mixin labelDisplay() {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden !important; 
+    width: 50px;
+}
+@mixin image() {
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+}
+@mixin heading(){
+    display:$display;
+    justify-content: center;
+    align-items: center;
+    height: 97vh;
+    width: $width;;
+}
+@mixin routerColorActivate(){
+    background:$background;
+    border-top-right-radius:$border-top-right-radius;
+    border-bottom-right-radius:$border-bottom-right-radius;
+  }

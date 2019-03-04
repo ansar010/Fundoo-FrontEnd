@@ -1,35 +1,95 @@
- <div class="container">
-  <mat-toolbar color="FFFFFF" class="toolbarDesign" style="height: 1%;">
-    <mat-toolbar-row>
-      <div class="iconAndTitle">
-        <button mat-icon-button>
-          <mat-icon>menu</mat-icon>
+    <!-- ********************ToolBar Display************************* -->
+
+<div fxFlex fxLayout="row" fxLayoutAlign="space-evenly center">
+  <mat-toolbar color="FFFFFF">
+    <div class="iconAndTitle">
+      <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Main menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div fxHide.xs="true">
+        <img _ngcontent-c1="" alt="fundoo_Logo" class="fundooIcon" src="src/assets/logoFundoo.png"
+          style="width:40px;height:40px">
+      </div>
+      <div class="dashboardTitle">{{headerName}}</div>
+    </div>
+
+    <div fxLayoutAlign="start" fxFlex="60%" fxShow="true" fxHide.xs="true" [style.fontSize.%]=65>
+      <mat-form-field class="example-full-width" appearance="outline">
+        <input matInput type="text" placeholder="Search">
+        <button mat-button matPrefix mat-icon-button>
+          <mat-icon>search</mat-icon>
         </button>
-        <div>
-          <img _ngcontent-c1="" alt="fundoo_Logo" class="fundooIcon" src="src/assets/logoFundoo.png"
-            style="width:40px;height:40px">
-        </div>
-        <div class="dashboardTitle">{{headerName}}</div>
-      </div>
+      </mat-form-field>
+    </div>
 
-      <div  fxLayout="row" fxLayoutAlign="center center" fxFlex="60"  fxFlexAlign="end"> >
-      
-        <mat-form-field appearance="outline">
-          <!-- <mat-label>Outline form field</mat-label> -->
-          <mat-icon matSuffix>search</mat-icon>
-          <input matInput placeholder="search">
-        </mat-form-field>  <!-- <mat-form-field class="example-full-width" #matSuffix appearance="outline" [style.fontSize.px]=12 >
-             <button  mat-mini-fab matPrefix> -->
-              <!-- <mat-icon >search</mat-icon>
-            </button>
-          <input matInput placeholder="" > -->
-         
-        <!-- </mat-form-field> -->
-      </div>
+    <div fxFlex fxLayoutAlign=" center end">
+      <button mat-icon-button matTooltip="Refresh">
+        <mat-icon>refresh</mat-icon>
+      </button>
 
-    </mat-toolbar-row>
+      <button mat-icon-button matTooltip="List View">
+        <mat-icon>view_list</mat-icon>
+      </button>
+
+      <button mat-icon-button [matMenuTriggerFor]="settingsForHeader" matTooltip="Setting">
+        <mat-icon>settings</mat-icon>
+      </button>
+    </div>
+
+    <div fxLayoutAlign=" center end">
+      <button mat-icon-button matTooltip="Google Apps">
+        <mat-icon>apps</mat-icon>
+      </button>
+
+      <button mat-icon-button matTooltip="Notifications">
+        <mat-icon>notifications</mat-icon>
+      </button>
+
+      <button mat-icon-button matTooltip="Google Account">
+        <mat-icon class="account_circle">account_circle</mat-icon>
+      </button>
+
+    </div>
+
+
+
   </mat-toolbar>
-</div> -->
+</div>
+
+<mat-menu #settingsForHeader="matMenu">
+
+  <button mat-menu-item (click)="settings()">Settings</button>
+  <button mat-menu-item (click)="sendFeedback()">Send FeedBack</button>
+  <button mat-menu-item (click)="help()">Help</button>
+  <button mat-menu-item (click)="appDownload()">App Download</button>
+  <button mat-menu-item (click)="keyboardShortcuts()">Keyboard Shortcut</button>
+
+</mat-menu>
+
+
+
+
+      <!-- *****************Side Menu Display********************** -->
+
+      <mat-sidenav-container [hasBackdrop]="false" fxFlexFill>
+        <mat-sidenav #sidenav mode="push" style="min-width:50" class="example-sidenav">
+        <mat-action-list >
+        <button class= "hoverhighlight" mat-list-item routerLink="notes"> <mat-icon>lightbulb_outline</mat-icon> <i style="margin: 5%;"></i> Notes </button>
+        <button class= "hoverhighlight" mat-list-item> <mat-icon>notifications_none</mat-icon><i style="margin: 5%;"></i>Remainder</button>
+        <mat-divider ></mat-divider>
+        <h6 style="font-size:65%;" matSubheader >LABELS</h6>
+        <button class= "hoverhighlight" mat-list-item (click)="EditLabelDialog()"><mat-icon>edit</mat-icon><i style="margin: 5%;"></i>Edit Labels </button>
+        <mat-divider></mat-divider>
+        <button class= "hoverhighlight" mat-list-item routerLink="archive" ><mat-icon>archive</mat-icon><i style="margin: 5%;"></i> Archive </button>
+        <button class= "hoverhighlight" mat-list-item routerLink="trash" ><mat-icon>delete</mat-icon> <i style="margin: 5%;"></i>Trash </button>
+        </mat-action-list>
+        </mat-sidenav>
+        <mat-sidenav-content color="white" fxFlexFill>
+        <app-add-note color="white"></app-add-note>
+        </mat-sidenav-content>
+        </mat-sidenav-container>
+        
 
 <!-- <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
 

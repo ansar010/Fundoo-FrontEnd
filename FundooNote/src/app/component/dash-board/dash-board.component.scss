@@ -1,36 +1,37 @@
-// .example-container {
-//   display: flex;
-//   flex-direction: column;
-//   position: absolute;
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-// }
+@import "../../../scss/mixins.scss";
+@import "../../../scss/variables.scss";
 
-// .example-is-mobile .example-toolbar {
-//   position: fixed;
-//   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-//   z-index: 2;
-// }
+.iconAndTitle {
+  display: flex;
 
-// h1.example-app-name {
-//   margin-left: 8px;
-// }
+}
 
-// .example-sidenav-container {
-//   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-//      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-//   flex: 1;
-// }
+.dashboardTitle {
+  padding-left:10px ;
+  vertical-align: middle;
+  line-height: 49px;
+  width: 100%
+}
 
-// .example-is-mobile .example-sidenav-container {
-//   /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-//      `<body>` to be our scrolling element for mobile layouts. */
-//   flex: 1 0 auto;
-// }
+.example-full-width {
+  width: 100%;
+  padding-left: 20%;
+}
 
 
+.hoverhighlight:hover{
+  background-color:lightgoldenrodyellow;
+  border-top-right-radius: 15%;
+  border-bottom-right-radius: 15%;
+  }
+
+//RR
+.searchBar{
+  flex: 1 1 auto;
+  width:60%;
+  // width: stretch;
+  // padding-left: $padding-left;
+ }
 
 .menu-spacer {
     flex: 1 1 auto;
@@ -46,10 +47,10 @@
   display: flex;
   height: 30%;
   }
-  .example-full-width {
-    width: 100%;
-    padding-left: 20%;
-  }
+  
+.mat-menu-item {
+  font-size: 10px;
+}
 //Style ...
 
 .dashboardToolBar {
@@ -58,17 +59,9 @@
     flex-direction: row;
   }
   
-  .iconAndTitle {
-    display: flex;
   
-  }
   
-  .dashboardTitle {
-    padding-left:10px ;
-    vertical-align: middle;
-    line-height: 49px;
-    width: 100%
-  }
+  
   
   .searchToolBar {
   
@@ -223,4 +216,142 @@
     color:#5f6368  
     }
     
+    //Nav proj
+
+
+// $font-weight: 500;
+// $padding-left:2%;
+// $padding:3%;
+// $width:100px;
+// $border: none;
+// $border-top-right-radius: 20px;
+// $border-bottom-right-radius: 20px;
+// $background:#feefc3;
+
+// .sidenav-container {
+//   background-color:$color;
+//   height:100%;
+//   width:100%;
+//   position: fixed;
+// }
+// .googleKeep{
+//   width:31px;
+//   height:31px;
+//   padding:9px;
+// }
+// .ico{
+//   float:$float;
+// }
+// .mat-nav-list a.active {
+//   @include routerColorActivate;
+// }
+// .noRouterColorActivate{
+//   background:#ffffff;
+// }
+// .routerColorActivate{
+// @include routerColorActivate;
+// }
+// .titledisplay{
+// @include titleDisplay;
+// }
+// .lab{
+//   color: #5f6368;
+//   letter-spacing: .07272727em;
+//   font-family: $font-family;
+//   font-size: .6875rem;
+//   font-weight: font-weight;
+//   line-height: 1rem;
+//   text-transform: uppercase;
+// }
+// .bulp{
+//   @include labelDisplay;
+//   padding-left: 12%;
+//   font-family: $font-family;
+//   font-weight: font-weight;
+//   font-size: .875rem;
+//   width:$width;
+//   letter-spacing: .01785714em;
+// }
+// .sidenav{
+//   width: 230px;
+//   margin-top:55px;
+//   // overflow: hidden;
+// }  
+// .mat-drawer.mat-drawer-side {
+//   top:0;
+// }
+// .toolbar
+// {
+//   box-shadow: $box-shadow;
+//   background-color:$color;
+//   position: fixed;
+//   z-index: 3;
+//   display: $display;
+// }
+// .title-header{
+//   padding-left: 1%;
+//   color:$blackColor;
+//   display:$display;
+// }
+// .toggle{
+//   color: $blackColor;
+//   opacity: 0.54;
+//   display: $display;
+// } 
+// .searchBar{
+//  flex: 1 1 auto;
+//  width:$width;
+//  width: stretch;
+//  padding-left: $padding-left;
+// }
+// .material-icons{
+//   font-size: 30px;
+//   margin-right: 8px;
+//   color: $blackColor;
+//   opacity: 0.6;
+//   display: $display;
+// }
+// .search{
+// @include search;
+// outline: $color;
+//  border-color: transparent;
+//  border:$border;
+// }
+// .searchNew{
+//   padding-left:$padding-left;
+// }
+// .icons
+// {
+//  padding-top: 11%;
+//  padding-left: $padding-left;
+// }
+// input:focus
+// {
+// background-color: $color;
+// }
+// .profilebutton1{
+//   width:$width; 
+//   height:100px; 
+//   border:$border;
+//   border-radius: 50%;
+//   background-color: $color;
+//   padding: $padding;
+// }
+// .image{
+//  @include image;
+// }
+// .padding{
+//   padding:$padding;
+// }
+// .changeButton{
+//   margin-top: 125%;
+// }
+// .img{
+//   padding-right: 1%;
+// }
+// .list{
+//   margin-top: 3%;
+// }
+
+
   

@@ -6,6 +6,7 @@ import { HomeComponent } from './component/home/home.component';
 import { ForgetPasswordComponent } from './component/forget-password/forget-password.component';
 import { ResetPassword } from './model/resetP.model';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
+import { TestComponent } from './component/test/test.component';
 import { DashBoardComponent } from './component/dash-board/dash-board.component';
 // import { MaterialDashboardComponent } from './component/material-dashboard/material-dashboard.component';
 // import { NoteComponent } from './component/note/note.component';
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'resetPassword/:token',
     component: ResetPasswordComponent
+  },
+  {
+    path: 'test',
+    component: TestComponent
   },
   {
     path: 'dashboard',
