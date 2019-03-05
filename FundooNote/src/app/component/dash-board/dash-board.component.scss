@@ -5,6 +5,15 @@
   display: flex;
 
 }
+.example-container {
+  position: absolute;
+  min-width: 250%;
+  top: 60px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-color: #ffffff;
+  }
 
 .dashboardTitle {
   padding-left:10px ;
@@ -17,112 +26,13 @@
   width: 100%;
   padding-left: 20%;
 }
-
-
-.hoverhighlight:hover{
-  background-color:lightgoldenrodyellow;
-  border-top-right-radius: 15%;
-  border-bottom-right-radius: 15%;
-  }
-
-//RR
-.searchBar{
-  flex: 1 1 auto;
-  width:60%;
-  // width: stretch;
-  // padding-left: $padding-left;
- }
-
-.menu-spacer {
-    flex: 1 1 auto;
-  }
-  .gb_5d.gb_3d {
-    opacity: .54;
+.textSize
+{
+  margin-left:15%;
+  font-size: 15px;
+  color:#5f6368  
 }
-.container {
-    display: flex; /* or inline-flex */
-  }
-
-.toolbarDesign {
-  display: flex;
-  height: 30%;
-  }
-  
-.mat-menu-item {
-  font-size: 10px;
-}
-//Style ...
-
-.dashboardToolBar {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-  }
-  
-  
-  
-  
-  
-  .searchToolBar {
-  
-    display: flex;
-    /* //margin: auto; */
-    width: 50%;
-  }
-  
-  .searchInputBar {
-    border-radius: 25px;
-    width: 150%;
-    /* // border: none; */
-    /* outline: none; */
-    padding: 1%;
-    border: 2px solid #73AD21;
-  }
-  
-  .mat-toolbar-single-row {
-    height: 64px;
-  }
-  /* 
-  // .navListItems {
-  //   padding: 10px !important;
-  // } */
-  
-  .accountButton {
-    width: 0px;
-    height: 0px;
-    border: 1px solid;
-    border-radius: 0px;
-    font-size: x-large;
-  
-  }
-  
-  /* // .sideBar {
-  //   display: flex;
-  //   // width: 0px;
-  //   height: 500px;
-  // }
-  
-  // .sideNav{
-  //     height: 500px   ;
-  // } */
-  
-  .sidenavBar {
-    position: absolute;
-    min-width: 300px;
-    top: 80px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background-color: #ffffff;
-  }
-  
-  .sideNavList {
-    width: 300px;
-    height: 98.6%;
-    background-color: #ffffff;
-  }
-  
-  .sideNavListItems,
+.sideNavListItems,
   .sideNavlistItemsColored {
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
@@ -149,72 +59,149 @@
   .sideNavListItems:hover {
     background-color: #e6e6e6;
   }
+
+// //RR
+// .searchBar{
+//   flex: 1 1 auto;
+//   width:60%;
+//   // width: stretch;
+//   // padding-left: $padding-left;
+//  }
+
+// .menu-spacer {
+//     flex: 1 1 auto;
+//   }
+//   .gb_5d.gb_3d {
+//     opacity: .54;
+// }
+// .container {
+//     display: flex; /* or inline-flex */
+//   }
+
+// .toolbarDesign {
+//   display: flex;
+//   height: 30%;
+//   }
   
-  .sidenavContent {
-    background-color: rgb(255, 255, 255); 
-    /* // max-width: 600px; */
-    max-width: -webkit-fill-available;
-    margin-left: 200px;
-  }
-  .center{
+// .mat-menu-item {
+//   font-size: 10px;
+// }
+// //Style ...
+
+// .dashboardToolBar {
+//     display: flex;
+//     justify-content: space-between;
+//     flex-direction: row;
+//   }
   
-    margin-top: 5%;
-    margin-bottom: auto;
-    margin-left:auto;
-    margin-right: auto;
-    width: 50%; 
-    }
-    .example-container {
-      position: absolute;
-      min-width: 250 px;
-      top: 80px;
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      background-color: #ffffff;
-      }
   
-  .noteInputBar {
   
-    /* display: flex;
-    padding: 1%; 
-    border: 2px ;
-    width: 40%; */
-    width:600px;
-    margin:0 auto;
-    margin-top: 10px;
-    }
   
-    .addNoteInput {
-      border: none;
-      outline: none;
-      resize: none;
-      width: 575px;
-      font-size: 14px;
+  
+//   .searchToolBar {
+  
+//     display: flex;
+//     /* //margin: auto; */
+//     width: 50%;
+//   }
+  
+//   .searchInputBar {
+//     border-radius: 25px;
+//     width: 150%;
+//     /* // border: none; */
+//     /* outline: none; */
+//     padding: 1%;
+//     border: 2px solid #73AD21;
+//   }
+  
+//   .mat-toolbar-single-row {
+//     height: 64px;
+//   }
+//   /* 
+//   // .navListItems {
+//   //   padding: 10px !important;
+//   // } */
+  
+//   .accountButton {
+//     width: 0px;
+//     height: 0px;
+//     border: 1px solid;
+//     border-radius: 0px;
+//     font-size: x-large;
+  
+//   }
+  
+//   /* // .sideBar {
+//   //   display: flex;
+//   //   // width: 0px;
+//   //   height: 500px;
+//   // }
+  
+//   // .sideNav{
+//   //     height: 500px   ;
+//   // } */
+  
+//   .sidenavBar {
+//     position: absolute;
+//     min-width: 300px;
+//     top: 80px;
+//     bottom: 0px;
+//     left: 0px;
+//     right: 0px;
+//     background-color: #ffffff;
+//   }
+  
+//   .sideNavList {
+//     width: 300px;
+//     height: 98.6%;
+//     background-color: #ffffff;
+//   }
+  
+  
+  
+//   .sidenavContent {
+//     background-color: rgb(255, 255, 255); 
+//     /* // max-width: 600px; */
+//     max-width: -webkit-fill-available;
+//     margin-left: 200px;
+//   }
+//   .center{
+  
+//     margin-top: 5%;
+//     margin-bottom: auto;
+//     margin-left:auto;
+//     margin-right: auto;
+//     width: 50%; 
+//     }
     
-    }
   
-    .editLabel
-    {
-        font-size: 15px;
-        left:10cm;
-    }
+//   .noteInputBar {
+  
+//     /* display: flex;
+//     padding: 1%; 
+//     border: 2px ;
+//     width: 40%; */
+//     width:600px;
+//     margin:0 auto;
+//     margin-top: 10px;
+//     }
+  
+//     .addNoteInput {
+//       border: none;
+//       outline: none;
+//       resize: none;
+//       width: 575px;
+//       font-size: 14px;
     
-    .textSize
-    {
-      
-      /* margin-top: 5%;
-      margin-bottom: auto;
-      margin-left:20%;
-      margin-right: auto;
-      width: 100%;  */
-      /* padding-right: 25px; */
-      /* padding-left: 10px; */
-      margin-left:15%;
+//     }
   
-    font-size: 15px;
-    color:#5f6368  
-    }
+//     .editLabel
+//     {
+//         font-size: 15px;
+//         left:10cm;
+//     }
+    
+   
     
     //Nav proj
 
@@ -352,6 +339,39 @@
 // .list{
 //   margin-top: 3%;
 // }
+
+
+
+// //NavBar css
+// .example-container {
+//   display: flex;
+//   flex-direction: column;
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   }
+//   .example-is-mobile .example-toolbar {
+//   position: fixed;
+//   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+//   z-index: 2;
+//   }
+//   h1.example-app-name {
+//   margin-left: 8px;
+//   }
+//   .example-sidenav-container {
+//   /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+//   causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+//   flex: 1;
+//   }
+//   .example-is-mobile .example-sidenav-container {
+//   /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+//   `<body>` to be our scrolling element for mobile layouts. */
+//   flex: 1 0 auto;
+//   }
+//  // NavBar css ends
+
 
 
   

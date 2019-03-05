@@ -1,0 +1,12 @@
+<mat-card *ngIf="hide" (click)="hide=!hide">
+    <span> Take a Note ...</span>
+    <div class="noteButton" fxLayout="row" fxLayoutAlign="space-evenly">
+       
+    </div>
+</mat-card>
+
+<mat-card *ngIf="!hide">
+  <div>
+    Hello
+  </div>
+</mat-card>

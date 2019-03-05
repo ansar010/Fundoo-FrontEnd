@@ -16,6 +16,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { TestComponent } from './component/test/test.component';
 import 'hammerjs';
 import { DashBoardComponent } from './component/dash-board/dash-board.component';
+import { AddNoteComponent } from './component/add-note/add-note.component';
+import { NoteComponent } from './component/note/note.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { DashBoardComponent } from './component/dash-board/dash-board.component'
     ForgetPasswordComponent,
     ResetPasswordComponent,
     TestComponent,
-    DashBoardComponent
+    DashBoardComponent,
+    AddNoteComponent,
+    NoteComponent
   ],
   imports: [
     FlexLayoutModule,

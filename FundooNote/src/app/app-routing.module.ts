@@ -8,6 +8,7 @@ import { ResetPassword } from './model/resetP.model';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { TestComponent } from './component/test/test.component';
 import { DashBoardComponent } from './component/dash-board/dash-board.component';
+import { AddNoteComponent } from './component/add-note/add-note.component';
 // import { MaterialDashboardComponent } from './component/material-dashboard/material-dashboard.component';
 // import { NoteComponent } from './component/note/note.component';
 // import { NoteBarComponent } from './component/note-bar/note-bar.component';
@@ -40,7 +41,13 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DashBoardComponent
+    component: DashBoardComponent,
+    children: [
+      {
+        path: 'addNote',
+        component: AddNoteComponent
+      }
+    ]
   }
   // {
   //   path: 'dashBoard',
