@@ -71,7 +71,7 @@
   <mat-drawer #sidenav mode="side" opened="true">
     
     <div>
-      <button mat-button [routerLink]="['addNote']" 
+      <button mat-button [routerLink]="['addNote']" (click)="headerName='Fundoo Notes'"
         [ngClass]="{'sideNavListItems': headerName!='Fundoo Notes', 'sideNavlistItemsColored': headerName=='Fundoo Notes'}">
         <mat-icon>lightbulb_outline</mat-icon> Notes
       </button>

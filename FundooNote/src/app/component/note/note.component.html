@@ -1,3 +1,59 @@
-<p>
-  note works!
-</p>
+<div fxLayoutAlign="center start">
+  <app-add-note></app-add-note>
+</div>
+
+<div *ngFor="let notes of data" class="addNote">
+    <div class="addNoteInputDiv">
+  
+      <textarea class="addNoteTitleInput" placeholder="Title" [(ngModel)]="note.title"
+        matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"></textarea>
+        
+        <button class="pinIcon"  (click)=changePin()>
+        <img src="https://img.icons8.com/material-outlined/24/000000/pin.png">
+        </button>
+        
+        <p></p>
+      <textarea class="addNoteInput" placeholder="Take a note..." [(ngModel)]="note.description" 
+        matInput cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"></textarea>
+    
+    </div>
+  
+    <div fxLayout="row" fxLayoutAlign="start center">
+  
+      <button mat-icon-button matTooltip="Remind me">
+        <mat-icon>add_alert
+        </mat-icon>
+      </button>
+  
+      <button mat-icon-button matTooltip="Collaborator">
+        <mat-icon>person_add_outline
+        </mat-icon>
+      </button>
+  
+      <button mat-icon-button matTooltip="Change color" >
+        <mat-icon>color_lens</mat-icon>
+      </button>
+  
+  
+      <button mat-icon-button matTooltip="Add Image">
+        <mat-icon>photo</mat-icon>
+      </button>
+  
+      <button mat-icon-button matTooltip="Archive">
+        <mat-icon>archive</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="More">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Undo">
+        <mat-icon>undo</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Redo">
+        <mat-icon>redo</mat-icon>
+      </button>
+      <button mat-button color="warn" (click)="close()" style="margin-left: 182px;">
+        close</button>
+    </div>
+  </div>
