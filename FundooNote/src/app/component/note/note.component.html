@@ -1,8 +1,27 @@
 <div fxLayoutAlign="center start">
   <app-add-note></app-add-note>
 </div>
+<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+  <!-- flexLayout="row wrap" fxLayoutGap="10px"> -->
+  
+  <p class="textSize">Pinned:</p>
+  <div *ngFor="let note of allnotes">
 
-<div *ngFor="let notes of data" class="addNote">
+    <div >
+      <!-- *ngIf="!note.archive && !note.trash && note.pin" -->
+      <app-note-bar [noteDetail]=note>
+
+      </app-note-bar>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+<!-- <div *ngFor="let notes of data" class="addNote">
     <div class="addNoteInputDiv">
   
       <textarea class="addNoteTitleInput" placeholder="Title" [(ngModel)]="note.title"
@@ -56,4 +75,4 @@
       <button mat-button color="warn" (click)="close()" style="margin-left: 182px;">
         close</button>
     </div>
-  </div>
+  </div> -->

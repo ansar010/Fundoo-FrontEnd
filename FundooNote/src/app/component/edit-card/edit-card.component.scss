@@ -1,0 +1,83 @@
+.takeanote{
+    resize: unset;
+ border:none;
+outline: none;
+outline-style: none;
+box-shadow: none;
+border-color: transparent;
+border: solid 0px transparent;
+scale:none;
+max-height: 400px;
+overflow-y: auto; 
+width: 100%
+}
+
+.takeNote{
+    resize: unset;
+    border:none;
+   outline: none;
+   outline-style: none;
+   box-shadow: none;
+   border-color: transparent;
+   border: solid 0px transparent;
+   scale:none;
+   max-height: 400px;
+   overflow-y: auto; 
+   width: 100%
+  }
+  
+  .center{
+    margin-top: 20%;
+    margin-bottom: auto;
+    margin-left:auto;
+    margin-right: auto;
+    width: 20%; 
+  }
+  .noteBarCenter
+{
+  margin-top: 1%;
+  margin-bottom: auto;
+  margin-left:5%;
+  margin-right: auto;
+  width: 25%; 
+}
+.cardSize
+{
+    width: 700px;
+    margin-right: 25px;
+}
+
+
+.inputDiv {
+
+    border: none;
+    outline: none;
+    resize: none;
+    width: 80%;
+  
+  }
+
+  .mainEditArea {
+    padding: 10px;
+  }
+
+
+/deep/ .mat-dialog-container {
+  padding: 0 !important;
+  border-radius: 8px;
+  overflow: hidden;
+  padding-top: 0 !important; 
+  }
+
+
+.addNote {
+
+  margin: 9px auto 0 auto;
+  border-color: white;
+  box-shadow: 0px 1px 5px;
+  vertical-align: middle;
+  border-radius: 8px;
+  width: 600px;
+  padding: 5px;
+  opacity: .7;
+  }

@@ -9,6 +9,7 @@ import { ResetPasswordComponent } from './component/reset-password/reset-passwor
 import { TestComponent } from './component/test/test.component';
 import { DashBoardComponent } from './component/dash-board/dash-board.component';
 import { NoteComponent } from './component/note/note.component';
+// import { NoteBarComponent } from './component/note-bar/note-bar.component';
 // import { MaterialDashboardComponent } from './component/material-dashboard/material-dashboard.component';
 // import { NoteComponent } from './component/note/note.component';
 // import { NoteBarComponent } from './component/note-bar/note-bar.component';
@@ -35,10 +36,10 @@ const routes: Routes = [
     path: 'resetPassword/:token',
     component: ResetPasswordComponent
   },
-  {
-    path: 'test',
-    component: TestComponent
-  },
+  // {
+  //   path: 'noteBar',
+  //   component: NoteBarComponent
+  // },
   {
     path: 'dashboard',
     component: DashBoardComponent,

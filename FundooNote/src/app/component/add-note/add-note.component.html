@@ -1,27 +1,26 @@
-
 <div *ngIf="!isOpen" class="addNote" (click)="isOpen=true">
 
   <div class="addNoteInputDiv">Take a note...</div>
 
 </div>
 
-<div *ngIf="isOpen" class="addNote">
+<div [ngStyle]="{'backgroundColor': color}" *ngIf="isOpen" class="addNote">
 
   <div class="addNoteInputDiv">
 
-    <textarea class="addNoteTitleInput" placeholder="Title" [(ngModel)]="note.title"
-      matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
-      cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"></textarea>
-    
-      <button class="pinIcon"  (click)=changePin()>
+    <textarea class="addNoteTitleInput" placeholder="Title"
+      [(ngModel)]="note.title" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0"
+      cdkAutosizeMaxRows="40"></textarea>
+
+    <button class="pinIcon" (click)=changePin()>
       <img src="https://img.icons8.com/material-outlined/24/000000/pin.png">
-      </button>
-      
-      <p></p>
-    <textarea class="addNoteInput" placeholder="Take a note..." [(ngModel)]="note.description" 
-      matInput cdkTextareaAutosize
-      #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"></textarea>
-  
+    </button>
+
+    <p></p>
+    <textarea  class="addNoteInput" placeholder="Take a note..."
+      [(ngModel)]="note.description" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0"
+      cdkAutosizeMaxRows="40"></textarea>
+
   </div>
 
   <div fxLayout="row" fxLayoutAlign="start center">
@@ -36,7 +35,7 @@
       </mat-icon>
     </button>
 
-    <button mat-icon-button matTooltip="Change color" >
+    <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
       <mat-icon>color_lens</mat-icon>
     </button>
 
@@ -61,4 +60,32 @@
       close</button>
   </div>
 </div>
-      
+
+<mat-menu #colorMenu="matMenu" class="colorMenu" [overlapTrigger]="false">
+    <ng-template matMenuContent let-note="note">
+    <div fxLayout="row wrap" fxLayoutAlign="end
+    center" fxFlex="90">
+    <div *ngFor="let color of colorCode">
+    <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode)">
+    <mat-icon style="font-size: 40px" class="colorIcons">fiber_manual_record</mat-icon>
+    </button>
+    </div>
+    </div>
+    </ng-template>
+  </mat-menu>
+<!-- <mat-menu #colorMenu="matMenu" class="colorMenu">
+
+  <ng-template matMenuContent let-note="note">
+    <div fxLayout="row wrap">
+    <div *ngFor="let color of colorCode">
+             <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode)">
+
+        <mat-icon class="colorIcons">fiber_manual_record</mat-icon>
+
+      </button>
+
+    </div>
+  </div>
+  </ng-template>
+</mat-menu> -->
+

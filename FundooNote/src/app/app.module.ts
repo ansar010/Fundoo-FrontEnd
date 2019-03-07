@@ -18,6 +18,8 @@ import 'hammerjs';
 import { DashBoardComponent } from './component/dash-board/dash-board.component';
 import { AddNoteComponent } from './component/add-note/add-note.component';
 import { NoteComponent } from './component/note/note.component';
+import { EditCardComponent } from './component/edit-card/edit-card.component';
+// import { NoteBarComponent } from './component/note-bar/note-bar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { NoteComponent } from './component/note/note.component';
     TestComponent,
     DashBoardComponent,
     AddNoteComponent,
-    NoteComponent
+    NoteComponent,
+    // NoteBarComponent,
+    EditCardComponent
   ],
   imports: [
     FlexLayoutModule,
