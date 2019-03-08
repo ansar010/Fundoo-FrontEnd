@@ -3,6 +3,7 @@ import { NoteModel } from 'src/app/model/note.model';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
 import { EditCardComponent } from '../edit-card/edit-card.component';
+import { CardUpdateServiceService } from 'src/app/services/card-update-service.service';
 
 @Component({
     selector: 'app-note-bar',
@@ -28,7 +29,8 @@ export class NoteBarComponent implements OnInit {
     private color: string;
 
     @Input() noteDetail: NoteModel;
-    constructor(private httpService: HttpserviceService, private snackBar: MatSnackBar, private dialog: MatDialog) { }
+    constructor(private cardUpdate: CardUpdateServiceService, private httpService: HttpserviceService,
+        private snackBar: MatSnackBar, private dialog: MatDialog) { }
 
     ngOnInit() {
     }
@@ -52,7 +54,6 @@ export class NoteBarComponent implements OnInit {
             }
 
         );
-
     }
 
     openEditDialog(item) {
@@ -67,16 +68,14 @@ export class NoteBarComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
             console.log('The dialog was closed');
             console.log('after dialog ', item);
-
-            this.httpService.putRequest('note', item).subscribe(
+            this.httpService.notePutRequest('note', item).subscribe(
                 data => {
                     if (data.statusCode === 100) {
 
-                        this.snackBar.open(data.statusMessage, '', {
+                        this.snackBar.open('note updated Successfully', '', {
                             duration: 2000,
                         });
                     }
-                    // this.cardUpdate.changemessage();
                 }
             );
         });

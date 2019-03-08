@@ -6,7 +6,6 @@ import { HomeComponent } from './component/home/home.component';
 import { ForgetPasswordComponent } from './component/forget-password/forget-password.component';
 import { ResetPassword } from './model/resetP.model';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
-import { TestComponent } from './component/test/test.component';
 import { DashBoardComponent } from './component/dash-board/dash-board.component';
 import { NoteComponent } from './component/note/note.component';
 // import { NoteBarComponent } from './component/note-bar/note-bar.component';

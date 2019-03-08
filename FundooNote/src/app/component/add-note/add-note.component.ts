@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NoteModel } from 'src/app/model/note.model';
-import { HttpNoteServiceService } from 'src/app/services/http-note-service.service';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
 import { MatSnackBar } from '@angular/material';
-import { error } from 'util';
-import { notEqual } from 'assert';
+
 
 @Component({
   selector: 'app-add-note',
@@ -32,64 +30,14 @@ export class AddNoteComponent implements OnInit {
   private isPin: boolean = false;
   private note: NoteModel = new NoteModel();
   color: string;
-
   allNotes: NoteModel[];
   showIcon: boolean = true;
 
   constructor(private httpService: HttpserviceService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
-    // this.httpService.getAllNotes().subscribe(
-    //   response => {
-
-    //     this.allNotes = response;
-    //     if (this.allNotes.length !== 0) {
-    //       this.showIcon = false;
-    //     }
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // );
-
   }
-  //   close() : void {
-  //     // console.log(this.name,this.email,this.password,this.phoneNumber)
 
-  //     this.isOpen=!this.isOpen;
-  //     this.showIcon=false;
-
-  //     console.log(this.note.title.length);
-  //     if(this.note.title.length!=0 || this.note.description.length!=0)
-  //        {
-  //         this.note.color=this.color;
-  //         this.note.pin=this.pin;
-  //         this.noteBar=true;
-  //   (this.notecrud.createNote(this.note)).subscribe(
-
-  //     response =>{
-  //       if(response.statusCode==166)
-  //       {
-  //         this.snackBar.open(response.statusMessage,"",{
-  //           duration:2000,
-  //         })
-  //       }
-  //       this.cardUpdate.changemessage();
-  //     },
-  //     error =>{
-  //       console.log("Error",error);
-  //     }
-
-  //     );
-
-
-  //  this.note=new NoteModel();
-  //  this.color="white"
-  //  this.pin=false;
-  // }
-
-
-  // }
   close() {
     console.log(this.note.title.length);
     this.isOpen = true;

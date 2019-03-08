@@ -10,7 +10,7 @@ import { HttpNoteServiceService } from 'src/app/services/http-note-service.servi
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
-  // data: any;
+
   private allnotes: NoteModel[];
 
   constructor(private cardupdate: CardUpdateServiceService, private httpNoteService: HttpNoteServiceService) { }

@@ -13,13 +13,12 @@ import { Router, RouterModule } from '@angular/router';
 import { ForgetPasswordComponent } from './component/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { TestComponent } from './component/test/test.component';
 import 'hammerjs';
 import { DashBoardComponent } from './component/dash-board/dash-board.component';
 import { AddNoteComponent } from './component/add-note/add-note.component';
 import { NoteComponent } from './component/note/note.component';
 import { EditCardComponent } from './component/edit-card/edit-card.component';
-// import { NoteBarComponent } from './component/note-bar/note-bar.component';
+import { NoteBarComponent } from './component/note-bar/note-bar.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +28,11 @@ import { EditCardComponent } from './component/edit-card/edit-card.component';
     RegisterComponent,
     ForgetPasswordComponent,
     ResetPasswordComponent,
-    TestComponent,
     DashBoardComponent,
     AddNoteComponent,
     NoteComponent,
-    // NoteBarComponent,
-    EditCardComponent
+    EditCardComponent,
+    NoteBarComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -48,6 +46,8 @@ import { EditCardComponent } from './component/edit-card/edit-card.component';
     RouterModule,
   ],
   providers: [],
+  entryComponents : [EditCardComponent],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

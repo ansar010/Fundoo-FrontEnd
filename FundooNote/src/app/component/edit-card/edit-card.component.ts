@@ -32,13 +32,16 @@ export class EditCardComponent implements OnInit {
   }
   ngOnInit() {
   }
+
   closeAndSave(data) {
     this.isOpen = !this.isOpen;
 
     console.log(data);
-
   }
+
   changeColor(color) {
     this.noteDetail.color = color;
   }
 }
+
+

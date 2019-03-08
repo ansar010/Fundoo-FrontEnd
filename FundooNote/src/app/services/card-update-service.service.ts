@@ -34,18 +34,5 @@ export class CardUpdateServiceService {
 
   }
 
-  // changemessage() {
-  //   console.log('change message');
-
-  //   this.httpService.noteGetRequest().subscribe(
-  //     response => {
-
-  //       this.allNotes.next(response);
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     }
-  //   );
-  // }
 
 }
