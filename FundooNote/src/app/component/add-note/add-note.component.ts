@@ -74,11 +74,11 @@ export class AddNoteComponent implements OnInit {
     this.color = color;
   }
 
-  // changePin() {
-  //   // this.isPin = !this.isPin;
-  //   this.isPin = true;
-  //   console.log(this.isPin);
-  // }
+  changePin() {
+    // this.isPin = !this.isPin;
+    this.isPin = true;
+    console.log(this.isPin);
+  }
 }
 
 

@@ -14,7 +14,6 @@ export class NoteComponent implements OnInit {
   private allnotes: NoteModel[];
 
   constructor(private cardupdate: CardUpdateServiceService, private httpNoteService: HttpNoteServiceService) { }
-  showIcon: boolean = false;
 
   ngOnInit() {
 
@@ -23,11 +22,6 @@ export class NoteComponent implements OnInit {
     console.log('new note');
     console.log('length ', this.allnotes.length);
   }
-
-
-
-
-
 
   // getNote() {
   //   this.httpService.getRequest1('/user/note/list')

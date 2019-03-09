@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { NoteModel } from '../model/note.model';
+import { notEqual } from 'assert';
 
 const httpOptions = {
   headers: new HttpHeaders().set('Content-Type', 'application/json')
@@ -21,6 +23,17 @@ export class HttpserviceService {
 
   public putRequest(url, data): any {
     return this.http.put(environment.baseUrl + url, data, httpOptions);
+  }
+
+  public noteIDPutRequest(url, note: NoteModel): any {
+   console.log(note.noteId);
+    const header = {
+      headers: new HttpHeaders({
+        'content-type': 'application/json',
+        'token': localStorage.getItem('token')
+      })
+    };
+    return this.http.put(environment.baseUrl + url + note.noteId, '', header);
   }
 
   // public getRequest(url, data): any {
@@ -62,29 +75,40 @@ export class HttpserviceService {
 
   // public getAllNotes() : Observable<NoteModel[]> | any
   // {
-public noteGetRequest(): any {
+  public noteGetRequest(): any {
 
     console.log('local', localStorage.getItem('token'));
 
     const header = {
-      headers : new HttpHeaders({'token' : localStorage.getItem('token')
+      headers: new HttpHeaders({
+        'token': localStorage.getItem('token')
       })
     };
 
-      // return this.http.get<NoteModel[]>(this.userUrl+"note",httpOptions2);
-      return this.http.get(environment.baseUrl + 'note', header);
-}
+    // return this.http.get<NoteModel[]>(this.userUrl+"note",httpOptions2);
+    return this.http.get(environment.baseUrl + 'note', header);
+  }
 
-public notePutRequest(url, data): any {
+  public notePutRequest(url, data): any {
 
-  const header = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'token': localStorage.getItem('token')
-    }
-    )
-  };
-  return this.http.put(environment.baseUrl + url, data, header);
-}
+    const header = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token')
+      }
+      )
+    };
+    return this.http.put(environment.baseUrl + url, data, header);
+  }
 
+  public noteDeleteRequest(url, data): any {
+    const header = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token')
+      }
+      )
+    };
+    return this.http.delete(environment.baseUrl + url + data.noteId, header);
+  }
 }

@@ -35,7 +35,7 @@
         <mat-icon>archive</mat-icon>
       </button>
 
-      <button mat-icon-button matTooltip="More">
+      <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
         <mat-icon>more_vert</mat-icon>
       </button>
 
@@ -53,4 +53,8 @@
         </div>
       </div>
     </ng-template>
+  </mat-menu>
+
+  <mat-menu #moreMenu="matMenu">
+    <button mat-menu-item (click)="deleteNote()">Delete Note</button>
   </mat-menu>

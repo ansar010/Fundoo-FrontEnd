@@ -42,11 +42,8 @@ export class HttpNoteServiceService {
     const httpOptions2 = {
       headers: new HttpHeaders({
         'token': localStorage.getItem('jwtToken')
-
       })
     };
-
-
     return this.http.get<NoteModel[]>(this.userUrl , httpOptions2);
 
   }

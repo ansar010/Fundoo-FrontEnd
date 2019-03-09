@@ -8,6 +8,9 @@ import { ResetPassword } from './model/resetP.model';
 import { ResetPasswordComponent } from './component/reset-password/reset-password.component';
 import { DashBoardComponent } from './component/dash-board/dash-board.component';
 import { NoteComponent } from './component/note/note.component';
+import { ArchiveNoteComponent } from './component/archive-note/archive-note.component';
+import { combineLatest } from 'rxjs';
+import { TrashNoteComponent } from './component/trash-note/trash-note.component';
 // import { NoteBarComponent } from './component/note-bar/note-bar.component';
 // import { MaterialDashboardComponent } from './component/material-dashboard/material-dashboard.component';
 // import { NoteComponent } from './component/note/note.component';
@@ -35,10 +38,6 @@ const routes: Routes = [
     path: 'resetPassword/:token',
     component: ResetPasswordComponent
   },
-  // {
-  //   path: 'noteBar',
-  //   component: NoteBarComponent
-  // },
   {
     path: 'dashboard',
     component: DashBoardComponent,
@@ -46,6 +45,18 @@ const routes: Routes = [
       {
         path: '',
         component: NoteComponent
+      },
+      {
+        path: 'addNote',
+        component: NoteComponent
+      },
+      {
+        path: 'archive',
+        component: ArchiveNoteComponent
+      },
+      {
+        path: 'trash',
+        component: TrashNoteComponent
       }
     ]
 

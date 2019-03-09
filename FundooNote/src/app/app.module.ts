@@ -19,6 +19,10 @@ import { AddNoteComponent } from './component/add-note/add-note.component';
 import { NoteComponent } from './component/note/note.component';
 import { EditCardComponent } from './component/edit-card/edit-card.component';
 import { NoteBarComponent } from './component/note-bar/note-bar.component';
+import { ArchiveNoteComponent } from './component/archive-note/archive-note.component';
+import { TrashNoteComponent } from './component/trash-note/trash-note.component';
+import { TrashBarComponent } from './component/trash-bar/trash-bar.component';
+import { DeleteCardComponent } from './component/delete-card/delete-card.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,11 @@ import { NoteBarComponent } from './component/note-bar/note-bar.component';
     AddNoteComponent,
     NoteComponent,
     EditCardComponent,
-    NoteBarComponent
+    NoteBarComponent,
+    ArchiveNoteComponent,
+    TrashNoteComponent,
+    TrashBarComponent,
+    DeleteCardComponent
   ],
   imports: [
     FlexLayoutModule,

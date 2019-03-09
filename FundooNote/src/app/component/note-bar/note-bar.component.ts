@@ -33,9 +33,27 @@ export class NoteBarComponent implements OnInit {
         private snackBar: MatSnackBar, private dialog: MatDialog) { }
 
     ngOnInit() {
+        console.log(this.noteDetail);
     }
 
+    archive() {
+        this.httpService.noteIDPutRequest('note/archive/', this.noteDetail).subscribe
+        (
+            response => {
+                if (response.statusCode === 100) {
+                    this.snackBar.open(response.statusMessage, '', { duration: 2000 });
+                } else {
+                    this.snackBar.open(response.statusMessage, '', { duration: 3000 });
+                }
+            },
+            error => {
+                this.snackBar.open('Network Problem', '', { duration: 2000 });
 
+            }
+
+
+        );
+    }
 
     changeColor(color) {
         this.noteDetail.color = color;
@@ -55,7 +73,44 @@ export class NoteBarComponent implements OnInit {
 
         );
     }
+    changePin() {
+        this.httpService.noteIDPutRequest('note/pin/', this.noteDetail).subscribe
+        ( response => {
+            if (response.statusCode === 100) {
+                this.snackBar.open(response.statusMessage, '', { duration: 2000 });
+            } else {
+                this.snackBar.open(response.statusMessage, '', { duration: 3000 });
+            }
+        },
+        error => {
+            this.snackBar.open('Network Problem', '', { duration: 2000 });
 
+        }
+
+
+    );
+    }
+
+    deleteNote(): void {
+        console.log('Note Deleted');
+        console.log(this.noteDetail);
+        this.httpService.noteIDPutRequest('note/trash/' , this.noteDetail).subscribe
+            (
+                response => {
+                    if (response.statusCode === 100) {
+                        this.snackBar.open(response.statusMessage, '', { duration: 2000 });
+                    } else {
+                        this.snackBar.open(response.statusMessage, '', { duration: 3000 });
+                    }
+                },
+                error => {
+                    this.snackBar.open('Network Problem', '', { duration: 2000 });
+
+                }
+
+
+            );
+    }
     openEditDialog(item) {
         console.log('note ', item);
 
