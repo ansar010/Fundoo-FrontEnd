@@ -1,4 +1,58 @@
-<div class="noteBarCenter">
+<div >
+    <mat-card class="inputNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
+        
+        <textarea class="addNoteTitleInput" placeholder="Title" value="{{noteDetail.title}}" (click)="openEditDialog(noteDetail)"></textarea>
+        
+        <button *ngIf="isPin==false" mat-icon-button color="basic" value="=noteDetail.pin" (click)=changePin()>
+          <img src="../../../src/assets/pin.svg">
+        </button>
+        <button *ngIf="isPin==true" mat-icon-button color="basic" (click)="isPin=false">
+          <img src="../../../src/assets/barpin.svg">
+        </button>
+        <p></p>
+    
+        <mat-card-content>
+          <textarea class="addNoteInput" placeholder="Take a note..."  value="{{noteDetail.description}}" (click)="openEditDialog(noteDetail)"></textarea>
+        </mat-card-content>
+    
+        <mat-card-actions>
+    
+          <button mat-icon-button matTooltip="Remind me">
+            <mat-icon>add_alert
+            </mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Collaborator">
+            <mat-icon>person_add_outline
+            </mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
+            <mat-icon>color_lens</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Add Image">
+            <mat-icon>photo</mat-icon>
+          </button>
+    
+          <button mat-icon-button matTooltip="Archive" (click)="archive()">
+            <mat-icon>archive</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Undo">
+            <mat-icon>undo</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Redo">
+            <mat-icon>redo</mat-icon>
+          </button>
+          <button mat-button color="warn" (click)="close()" style="margin-left: 23%;">
+            close</button>
+        </mat-card-actions>
+      </mat-card>
+</div>
+
+
+
+<!-- <div class="noteBarCenter">
 
   <div class="addNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
     <div class="addNoteInputDiv">
@@ -40,7 +94,7 @@
       </button>
 
     </div>
-  </div>
+  </div>-->
 
   <mat-menu #colorMenu="matMenu" class="colorMenu" [overlapTrigger]="false">
     <ng-template matMenuContent let-note="note">
@@ -57,4 +111,4 @@
 
   <mat-menu #moreMenu="matMenu">
     <button mat-menu-item (click)="deleteNote()">Delete Note</button>
-  </mat-menu>
+  </mat-menu> 

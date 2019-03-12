@@ -1,42 +1,70 @@
-@import "../../../scss/mixins.scss";
-@import "../../../scss/variables.scss";
+// @import "../../../scss/mixins.scss";
+// @import "../../../scss/variables.scss";
 
-.iconAndTitle {
-  display: flex;
+// .iconAndTitle {
+//   display: flex;
 
-}
-.example-container {
-  position: absolute;
-  min-width: 250px;
-  top: 60px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  background-color: #ffffff;
-  }
+// }
+// .example-container {
+//   position: absolute;
+//   min-width: 250px;
+//   top: 60px;
+//   bottom: 0px;
+//   left: 0px;
+//   right: 0px;
+//   background-color: #ffffff;
+//   }
 
-.dashboardTitle {
-  padding-left:10px ;
-  vertical-align: middle;
-  line-height: 49px;
-  width: 100%
-}
+// .dashboardTitle {
+//   padding-left:10px ;
+//   vertical-align: middle;
+//   line-height: 49px;
+//   width: 100%
+// }
 
-.example-full-width {
-  width: 100%;
-  padding-left: 20%;
-}
-.textSize
-{
-  margin-left:15%;
-  font-size: 15px;
-  color:#5f6368  
-}
+// .example-full-width {
+//   width: 100%;
+//   padding-left: 20%;
+// }
+// .textSize
+// {
+//   margin-left:15%;
+//   font-size: 15px;
+//   color:#5f6368  
+// }
+// .sideNavListItems,
+//   .sideNavlistItemsColored {
+//     border-top-right-radius: 100px;
+//     border-bottom-right-radius: 100px;
+//     width: 300px;
+//     font-size: 15px;
+//     padding: 8px;
+//     background-color: #ffffff;
+//     color: #5f6368;
+//     align-items: baseline;
+//     text-align: left;
+//   }
+  
+//   .sideNavlistItemsColored {
+//     background-color: #f8e6af !important;
+//     color: rgba(0, 0, 0, 0.8);
+//   }
+  
+//   .sideNavListItems .mat-icon,
+//   .sideNavlistItemsColored .mat-icon {
+//     padding-left: 10px;
+//     padding-right: 25px;
+//   }
+  
+//   .sideNavListItems:hover {
+//     background-color: #e6e6e6;
+//   }
+//Responsive side nav
 .sideNavListItems,
   .sideNavlistItemsColored {
     border-top-right-radius: 100px;
     border-bottom-right-radius: 100px;
-    width: 300px;
+    width: 250px;
     font-size: 15px;
     padding: 8px;
     background-color: #ffffff;
@@ -59,6 +87,53 @@
   .sideNavListItems:hover {
     background-color: #e6e6e6;
   }
+//----
+.navList{
+    width: 250px;
+  }
+.dashboardTitle {
+  padding-left:10px ;
+  vertical-align: middle;
+  line-height: 49px;
+  width: 100%
+}
+//
+.example-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+ .example-is-mobile .example-toolbar {
+    position: fixed;
+    z-index: 2;
+  }
+  
+  h1.example-app-name {
+    margin-left: 8px;
+  }
+
+  .example-sidenav-container {
+    flex: 1;
+  }
+  
+  
+  .example-is-mobile .example-sidenav-container {
+    flex: 1 0 auto;
+  }
+  .list{
+    width:2px;
+  }
+  .name{
+    padding-left: 10%;
+  }
+//responsive side nav ends
+
+
+
 
 // //RR
 // .searchBar{

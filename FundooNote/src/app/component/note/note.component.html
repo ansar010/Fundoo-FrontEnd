@@ -1,32 +1,33 @@
-<div fxLayoutAlign="center start">
-  <app-add-note></app-add-note>
+<div fxLayout="row" fxLayoutAlign="center center">
+  <div fxFlex="60">
+    <app-add-note></app-add-note>
+  </div>
+</div>
+
+<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+  <!-- flexLayout="row wrap" fxLayoutGap="10px"> -->
+  <!-- <div fxLayout="row" flexLayoutAlign="start " >
+    <p class="textSize">PINNED:</p>
+  </div> -->
+
+  <div *ngFor="let note of allnotes">
+
+    <div *ngIf="!note.trash && !note.archive && note.isPin">
+      <app-note-bar [noteDetail]=note>
+
+      </app-note-bar>
+    </div>
+  </div>
 </div>
 
 
 <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
-    <!-- flexLayout="row wrap" fxLayoutGap="10px"> -->
-    <!-- <div fxLayout="row" flexLayoutAlign="start " >
-    <p class="textSize">PINNED:</p>
-  </div> -->
-
-    <div *ngFor="let note of allnotes">
-      
-      <div *ngIf = "!note.trash && !note.archive && note.isPin">
-        <app-note-bar [noteDetail]=note>
-  
-        </app-note-bar>
-      </div>
-    </div>
-  </div>
-  
-
-<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
   <!-- flexLayout="row wrap" fxLayoutGap="10px"> -->
-  
+
   <!-- <p class="textSize">OTHERS:</p> -->
   <div *ngFor="let note of allnotes">
-    
-    <div *ngIf = "!note.trash && !note.archive">
+
+    <div *ngIf="!note.trash && !note.archive">
       <app-note-bar [noteDetail]=note>
 
       </app-note-bar>

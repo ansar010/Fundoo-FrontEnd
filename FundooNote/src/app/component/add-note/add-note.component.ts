@@ -26,7 +26,7 @@ export class AddNoteComponent implements OnInit {
     { name: 'gray', colorCode: 'rgb(232, 234, 237)' }
   ];
 
-  private isOpen: boolean = false;
+  private isOpen: boolean;
   private isPin: boolean = false;
   private note: NoteModel = new NoteModel();
   color: string;
@@ -36,6 +36,7 @@ export class AddNoteComponent implements OnInit {
   constructor(private httpService: HttpserviceService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    this.isPin = false;
   }
 
   close() {
@@ -76,8 +77,11 @@ export class AddNoteComponent implements OnInit {
 
   changePin() {
     // this.isPin = !this.isPin;
+    // if (this.isPin === true) {
+    //   this.isOpen = false;
+    // }
     this.isPin = true;
-    console.log(this.isPin);
+
   }
 }
 
