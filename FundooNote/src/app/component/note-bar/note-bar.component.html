@@ -1,5 +1,6 @@
-<div >
-    <mat-card class="inputNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
+<div fxLayout="row"  fxLayoutAlign="center center">
+   
+  <mat-card class="inputNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
         
         <textarea class="addNoteTitleInput" placeholder="Title" value="{{noteDetail.title}}" (click)="openEditDialog(noteDetail)"></textarea>
         

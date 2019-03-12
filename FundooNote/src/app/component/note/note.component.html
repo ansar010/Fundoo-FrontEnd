@@ -10,7 +10,7 @@
     <p class="textSize">PINNED:</p>
   </div> -->
 
-  <div *ngFor="let note of allnotes">
+  <div *ngFor="let note of allnotes" style="margin-top: 15%;">
 
     <div *ngIf="!note.trash && !note.archive && note.isPin">
       <app-note-bar [noteDetail]=note>
