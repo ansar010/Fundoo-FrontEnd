@@ -111,4 +111,9 @@ export class HttpserviceService {
     };
     return this.http.delete(environment.baseUrl + url + data.noteId, header);
   }
+
+  // Method for Auth guard
+  public loggingIn() {
+    return !!localStorage.getItem('token');
+  }
 }

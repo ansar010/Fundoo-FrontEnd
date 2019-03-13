@@ -131,9 +131,15 @@
         </div>
 
         <div>
-          <button mat-icon-button matTooltip="Google Account">
+          <button mat-icon-button matTooltip="Google Account" [matMenuTriggerFor]=accountMenu>
             <mat-icon class="account_circle">account_circle</mat-icon>
           </button>
+          <mat-menu #accountMenu="matMenu">
+            <!-- <ng-template matMenuContent let-name="name"> -->
+              <!-- <button mat-menu-item>Settings</button> -->
+              <button mat-menu-item (click)="signOut()">Sign out</button>
+            <!-- </ng-template> -->
+          </mat-menu>
         </div>
       </div>
     </mat-toolbar>

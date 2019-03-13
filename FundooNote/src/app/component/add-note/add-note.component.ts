@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NoteModel } from 'src/app/model/note.model';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
 import { MatSnackBar } from '@angular/material';
+import { NoteComponent } from '../note/note.component';
+import { ChildActivationEnd } from '@angular/router';
 
 
 @Component({
@@ -35,6 +37,9 @@ export class AddNoteComponent implements OnInit {
 
   constructor(private httpService: HttpserviceService, private snackBar: MatSnackBar) { }
 
+  // to load notes automatically
+  @ViewChild(NoteComponent) Child;
+
   ngOnInit() {
     this.isPin = false;
   }
@@ -52,6 +57,7 @@ export class AddNoteComponent implements OnInit {
               {
                 duration: 2000
               });
+              this.Child.getNote();
           } else {
             this.snackBar.open(response.statusMessage, '', { duration: 2000 });
           }

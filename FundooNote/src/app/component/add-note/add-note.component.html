@@ -1,5 +1,6 @@
 <div>
-    <mat-card class="inputNote" [ngStyle]="{'backgroundColor': color}">
+    <mat-card class="inputNote" [ngStyle]="{'backgroundColor': color}" style="
+    margin-top: 3%">
         <textarea class="addNoteTitleInput" placeholder="Title" [(ngModel)]="note.title" matInput cdkTextareaAutosize
           #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"></textarea>
         <button *ngIf="isPin==false" mat-icon-button color="basic" (click)=changePin()>

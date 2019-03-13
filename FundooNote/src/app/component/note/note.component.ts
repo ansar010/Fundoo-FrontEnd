@@ -17,12 +17,21 @@ export class NoteComponent implements OnInit {
 
   ngOnInit() {
 
+    // this.cardupdate.currentnotes.subscribe(udnotes =>
+    //   this.allnotes = udnotes);
+    // console.log('new note');
+    // console.log('length ', this.allnotes.length);
+    this.getNote();
+
+  }
+
+  getNote() {
     this.cardupdate.currentnotes.subscribe(udnotes =>
       this.allnotes = udnotes);
     console.log('new note');
     console.log('length ', this.allnotes.length);
-  }
 
+  }
   // getNote() {
   //   this.httpService.getRequest1('/user/note/list')
   //     .subscribe(

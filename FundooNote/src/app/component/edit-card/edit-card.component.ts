@@ -30,6 +30,7 @@ export class EditCardComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public noteDetail: any) {
     console.log(noteDetail);
   }
+ 
   ngOnInit() {
   }
 

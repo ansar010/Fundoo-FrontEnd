@@ -11,6 +11,7 @@ import { NoteComponent } from './component/note/note.component';
 import { ArchiveNoteComponent } from './component/archive-note/archive-note.component';
 import { combineLatest } from 'rxjs';
 import { TrashNoteComponent } from './component/trash-note/trash-note.component';
+import { AuthGuardGuard } from './services/auth-guard.guard';
 // import { NoteBarComponent } from './component/note-bar/note-bar.component';
 // import { MaterialDashboardComponent } from './component/material-dashboard/material-dashboard.component';
 // import { NoteComponent } from './component/note/note.component';
@@ -38,7 +39,9 @@ const routes: Routes = [
     path: 'resetPassword/:token',
     component: ResetPasswordComponent
   },
+  
   {
+    canActivate: [AuthGuardGuard],
     path: 'dashboard',
     component: DashBoardComponent,
     children: [

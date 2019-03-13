@@ -2,7 +2,7 @@
    
   <mat-card class="inputNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
         
-        <textarea class="addNoteTitleInput" placeholder="Title" value="{{noteDetail.title}}" (click)="openEditDialog(noteDetail)"></textarea>
+        <textarea [ngStyle]="{'backgroundColor': noteDetail.color}" class="addNoteTitleInput" placeholder="Title" value="{{noteDetail.title}}" (click)="openEditDialog(noteDetail)"></textarea>
         
         <button *ngIf="isPin==false" mat-icon-button color="basic" value="=noteDetail.pin" (click)=changePin()>
           <img src="../../../src/assets/pin.svg">
@@ -13,7 +13,7 @@
         <p></p>
     
         <mat-card-content>
-          <textarea class="addNoteInput" placeholder="Take a note..."  value="{{noteDetail.description}}" (click)="openEditDialog(noteDetail)"></textarea>
+          <textarea [ngStyle]="{'backgroundColor': noteDetail.color}" class="addNoteInput" placeholder="Take a note..."  value="{{noteDetail.description}}" (click)="openEditDialog(noteDetail)"></textarea>
         </mat-card-content>
     
         <mat-card-actions>
