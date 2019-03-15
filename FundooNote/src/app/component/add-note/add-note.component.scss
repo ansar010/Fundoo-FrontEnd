@@ -1,12 +1,20 @@
+.decorate{
+
+  box-shadow: 1px 1px 2px 1px grey;
+
+}
+.iconColor{
+  opacity: .7;
+}
 .border{
     padding: 2%;
-    border-radius: 100px;
+    border-radius: 10px;
     background-color: whitesmoke;
     opacity: .7;
 }
 
 .inputNote{
-  border-radius: 15px;
+  border-radius: 10px;
   background: transparent;
 
 }

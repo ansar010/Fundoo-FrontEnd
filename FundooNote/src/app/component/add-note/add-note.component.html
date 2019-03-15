@@ -1,54 +1,64 @@
-<div>
-    <mat-card class="inputNote" [ngStyle]="{'backgroundColor': color}" style="
+<!-- <div fxLayout="column" fxLayoutAlign="end stretch" *ngIf="!isOpen" (click)="isOpen=true"> -->
+<mat-card  class="border" style="margin-top: 3%" *ngIf="!isOpen" (click)="isOpen=true">
+  <span>Take a note...</span>
+</mat-card>
+<!-- </div> -->
+
+<div *ngIf="isOpen">
+  <mat-card class="inputNote" [ngStyle]="{'backgroundColor': color}" style="
     margin-top: 3%">
-        <textarea class="addNoteTitleInput" placeholder="Title" [(ngModel)]="note.title" matInput cdkTextareaAutosize
+    <mat-card-header fxLayout="row">
+      <!-- <mat-card-title> -->
+      <!-- <textarea class="addNoteTitleInput" placeholder="Title" [(ngModel)]="note.title" matInput cdkTextareaAutosize
           #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"></textarea>
+           -->
+      <!-- <div  > -->
+      <input matInput placeholder="Title" [(ngModel)]="note.title" style="margin-left: -3%">
+      <div fxFlex fxLayoutAlign="end center" class="iconColor">
         <button *ngIf="isPin==false" mat-icon-button color="basic" (click)=changePin()>
           <img src="../../../src/assets/pin.svg">
         </button>
         <button *ngIf="isPin==true" mat-icon-button color="basic" (click)="isPin=false">
           <img src="../../../src/assets/barpin.svg">
         </button>
-        <p></p>
-    
-        <mat-card-content>
-          <textarea class="addNoteInput" placeholder="Take a note..." [(ngModel)]="note.description" matInput
-            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"></textarea>
-        </mat-card-content>
-    
-        <mat-card-actions>
-    
-          <button mat-icon-button matTooltip="Remind me">
-            <mat-icon>add_alert
-            </mat-icon>
-          </button>
-          <button mat-icon-button matTooltip="Collaborator">
-            <mat-icon>person_add_outline
-            </mat-icon>
-          </button>
-          <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
-            <mat-icon>color_lens</mat-icon>
-          </button>
-          <button mat-icon-button matTooltip="Add Image">
-            <mat-icon>photo</mat-icon>
-          </button>
-    
-          <button mat-icon-button matTooltip="Archive">
-            <mat-icon>archive</mat-icon>
-          </button>
-          <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-          <button mat-icon-button matTooltip="Undo">
-            <mat-icon>undo</mat-icon>
-          </button>
-          <button mat-icon-button matTooltip="Redo">
-            <mat-icon>redo</mat-icon>
-          </button>
-          <button mat-button color="warn" (click)="close()" style="margin-left: 23%;">
-            close</button>
-        </mat-card-actions>
-      </mat-card>
+      </div>
+      <!-- </div> -->
+      <!-- </mat-card-title> -->
+    </mat-card-header>
+    <p></p>
+
+    <mat-card-content>
+      <textarea class="addNoteInput" placeholder="Take a note..." [(ngModel)]="note.description" matInput
+        cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;"></textarea>
+    </mat-card-content>
+
+    <mat-card-actions class="iconColor">
+      <button mat-icon-button matTooltip="Remind me">
+        <img src="../../../assets/remindme.svg" alt="reminder" />
+      </button>
+      <button mat-icon-button matTooltip="Collaborator">
+        <img src="../../../assets/collaborator.svg" alt="collaborator">
+      </button>
+      <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
+        <img src="../../../assets/color.svg" alt="color" />
+
+      </button>
+      <button mat-icon-button matTooltip="Add Image">
+        <img src="../../../assets/addimage.svg" alt="image" />
+      </button>
+
+      <button mat-icon-button matTooltip="Archive">
+        <img src="../../../assets/archive.svg" alt="archive" />
+      </button>
+      <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <button mat-button color="warn" (click)="close()" style="margin-left: 23%;">
+        close
+      </button>
+    </mat-card-actions>
+  </mat-card>
 </div>
 
 <!-- <div fxLayout="column" fxLayoutAlign="end stretch" *ngIf="!isOpen" (click)="isOpen=true">

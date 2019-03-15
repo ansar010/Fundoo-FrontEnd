@@ -3,7 +3,13 @@
   background: transparent;
 
 }
-
+.buttons{
+  display: none;
+}
+.noteGrid:hover .buttons, .buttons:hover{
+    
+  display: inline-block;
+}
 
 .takeanote{
     resize: unset;
