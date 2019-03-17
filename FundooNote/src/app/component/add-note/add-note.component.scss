@@ -1,13 +1,7 @@
-.decorate{
 
-  box-shadow: 1px 1px 2px 1px grey;
 
-}
-.iconColor{
-  opacity: .7;
-}
 .border{
-    padding: 2%;
+    padding: 1%;
     border-radius: 10px;
     background-color: whitesmoke;
     opacity: .7;
@@ -16,50 +10,55 @@
 .inputNote{
   border-radius: 10px;
   background: transparent;
-
-}
-.addNote {
-
-  margin: 30px auto 0 auto;
-  border-color: white;
-  box-shadow: 0px 1px 5px;
-  vertical-align: middle;
-  border-radius: 8px;
-  width: 600px;
-  padding: 10px;
   opacity: .7;
-  }
-  .addNoteInputDiv {
-    opacity: 0.7;
-    margin: auto;
-    }
 
-    .addNoteTitleInput{
+ }
+
+
+
+ 
+// .addNote {
+
+//   margin: 30px auto 0 auto;
+//   border-color: white;
+//   box-shadow: 0px 1px 5px;
+//   vertical-align: middle;
+//   border-radius: 8px;
+//   width: 600px;
+//   padding: 10px;
+//   opacity: .7;
+//   }
+//   .addNoteInputDiv {
+//     opacity: 0.7;
+//     margin: auto;
+//     }
+
+//     .addNoteTitleInput{
   
-        border: none;
-        outline: none;
-        resize: none;
-        width: 90%;
-        font-size: 14px;
+//         border: none;
+//         outline: none;
+//         resize: none;
+//         width: 90%;
+//         font-size: 14px;
         
         
-        }
+//         }
 
-        .pinIcon {
-               border: none;
-               resize: none;
-                outline: none;
+//         .pinIcon {
+//                border: none;
+//                resize: none;
+//                 outline: none;
                 
-              }
+//               }
             
-              .addNoteInput {
-                border: none;
-                outline: none;
-                resize: none;
-                width: 575px;
-                font-size: 14px;
+//               .addNoteInput {
+//                 border: none;
+//                 outline: none;
+//                 resize: none;
+//                 width: 575px;
+//                 font-size: 14px;
                 
-                }
+//                 }
 
 
 

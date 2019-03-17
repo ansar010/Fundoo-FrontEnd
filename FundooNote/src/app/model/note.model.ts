@@ -1,11 +1,11 @@
 export class NoteModel {
-    noteId: number;
+    id: number;
     title: String;
     description: String;
     color: String;
     remainder: String;
-    archive: boolean;
-    pin: boolean;
+    isArchive: boolean;
+    isPin: boolean;
     isTrash: boolean;
     userID: number;
 }

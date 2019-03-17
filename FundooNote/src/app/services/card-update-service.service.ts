@@ -7,32 +7,95 @@ import { HttpserviceService } from './httpservice.service';
 })
 export class CardUpdateServiceService {
 
-  private allNotes = new BehaviorSubject([]);
+private isArchive = 'false';
+private isTrash  = 'false';
 
-  currentnotes = this.allNotes.asObservable();
+private obtainNotes = new BehaviorSubject([]);
 
-  constructor(private httpService: HttpserviceService) {
+currentNotes = this.obtainNotes.asObservable();
 
-    console.log('card constructor');
-
-    this.httpService.noteGetRequest().subscribe(
-      response => {
-        console.log('response');
-
-        this.allNotes.next(response);
-
-      },
-
-      error => {
-        console.log(error);
-      }
-    );
-
+constructor(private httpService: HttpserviceService){
+  console.log('update card constructor');
+this.httpService.noteListsGetRequest('note/notelists',this.isArchive,this.isTrash).subscribe(
+  response=>{
+    this.obtainNotes.next(response);
+    console.log(this.currentNotes);
   }
+  // error=>
+  // {
 
-  ngOnInit(): void {
-
-  }
-
-
+  // }
+)  
 }
+
+  updateMessage(){
+      this.httpService.noteListsGetRequest('note/notelists',this.isArchive,this.isTrash).subscribe(
+        response=>
+        {
+          this.obtainNotes.next(response);
+        }
+
+      );
+  }
+
+changemessage(archive: string, trash: string) {
+  this.isArchive = archive;
+  this.isTrash = trash;
+  this.httpService.noteListsGetRequest('note/notelists',archive, trash).subscribe(
+    response => {
+
+      console.log(response);
+      this.obtainNotes.next(response);
+    },
+    error => {
+      console.log(error);
+    }
+    );
+  }
+}
+
+// updateMessage(){
+
+// }
+// changemessage() {
+//     this.httpService.noteGetRequest().subscribe(
+//     response => {
+
+//       console.log(response);
+//       this.obtainNotes.next(response);
+//     },
+//     error => {
+//       console.log(error);
+//     }
+//   )
+// }
+// }
+//   private allNotes = new BehaviorSubject([]);
+
+//   currentnotes = this.allNotes.asObservable();
+
+//   constructor(private httpService: HttpserviceService) {
+
+//     console.log('card constructor');
+
+//     this.httpService.noteGetRequest().subscribe(
+//       response => {
+//         console.log('response');
+
+//         this.allNotes.next(response);
+
+//       },
+
+//       error => {
+//         console.log(error);
+//       }
+//     );
+
+//   }
+
+//   ngOnInit(): void {
+
+//   }
+
+
+// }

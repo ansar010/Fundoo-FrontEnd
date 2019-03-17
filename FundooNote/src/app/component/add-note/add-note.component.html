@@ -1,38 +1,31 @@
-<!-- <div fxLayout="column" fxLayoutAlign="end stretch" *ngIf="!isOpen" (click)="isOpen=true"> -->
-<mat-card  class="border" style="margin-top: 3%" *ngIf="!isOpen" (click)="isOpen=true">
+<mat-card class="border" *ngIf="!showAddNote" (click)="changeBar()">
   <span>Take a note...</span>
 </mat-card>
-<!-- </div> -->
 
-<div *ngIf="isOpen">
-  <mat-card class="inputNote" [ngStyle]="{'backgroundColor': color}" style="
-    margin-top: 3%">
-    <mat-card-header fxLayout="row">
-      <!-- <mat-card-title> -->
-      <!-- <textarea class="addNoteTitleInput" placeholder="Title" [(ngModel)]="note.title" matInput cdkTextareaAutosize
-          #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"></textarea>
-           -->
-      <!-- <div  > -->
-      <input matInput placeholder="Title" [(ngModel)]="note.title" style="margin-left: -3%">
-      <div fxFlex fxLayoutAlign="end center" class="iconColor">
-        <button *ngIf="isPin==false" mat-icon-button color="basic" (click)=changePin()>
+  <mat-card *ngIf="showAddNote" class="inputNote" [ngStyle]="{'backgroundColor' : color}" style="
+    margin-top: 2%">
+    <div fxLayout="row">
+        <textarea  placeholder="Title" [(ngModel)]="noteDto.title" matInput
+      cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;"></textarea>
+
+      <div class="inputNote" fxFlex fxLayoutAlign="end start">
+        <button *ngIf="!isPinned" mat-icon-button color="basic" (click)=changePin()>
           <img src="../../../src/assets/pin.svg">
         </button>
-        <button *ngIf="isPin==true" mat-icon-button color="basic" (click)="isPin=false">
+        <button *ngIf="isPinned==true" mat-icon-button color="basic" (click)="isPinned=false">
           <img src="../../../src/assets/barpin.svg">
         </button>
       </div>
-      <!-- </div> -->
-      <!-- </mat-card-title> -->
-    </mat-card-header>
+    </div>
     <p></p>
 
     <mat-card-content>
-      <textarea class="addNoteInput" placeholder="Take a note..." [(ngModel)]="note.description" matInput
+      <textarea  placeholder="Take a note..." [(ngModel)]="noteDto.description" matInput
         cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;"></textarea>
     </mat-card-content>
 
-    <mat-card-actions class="iconColor">
+    <mat-card-actions>
+      <div class="inputNote">
       <button mat-icon-button matTooltip="Remind me">
         <img src="../../../assets/remindme.svg" alt="reminder" />
       </button>
@@ -53,73 +46,26 @@
       <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
         <mat-icon>more_vert</mat-icon>
       </button>
-
-      <button mat-button color="warn" (click)="close()" style="margin-left: 23%;">
+      <div fxLayoutAlign="end start">
+      <button mat-button color="warn" (click)="close()">
         close
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-<!-- <div fxLayout="column" fxLayoutAlign="end stretch" *ngIf="!isOpen" (click)="isOpen=true">
-  <mat-card class="border">
-    <span>Take a note...</span>
-  </mat-card>
-</div>
-
-<div *ngIf="isOpen">
-  <mat-card class="inputNote" [ngStyle]="{'backgroundColor': color}">
-    <textarea class="addNoteTitleInput" placeholder="Title" [(ngModel)]="note.title" matInput cdkTextareaAutosize
-      #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"></textarea>
-    <button *ngIf="isPin==false" mat-icon-button color="basic" (click)=changePin()>
-      <img src="../../../src/assets/pin.svg">
-    </button>
-    <button *ngIf="isPin==true" mat-icon-button color="basic" (click)="isPin=false">
-      <img src="../../../src/assets/barpin.svg">
-    </button>
-    <p></p>
-
-    <mat-card-content>
-      <textarea class="addNoteInput" placeholder="Take a note..." [(ngModel)]="note.description" matInput
-        cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"></textarea>
-    </mat-card-content>
-
-    <mat-card-actions>
-
-      <button mat-icon-button matTooltip="Remind me">
-        <mat-icon>add_alert
-        </mat-icon>
-      </button>
-      <button mat-icon-button matTooltip="Collaborator">
-        <mat-icon>person_add_outline
-        </mat-icon>
-      </button>
-      <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
-        <mat-icon>color_lens</mat-icon>
-      </button>
-      <button mat-icon-button matTooltip="Add Image">
-        <mat-icon>photo</mat-icon>
-      </button>
-
-      <button mat-icon-button matTooltip="Archive">
-        <mat-icon>archive</mat-icon>
-      </button>
-      <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <button mat-icon-button matTooltip="Undo">
-        <mat-icon>undo</mat-icon>
-      </button>
-      <button mat-icon-button matTooltip="Redo">
-        <mat-icon>redo</mat-icon>
-      </button>
-      <button mat-button color="warn" (click)="close()" style="margin-left: 23%;">
-        close</button>
+      </button></div>
+    </div>
     </mat-card-actions>
   </mat-card>
 
-</div> -->
 
+  <!-- <mat-menu #colorMenu="matMenu">
+    <mat-list>
+       <div *ngFor="let colorx of colors" style="overflow: hidden;">
+          <span *ngFor="let singlecolor of colorx">
+             <button mat-icon-button (click)="colorchange(singlecolor)">
+                <mat-icon style="font-size: 40px" class="colorIcons" [style.color]="singlecolor">fiber_manual_record</mat-icon>
+             </button>
+          </span>
+       </div>
+    </mat-list>
+  </mat-menu> -->
 
 <mat-menu #colorMenu="matMenu" class="colorMenu" [overlapTrigger]="false">
   <ng-template matMenuContent let-note="note">
@@ -143,88 +89,3 @@
 </mat-menu>
 
 
-<!-- <div *ngIf="!isOpen" class="addNote" (click)="isOpen=true">
-
-  <div class="addNoteInputDiv">Take a note...</div>
-
-</div> -->
-
-
-<!-- <div [ngStyle]="{'backgroundColor': color}" *ngIf="isOpen" class="addNote">
-
-  <div class="addNoteInputDiv">
-
-    <textarea class="addNoteTitleInput" placeholder="Title"
-      [(ngModel)]="note.title" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0"
-      cdkAutosizeMaxRows="40"></textarea>
-
-    <button class="pinIcon" (click)=changePin()>
-      <img src="https://img.icons8.com/material-outlined/24/000000/pin.png">
-    </button>
-
-    <p></p>
-    <textarea  class="addNoteInput" placeholder="Take a note..."
-      [(ngModel)]="note.description" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0"
-      cdkAutosizeMaxRows="40"></textarea>
-
-  </div>
-
-  <div fxLayout="row" fxLayoutAlign="start center">
-
-    <button mat-icon-button matTooltip="Remind me">
-      <mat-icon>add_alert
-      </mat-icon>
-    </button>
-
-    <button mat-icon-button matTooltip="Collaborator">
-      <mat-icon>person_add_outline
-      </mat-icon>
-    </button>
-
-    <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
-      <mat-icon>color_lens</mat-icon>
-    </button>
-
-
-    <button mat-icon-button matTooltip="Add Image">
-      <mat-icon>photo</mat-icon>
-    </button>
-
-    <button mat-icon-button matTooltip="Archive">
-      <mat-icon>archive</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="More"  [matMenuTriggerFor]="moreMenu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="Undo">
-      <mat-icon>undo</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="Redo">
-      <mat-icon>redo</mat-icon>
-    </button>
-    <button mat-button color="warn" (click)="close()" style="margin-left: 182px;">
-      close</button>
-  </div>
-</div> -->
-
-
-<!-- <div >
-      <app-note-bar *ngFor="let note of noteBarValue">
-
-      </app-note-bar>
-  </div> -->
-<!-- <mat-menu #colorMenu="matMenu" class="colorMenu">
-
-  <ng-template matMenuContent let-note="note">
-    <div fxLayout="row wrap">
-    <div *ngFor="let color of colorCode">
-             <button mat-icon-button [ngStyle]="{'color': color.colorCode}" (click)="changeColor(color.colorCode)">
-
-        <mat-icon class="colorIcons">fiber_manual_record</mat-icon>
-
-      </button>
-
-    </div>
-  </div>
-  </ng-template>
-</mat-menu> -->

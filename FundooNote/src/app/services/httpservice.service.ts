@@ -3,10 +3,20 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { NoteModel } from '../model/note.model';
 import { notEqual } from 'assert';
+import { Observable } from 'rxjs';
+import { RecievNotes } from '../model/recievenote.model';
+
+
+// const httpOptions = {
+//   headers: new HttpHeaders().set('Content-Type', 'application/json')
+//     .set('Access-Control-Allow-Origin', '*')
+// };
 
 const httpOptions = {
-  headers: new HttpHeaders().set('Content-Type', 'application/json')
-    .set('Access-Control-Allow-Origin', '*')
+  headers: new HttpHeaders({
+    'content-type': 'application/json',
+    'token': localStorage.getItem('token')
+  })
 };
 
 @Injectable({
@@ -15,6 +25,8 @@ const httpOptions = {
 export class HttpserviceService {
 
   // private baseUrl = 'http://192.168.0.134:8080/user/';
+    //  private baseUrl = 'http://localhost:8080/user/';
+
   constructor(private http: HttpClient) { }
 
   public postRequest(url, data): any {
@@ -26,14 +38,9 @@ export class HttpserviceService {
   }
 
   public noteIDPutRequest(url, note: NoteModel): any {
-   console.log(note.noteId);
-    const header = {
-      headers: new HttpHeaders({
-        'content-type': 'application/json',
-        'token': localStorage.getItem('token')
-      })
-    };
-    return this.http.put(environment.baseUrl + url + note.noteId, '', header);
+   console.log("Note->"+note.id);
+   
+    return this.http.put(environment.baseUrl + url + note.id, '', httpOptions);
   }
 
   // public getRequest(url, data): any {
@@ -62,19 +69,14 @@ export class HttpserviceService {
 
   // }
   public notePostRequest(url, data): any {
-    const header = {
-
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': localStorage.getItem('token')
-      }
-      )
-    };
-    return this.http.post(environment.baseUrl + url, data, header);
+    return this.http.post(environment.baseUrl + url, data,httpOptions);
   }
 
-  // public getAllNotes() : Observable<NoteModel[]> | any
-  // {
+public noteListsGetRequest(url,archive,trash): Observable<NoteModel[]> {
+  console.log('archive->'+archive,'trash->'+trash)
+  return this.http.get<NoteModel[]>(environment.baseUrl+url+'?isArchive='+archive+'&isTrash='+trash,httpOptions);
+}  
+
   public noteGetRequest(): any {
 
     console.log('local', localStorage.getItem('token'));
@@ -84,32 +86,28 @@ export class HttpserviceService {
         'token': localStorage.getItem('token')
       })
     };
-
-    // return this.http.get<NoteModel[]>(this.userUrl+"note",httpOptions2);
     return this.http.get(environment.baseUrl + 'note', header);
   }
 
-  public notePutRequest(url, data): any {
+  // public notePutRequest(url, data): any {
 
-    const header = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': localStorage.getItem('token')
-      }
-      )
-    };
-    return this.http.put(environment.baseUrl + url, data, header);
+  //   const header = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'token': localStorage.getItem('token')
+  //     }
+  //     )
+  //   };
+  //   return this.http.put(environment.baseUrl + url, data, header);
+  // }
+
+  public notePutRequest(url, data): any {
+    
+    return this.http.put(environment.baseUrl + url, data, httpOptions);
   }
 
   public noteDeleteRequest(url, data): any {
-    const header = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'token': localStorage.getItem('token')
-      }
-      )
-    };
-    return this.http.delete(environment.baseUrl + url + data.noteId, header);
+    return this.http.delete(environment.baseUrl + url + data.id, httpOptions);
   }
 
   // Method for Auth guard

@@ -1,69 +1,3 @@
-<!-- ********************ToolBar Display************************* -->
-
-<!-- <div fxFlex fxLayout="row" fxLayoutAlign="space-evenly center">
-  <mat-toolbar color="FFFFFF">
-    <div class="iconAndTitle">
-      <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Main menu">
-        <mat-icon>menu</mat-icon>
-      </button>
-
-      <div fxHide.xs="true">
-        <img _ngcontent-c1="" alt="fundoo_Logo" class="fundooIcon" src="src/assets/logoFundoo.png"
-          style="width:40px;height:40px">
-      </div>
-      <div class="dashboardTitle">{{headerName}}</div>
-    </div>
-
-    <div fxLayoutAlign="start" fxFlex="60%" fxShow="true" fxHide.xs="true" [style.fontSize.%]=65>
-      <mat-form-field class="example-full-width" appearance="outline">
-        <input matInput type="text" placeholder="Search">
-        <button mat-button matPrefix mat-icon-button>
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-
-    <div fxFlex fxLayoutAlign=" center end">
-      <button mat-icon-button matTooltip="Refresh">
-        <mat-icon>refresh</mat-icon>
-      </button>
-
-      <button mat-icon-button matTooltip="List View">
-        <mat-icon>view_list</mat-icon>
-      </button>
-
-      <button mat-icon-button [matMenuTriggerFor]="settingsForHeader" matTooltip="Setting">
-        <mat-icon>settings</mat-icon>
-      </button>
-    </div>
-
-    <div fxLayoutAlign=" center end">
-      <button mat-icon-button matTooltip="Google Apps">
-        <mat-icon>apps</mat-icon>
-      </button>
-
-      <button mat-icon-button matTooltip="Notifications">
-        <mat-icon>notifications</mat-icon>
-      </button>
-
-      <button mat-icon-button matTooltip="Google Account">
-        <mat-icon class="account_circle">account_circle</mat-icon>
-      </button>
-    </div>
-
-  </mat-toolbar>
-</div>
-
-<mat-menu #settingsForHeader="matMenu">
-
-  <button mat-menu-item (click)="settings()">Settings</button>
-  <button mat-menu-item (click)="sendFeedback()">Send FeedBack</button>
-  <button mat-menu-item (click)="help()">Help</button>
-  <button mat-menu-item (click)="appDownload()">App Download</button>
-  <button mat-menu-item (click)="keyboardShortcuts()">Keyboard Shortcut</button>
-
-</mat-menu> -->
-
 
 <!-- ********************ToolBar Display************************* -->
 
@@ -84,7 +18,7 @@
       </div>
 
       <div fxFlex="70" fxLayoutAlign="center">
-        <mat-form-field fxShow="true" fxHide.xs="true" appearance="outline" [style.fontSize.px]="2" fxFlex="90">
+        <mat-form-field fxShow.gt-xs="true" fxHide.xs="true" appearance="outline" [style.fontSize.px]="2" fxFlex="90">
           <button mat-icon-button>
             <mat-icon>search</mat-icon>
           </button>

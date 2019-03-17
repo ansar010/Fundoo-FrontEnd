@@ -1,20 +1,44 @@
-<div class="center">
+<!-- <div fxLayoutAlign="center">
   Notes in Trash ..
-</div>
+  <app-trash-bar></app-trash-bar>
+</div> -->
 
- <div *ngIf=showIconAndLetter>
+<!-- <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlexOffset="200px" fxLayoutGap=" 20px grid" style="overflow: hidden;">
+  
+    <div *ngFor ="let note of allnotes">
+        <app-trash-bar [noteDetail]=note>
+
+        </app-trash-bar>     
+    </div>
+  </div> -->
+ 
+  <div fxFlex>
+      <div  style="margin-top: 2%;">
+          <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+              <div *ngFor="let note of allnotes">
+                  <div>
+                    <app-trash-bar [noteDetail]=note>
+              
+                    </app-trash-bar>
+                  </div>
+              </div>
+            </div>
+            </div>
+  </div>
+ 
+  <!-- <div *ngIf=showIconAndLetter>
   <div class="center">
   </div>
   <div class="NotificationIcon">
     <mat-icon style="font-size: 90px">delete</mat-icon>
-  </div>
+  </div> -->
 
  <!-- <div class="textSize">
     <h1> No notes in Trash
     </h1>
   </div>
 </div> -->
-<div class="center" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+<!-- <div class="center" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
 
   <div *ngFor="let note of allnotes">
 
@@ -23,4 +47,4 @@
     </div>
   </div>
 
-</div>
+</div> -->

@@ -1,5 +1,55 @@
+<div class="noteGrid">
+<mat-card  class="inputNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
+    <div fxLayout="row">
+      <textarea value="{{noteDetail.title}}" class="addNoteInput" placeholder="Take a note..." matInput
+      cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;" (click)="openEditDialog(noteDetail)"></textarea>
+    <div fxFlex fxLayoutAlign="end start" class="inputNote">
+        <span class="buttons">
+        <button *ngIf="!isPinned" mat-icon-button color="basic" (click)=changePin()>
+          <img src="../../../src/assets/pin.svg">
+        </button>
+        <button *ngIf="isPinned==true" mat-icon-button color="basic" (click)="isPinned=false">
+          <img src="../../../src/assets/barpin.svg">
+        </button>
+        </span>
+      </div>
+    </div>
+    <p></p>
 
+    <mat-card-content >
+      <textarea  value="{{noteDetail.description}}"  class="addNoteInput" matInput
+        cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;" (click)="openEditDialog(noteDetail)"></textarea>
+    </mat-card-content>
 
+    <mat-card-actions class="inputNote">
+      <div class="buttons">
+      <button mat-icon-button matTooltip="Remind me">
+        <img src="../../../assets/remindme.svg" alt="reminder" />
+      </button>
+      
+      <button mat-icon-button matTooltip="Collaborator">
+        <img src="../../../assets/collaborator.svg" alt="collaborator">
+      </button>
+      
+      <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
+        <img src="../../../assets/color.svg" alt="color" />
+
+      </button>
+
+      <button mat-icon-button matTooltip="Add Image">
+        <img src="../../../assets/addimage.svg" alt="image" />
+      </button>
+
+      <button mat-icon-button matTooltip="Archive" (click)="archiveNote()">
+        <img src="../../../assets/archive.svg" alt="archive" />
+      </button>
+      <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+    </mat-card-actions>
+  </mat-card>
+</div>
 
 
 
@@ -121,6 +171,21 @@
     </div>
   </div>-->
 
+
+
+
+  <!-- <mat-menu #colorMenu="matMenu">
+      <mat-list>
+         <div *ngFor="let colorx of colors" style="overflow: hidden;">
+            <span *ngFor="let singlecolor of colorx">
+               <button mat-icon-button (click)="colorchange(singlecolor)">
+                  <mat-icon style="font-size: 40px" class="colorIcons" [style.color]="singlecolor">fiber_manual_record</mat-icon>
+               </button>
+            </span>
+         </div>
+      </mat-list>
+    </mat-menu> -->
+
 <mat-menu #colorMenu="matMenu" class="colorMenu" [overlapTrigger]="false">
   <ng-template matMenuContent let-note="note">
     <div fxLayout="row wrap" fxLayoutAlign="end
@@ -135,5 +200,5 @@
 </mat-menu>
 
 <mat-menu #moreMenu="matMenu">
-  <button mat-menu-item (click)="deleteNote()">Delete Note</button>
+  <button mat-menu-item (click)="trashNote()">Move to Trash</button>
 </mat-menu>

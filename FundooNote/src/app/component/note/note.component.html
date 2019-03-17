@@ -1,16 +1,43 @@
-<div fxLayout="row" fxLayoutAlign="center center">
+<!-- <div fxLayout="row" fxLayoutAlign="center center">
   <div fxFlex="50">
     <app-add-note></app-add-note>
-  </div>
+  </div> -->
   <!-- <div fxFlex fxLayoutAlign=>
     Pinned
   </div> -->
-</div>
+<!-- </div> -->
+<!-- <div fxLayout="row" fxFlexOffset="15%" fxLayoutGap="10px">
+    <div>
+    </div>
+    <div fxLayout="column" fxLayoutGap="20px" style="overflow: hidden;">
 
-<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+        <div fxLayoutAlign="center start" style="margin-top:40px;">
+          <app-add-note></app-add-note>
+
+        </div> -->
+        <div fxFlex>
+          <div fxLayout="row" fxLayoutAlign="center center" style="margin-top: 2%">
+            <div fxFlex="50">
+                        <app-add-note></app-add-note>
+            </div>
+          </div>
+        <div  style="margin-top: 2%;">
+          <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+              <div *ngFor="let note of allnotes">
+                  <div>
+                    <app-note-bar [noteDetail]=note>
+              
+                    </app-note-bar>
+                  </div>
+              </div>
+            </div>
+            </div>
+          </div>
+
+<!-- <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid"> -->
     <!-- <div 
     fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start"> -->
-  <div *ngFor="let note of allnotes" style="margin-top: 6%;">
+  <!-- <div *ngFor="let note of allnotes" style="margin-top: 6%;">
 
     <div *ngIf="!note.trash && !note.archive && note.isPin">
       <app-note-bar [noteDetail]=note>
@@ -18,14 +45,14 @@
       </app-note-bar>
     </div>
   </div>
-</div>
+</div> -->
 
 
-<div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+<!-- <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid"> -->
   <!-- flexLayout="row wrap" fxLayoutGap="10px"> -->
 
   <!-- <p class="textSize">OTHERS:</p> -->
-  <div *ngFor="let note of allnotes">
+  <!-- <div *ngFor="let note of allnotes">
 
     <div *ngIf="!note.trash && !note.archive">
       <app-note-bar [noteDetail]=note>
@@ -34,7 +61,7 @@
     </div>
   </div>
 
-</div>
+</div> -->
 
 
 

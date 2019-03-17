@@ -1,9 +1,21 @@
-.center{
-    margin-top: 4%;
-    margin-bottom: auto;
-    margin-left:auto;
-    margin-right: auto;
-    width: 58%; 
+// .center{
+//     margin-top: 4%;
+//     margin-bottom: auto;
+//     margin-left:auto;
+//     margin-right: auto;
+//     width: 58%; 
+//   }
+  
+  .inputNote{
+    border-radius: 15px;
+    background: transparent;
+    opacity: .7;
   }
+
+  .buttons{
+    display: none;
+  }
+  .noteGrid:hover .buttons, .buttons:hover{
   
-  
+    display: inline-block;
+  }

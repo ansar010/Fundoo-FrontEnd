@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="center center">
+<!-- <div  fxLayout="column" fxLayoutAlign="center center">
   <div class="NotificationIcon" *ngIf=showIconAndLetter>
     <mat-icon style="font-size: 90px">archive</mat-icon>
     <div class="textSize">
@@ -8,15 +8,43 @@
     </div>
   </div>
   <div>
-  </div>
+  </div> -->
+  <!-- <div *ngIf="(allnotes).length == 0" fxLayout="row" fxLayoutAlign="center center" fxFlexOffset="40%" style="overflow: hidden;">
+
+      <p class="textsize">No archived notes 
+      </p> 
+      <i class="material-icons " style="font-size: 90px;" >archive</i>
+    </div> -->
 
 
-  <div fxLayout="row wrap">
+
+    <div fxFlex>
+        <div  style="margin-top: 2%;">
+            <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+                <div *ngFor="let note of allnotes">
+                    <div>
+                      <app-note-bar [noteDetail]=note>
+                
+                      </app-note-bar>
+                    </div>
+                </div>
+              </div>
+              </div>
+    </div>
+
+  <!-- <div fxLayout="row wrap">
     <div *ngFor="let note of allnotes">
-      <div *ngIf="note.archive && !note.trash">
-        <app-note-bar [noteDetail]=note class="notepading">
+        <app-note-bar [noteDetail]=note>
         </app-note-bar>
       </div>
-    </div>
-  </div>
-</div>
+    </div> -->
+
+    <!-- <div *ngIf="(allnotes).length > 0">
+
+        <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlexOffset="10%" fxLayoutGap=" 20px grid">
+          <div *ngFor="let note of allnotes">
+              <app-note-bar [noteDetail]=note>
+                </app-note-bar>         
+               </div>
+      </div>
+    </div> -->

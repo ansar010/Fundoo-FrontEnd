@@ -9,21 +9,33 @@ import { NoteModel } from 'src/app/model/note.model';
 })
 export class ArchiveNoteComponent implements OnInit {
 
-  showIconAndLetter: boolean = true;
-  showArchiveNoteBar: boolean = true;
-  // noteBarValue : NoteModel[];
-  private allnotes: NoteModel[];
-
-
-
-  constructor(private cardUpdate: CardUpdateServiceService) { }
-
-  ngOnInit() {
-
-
-
-    this.cardUpdate.currentnotes.subscribe(udnotes =>
-      this.allnotes = udnotes);
+  private  allnotes:NoteModel[];
+  
+  constructor(private cardUpdate:CardUpdateServiceService) { 
+    this.cardUpdate.changemessage('true','false');
   }
 
-}
+  ngOnInit() { 
+    this.cardUpdate.currentNotes.subscribe(
+      updatenotes=>
+      this.allnotes=updatenotes 
+      );
+    }
+  }
+  // showIconAndLetter: boolean = true;
+  // showArchiveNoteBar: boolean = true;
+  // // noteBarValue : NoteModel[];
+  // private allnotes: NoteModel[];
+
+
+
+  // constructor(private cardUpdate: CardUpdateServiceService) { }
+
+  // ngOnInit() {
+
+
+
+  //   this.cardUpdate.currentNotes.subscribe(udnotes =>
+  //     this.allnotes = udnotes);
+  // }
+

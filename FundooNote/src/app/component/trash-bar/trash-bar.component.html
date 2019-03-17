@@ -1,5 +1,37 @@
+<div class="noteGrid">
+    <mat-card  class="inputNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
+        <!-- <div fxLayout="row"> -->
+          <!-- <textarea    class="addNoteInput" placeholder="Take a note..." matInput
+          cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;" ></textarea> -->
+        <!-- </div> -->
+        <textarea value="{{noteDetail.title}}" class="addNoteInput"  matInput
+          cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;"></textarea>
+  
+        <p></p>
+    
+        <mat-card-content >
+            <textarea value="{{noteDetail.description}}" class="addNoteInput"  matInput
+            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;"></textarea>
+          </mat-card-content>
+    
+        <mat-card-actions  class="inputNote">
+          <button class="buttons" mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    
+    
+    <mat-menu #moreMenu="matMenu">
+        <button mat-menu-item (click)="restoreNote()">Restore note</button>
+        <button mat-menu-item (click)="deleteNote()">Delete forever</button>
 
-<div>
+      </mat-menu>
+
+
+
+<!-- <div>
 <mat-card [ngStyle]="{'backgroundColor': noteDetail.color}">
 
   <mat-card-title (click)="openEditDialog(noteDetail)">
@@ -27,4 +59,4 @@
     </mat-menu>
   </mat-card-footer>
 
-</mat-card>
+</mat-card> -->

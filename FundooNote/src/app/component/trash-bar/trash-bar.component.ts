@@ -3,6 +3,7 @@ import { NoteModel } from 'src/app/model/note.model';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { DeleteCardComponent } from '../delete-card/delete-card.component';
+import { CardUpdateServiceService } from 'src/app/services/card-update-service.service';
 
 @Component({
   selector: 'app-trash-bar',
@@ -10,6 +11,10 @@ import { DeleteCardComponent } from '../delete-card/delete-card.component';
   styleUrls: ['./trash-bar.component.scss']
 })
 export class TrashBarComponent implements OnInit {
+
+  @Input() noteDetail : NoteModel;
+
+  constructor(private httpService : HttpserviceService, private snackBar : MatSnackBar, private cardUpdate : CardUpdateServiceService) { }
 
   //   @Input() noteDetail: NoteModel;
 
@@ -23,74 +28,41 @@ export class TrashBarComponent implements OnInit {
   //     this.httpService.noteDeleteRequest('note/', this.noteDetail);
   //   }
   // }
-  @Input() noteDetail: NoteModel;
+  // @Input() noteDetail: NoteModel;
 
-  constructor(private httpService: HttpserviceService, private snackBar: MatSnackBar,
-    private dialog: MatDialog) { }
+  // constructor(private httpService: HttpserviceService, private snackBar: MatSnackBar,
+  //   private dialog: MatDialog) { }
 
   ngOnInit() {
+    console.log(this.noteDetail)
   }
-  // restoreNote(): void {
-  //   this.noteCrud.updateTrashNote(this.noteDetail).subscribe(
-  //     data => {
-  //       if (data.statusCode == 166) {
 
-  //         this.snackBar.open('Note Restore Successfully', '', {
+  // restore() {
+  //   this.noteDetail.isTrash = false;
+  //   this.httpService.noteIDPutRequest(,this.notedetails.note).subscribe(
+  //     response => {
+  //       if (response.statusCode == 166) {
+  //         this.snackBar.open(response.statusMessage, "", {
   //           duration: 2000,
-  //         });
+
+  //         })
+  //         this.cardupdate.changemessage2();
   //       }
-  //       this.cardUpdate.changemessage();
   //     },
-
   //     error => {
-
   //       console.log("Error", error);
   //     }
-
-  //   )
+  //   );
   // }
 
-  // openEditDialog(item) {
-  //   console.log('note ', item);
-
-  //   const dialogRef = this.dialog.open(DeleteCardComponent, {
-  //     width: '550px',
-
-  //     data: item
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     console.log('after dialog ', item);
-  //     this.httpService.noteDeleteRequest('note/', this.noteDetail).subscribe(
-  //       data => {
-  //         if (data.statusCode === 100) {
-
-  //           this.snackBar.open(data.statusMessage, '', {
-  //             duration: 2000,
-  //           });
-  //         } else {
-  //           this.snackBar.open(data.statusMessage, '', {
-  //             duration: 3000,
-  //           });
-  //         }
-  //       },
-
-  //       error => {
-
-  //         this.snackBar.open('Network Problem', 'Fail', { duration: 3000 });
-  //         console.log('Error', error);
-  //       }
-  //     );
-  //   });
-
-  // }
   restoreNote(): void {
+    this.noteDetail.isTrash = false;
     this.httpService.noteIDPutRequest('note/trash/', this.noteDetail).subscribe
       (
         response => {
           if (response.statusCode === 100) {
             this.snackBar.open(response.statusMessage, '', { duration: 2000 });
+            this.cardUpdate.updateMessage();
           } else {
             this.snackBar.open(response.statusMessage, '', { duration: 3000 });
 
@@ -99,7 +71,7 @@ export class TrashBarComponent implements OnInit {
       );
   }
 
-  deleteForever(): void {
+  deleteNote(): void {
     this.httpService.noteDeleteRequest('note/', this.noteDetail).subscribe(
       data => {
         if (data.statusCode === 100) {
@@ -112,7 +84,7 @@ export class TrashBarComponent implements OnInit {
             duration: 3000,
           });
         }
-        // this.cardUpdate.changemessage();
+        this.cardUpdate.updateMessage();
       },
 
       error => {

@@ -10,28 +10,49 @@ import { HttpNoteServiceService } from 'src/app/services/http-note-service.servi
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
+private allnotes: NoteModel[];
 
-  private allnotes: NoteModel[];
-
-  constructor(private cardupdate: CardUpdateServiceService, private httpNoteService: HttpNoteServiceService) { }
-
-  ngOnInit() {
-
-    // this.cardupdate.currentnotes.subscribe(udnotes =>
-    //   this.allnotes = udnotes);
-    // console.log('new note');
-    // console.log('length ', this.allnotes.length);
-    this.getNote();
-
+  // constructor(private cardupdate: CardUpdateServiceService, private httpNoteService: HttpNoteServiceService) { }
+  constructor(private cardupdate: CardUpdateServiceService)
+  {
+    this.cardupdate.changemessage('false', 'false');
+    this.cardupdate.currentNotes.subscribe(updatenotes => {
+      console.log(updatenotes);
+      this.allnotes = updatenotes;
+      // this.showPinned = false;
+      // this.showUnpinned = false;
+      // this.content_filter();
+    });
   }
-
-  getNote() {
-    this.cardupdate.currentnotes.subscribe(udnotes =>
-      this.allnotes = udnotes);
+  ngOnInit() {
+      this.cardupdate.currentNotes.subscribe(updateNotes =>
+      this.allnotes = updateNotes);
     console.log('new note');
     console.log('length ', this.allnotes.length);
-
   }
+}
+
+  // private allnotes: NoteModel[];
+
+  // constructor(private cardupdate: CardUpdateServiceService, private httpNoteService: HttpNoteServiceService) { }
+
+  // ngOnInit() {
+
+  //   this.cardupdate.currentnotes.subscribe(udnotes =>
+  //     this.allnotes = udnotes);
+  //   console.log('new note');
+  //   console.log('length ', this.allnotes.length);
+  //   this.getNote();
+
+  // }
+
+  // getNote() {
+  //   this.cardupdate.currentnotes.subscribe(udnotes =>
+  //     this.allnotes = udnotes);
+  //   console.log('new note');
+  //   console.log('length ', this.allnotes.length);
+
+  // }
   // getNote() {
   //   this.httpService.getRequest1('/user/note/list')
   //     .subscribe(
@@ -47,4 +68,4 @@ export class NoteComponent implements OnInit {
   //     );
   // }
 
-}
+// }
