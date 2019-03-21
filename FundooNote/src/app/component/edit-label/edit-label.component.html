@@ -1,0 +1,53 @@
+<!-- <mat-card >
+  <mat-card-title>
+    Edit Labels
+  </mat-card-title>
+  <mat-card-subtitle>
+    <input style="color: black" matInput placeholder="create label">
+  </mat-card-subtitle>
+  <mat-card-content> 
+    <div>
+        <mat-form-field>
+            <textarea matInput placeholder="Textarea"></textarea>
+            <button mat-icon-button>
+            <mat-icon matSuffix>delete</mat-icon>
+          </button>
+        </mat-form-field>
+          </div>
+  </mat-card-content>
+  <mat-card-footer mat-dialog-actions>
+    <button  mat-raised-button color="primary"  >Done</button>
+    </mat-card-footer>
+</mat-card> -->
+
+
+
+<mat-card >
+  <mat-card-title class="size">Edit Labels</mat-card-title>
+ 
+  <mat-card-subtitle>
+    <br>
+    <input matInput placeholder="Enter Label Name" [(ngModel)]="Label">
+    
+  </mat-card-subtitle>
+
+  <mat-card-content> 
+    <div *ngFor = "let labesx of data.allLabel">
+      <button mat-icon-button (click)="deleteLabel(labesx)"><mat-icon>
+        delete
+      </mat-icon>
+      </button>
+        <mat-form-field class="widthadjust">
+      <input matInput [(ngModel)]="labesx.labelName"> 
+    </mat-form-field>
+      <button mat-icon-button (click)="labelnameupdate(labesx)"><mat-icon>
+          check_circle
+      </mat-icon></button>
+    
+    </div>
+  </mat-card-content>
+  <mat-card-footer mat-dialog-actions>
+      <button  mat-raised-button color="primary"  [mat-dialog-close]="Label" >Create</button>
+      <button mat-raised-button color="primary" style="margin-left:40%;" [mat-dialog-close]>Cancel</button>
+      </mat-card-footer>
+</mat-card>

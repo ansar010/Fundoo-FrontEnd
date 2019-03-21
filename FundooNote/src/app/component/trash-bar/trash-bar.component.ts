@@ -34,7 +34,7 @@ export class TrashBarComponent implements OnInit {
   //   private dialog: MatDialog) { }
 
   ngOnInit() {
-    console.log(this.noteDetail)
+    console.log("Trash bar note->"+this.noteDetail.id)
   }
 
   // restore() {

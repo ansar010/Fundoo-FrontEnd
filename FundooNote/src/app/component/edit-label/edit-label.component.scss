@@ -1,0 +1,18 @@
+.fontSize{
+    font-size: 60%;
+}
+.widthadjust{
+    width: 60%
+}
+
+/deep/ .mat-dialog-container {
+    padding: 0 !important;
+    border-radius: 8px;
+    overflow: hidden;
+    padding-top: 0 !important; 
+    }
+
+    
+    /deep/ .mat-card-title {
+        font-size: 15px;
+    }

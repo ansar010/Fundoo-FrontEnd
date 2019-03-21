@@ -5,6 +5,7 @@ import { NoteModel } from '../model/note.model';
 import { notEqual } from 'assert';
 import { Observable } from 'rxjs';
 import { RecievNotes } from '../model/recievenote.model';
+import { Label } from '../model/label.model';
 
 
 // const httpOptions = {
@@ -36,7 +37,9 @@ export class HttpserviceService {
   public putRequest(url, data): any {
     return this.http.put(environment.baseUrl + url, data, httpOptions);
   }
-
+// --------------------------------------------------------------------------------------//
+  
+// Note Services
   public noteIDPutRequest(url, note: NoteModel): any {
    console.log("Note->"+note.id);
    
@@ -114,4 +117,27 @@ public noteListsGetRequest(url,archive,trash): Observable<NoteModel[]> {
   public loggingIn() {
     return !!localStorage.getItem('token');
   }
+// --------------------------------------------------------------------------------------//
+
+// method to create label
+public labelPostRequest(url,data): any {
+  return this.http.post(environment.baseUrl + url, data,httpOptions);
+ }
+
+ // method to update label
+ public labelPutRequest(url,data): any {
+  return this.http.put(environment.baseUrl + url, data,httpOptions);
+ }
+
+ // method to get all label
+ public getAllLabelRequest(url): Observable<Label[]> {
+  // return this.http.post(environment.baseUrl + url, data,httpOptions);
+  return this.http.get<Label[]>(environment.baseUrl+url,httpOptions);
+ }
+
+ // method to delete label
+ public labelDeleteRequest(url): any {
+  return this.http.delete(environment.baseUrl + url,httpOptions);
+ }
 }
+

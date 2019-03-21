@@ -12,8 +12,9 @@ import { CardUpdateServiceService } from 'src/app/services/card-update-service.s
 })
 export class NoteBarComponent implements OnInit {
 
-    private isPinned: boolean;
+    private pinIcon: boolean;
     
+
     colorCode: Array<Object> = [
       { name: 'white', colorCode: 'rgb(255, 255, 255)' },
       { name: 'lightGreen', colorCode: 'rgb(204, 255, 144)' },
@@ -33,14 +34,50 @@ export class NoteBarComponent implements OnInit {
     @Input() noteDetail: NoteModel;
     constructor(private cardUpdate: CardUpdateServiceService, private httpService: HttpserviceService,
         private snackBar: MatSnackBar, private dialog: MatDialog) { }
+        // private pinIcon: boolean=this.noteDetail.isPin;
+        
 
     ngOnInit() {
-      console.log("noteDetail->"+this.noteDetail.id);
+      console.log("noteDetail->"+this.noteDetail.isArchive);
+      console.log("Pin check-> "+this.noteDetail.isPin);
+      this.pinIcon=this.noteDetail.isPin;
+
     }
 
     changePin(){
+      console.log("change pin status "+this.noteDetail.isPin)
+      this.pinIcon=!this.pinIcon;
+      // this.noteDetail.isPin=!this.noteDetail.isPin;
+      
+        // if(this.noteDetail.isPin)
+        // {
+        //   this.noteDetail.isArchive=false
+        //   this.pinIcon=this.noteDetail.isPin;
+        // }
+        this.httpService.noteIDPutRequest('note/pin/',this.noteDetail).subscribe(
+          data=> {
+             if(data.statusCode==100)
+             {
+              
+              this.snackBar.open(data.statusMessage, "success", {
+                            duration: 2000,
+                          })
+                        }
+                        this.cardUpdate.updateMessage;
+                      },           
+             error => {
+              
+                 console.log("Error", error);
+             }
+         
+            );
+            // this.pinIcon=this.noteDetail.isPin;
 
-        this.isPinned=true;
+            if(this.noteDetail.isPin)
+            {
+              this.noteDetail.isArchive=false
+              // this.pinIcon=this.noteDetail.isPin;
+            }
       }
 
   openEditDialog(item)

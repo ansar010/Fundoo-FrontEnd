@@ -23,6 +23,7 @@ import { ArchiveNoteComponent } from './component/archive-note/archive-note.comp
 import { TrashNoteComponent } from './component/trash-note/trash-note.component';
 import { TrashBarComponent } from './component/trash-bar/trash-bar.component';
 import { DeleteCardComponent } from './component/delete-card/delete-card.component';
+import { EditLabelComponent } from './component/edit-label/edit-label.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,9 @@ import { DeleteCardComponent } from './component/delete-card/delete-card.compone
     ArchiveNoteComponent,
     TrashNoteComponent,
     TrashBarComponent,
-    DeleteCardComponent
+    DeleteCardComponent,
+    EditLabelComponent,
+    
   ],
   imports: [
     FlexLayoutModule,
@@ -54,7 +57,8 @@ import { DeleteCardComponent } from './component/delete-card/delete-card.compone
     RouterModule,
   ],
   providers: [],
-  entryComponents : [EditCardComponent],
+  entryComponents : [EditCardComponent,
+                    EditLabelComponent],
 
   bootstrap: [AppComponent]
 })

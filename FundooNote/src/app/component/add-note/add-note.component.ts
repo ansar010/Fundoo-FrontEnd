@@ -18,7 +18,7 @@ export class AddNoteComponent implements OnInit {
   noteDto: NoteDto =new NoteDto();
   
   private showAddNote: boolean;
-  private isPinned: boolean;
+  private isPinned: boolean=false;
   
    colorCode: Array<Object> = [
     { name: 'white', colorCode: 'rgb(255, 255, 255)' },
@@ -50,7 +50,7 @@ export class AddNoteComponent implements OnInit {
   // Method to change pin
   changePin(){
 
-    this.isPinned=true;
+    this.isPinned=!this.isPinned;
   }
 
   // Method to change color
@@ -67,6 +67,8 @@ export class AddNoteComponent implements OnInit {
     close(){
 
       this.noteDto.color=this.color;
+      this.noteDto.isPin=this.isPinned;
+      console.log("Add pin "+this.noteDto.isPin);
       this.httpService.notePostRequest('note',this.noteDto).subscribe(
         response=>  {
                if (response.statusCode === 100) {

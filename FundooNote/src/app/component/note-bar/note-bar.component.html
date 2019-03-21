@@ -5,10 +5,10 @@
       cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;" (click)="openEditDialog(noteDetail)"></textarea>
     <div fxFlex fxLayoutAlign="end start" class="inputNote">
         <span class="buttons">
-        <button *ngIf="!isPinned" mat-icon-button color="basic" (click)=changePin()>
+        <button *ngIf="!pinIcon" matTooltip="Pin note" mat-icon-button color="basic" (click)=changePin()>
           <img src="../../../src/assets/pin.svg">
         </button>
-        <button *ngIf="isPinned==true" mat-icon-button color="basic" (click)="isPinned=false">
+        <button *ngIf="pinIcon" matTooltip="UnPin note" mat-icon-button color="basic" (click)="changePin()">
           <img src="../../../src/assets/barpin.svg">
         </button>
         </span>

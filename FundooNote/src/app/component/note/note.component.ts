@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
 import { NoteModel } from 'src/app/model/note.model';
 import { CardUpdateServiceService } from 'src/app/services/card-update-service.service';
-import { HttpNoteServiceService } from 'src/app/services/http-note-service.service';
 
 @Component({
   selector: 'app-note',
@@ -12,6 +11,10 @@ import { HttpNoteServiceService } from 'src/app/services/http-note-service.servi
 export class NoteComponent implements OnInit {
 private allnotes: NoteModel[];
 
+private showPinned:boolean=false;
+private showUnpinned:boolean=false;
+
+// private 
   // constructor(private cardupdate: CardUpdateServiceService, private httpNoteService: HttpNoteServiceService) { }
   constructor(private cardupdate: CardUpdateServiceService)
   {
@@ -19,17 +22,57 @@ private allnotes: NoteModel[];
     this.cardupdate.currentNotes.subscribe(updatenotes => {
       console.log(updatenotes);
       this.allnotes = updatenotes;
-      // this.showPinned = false;
-      // this.showUnpinned = false;
-      // this.content_filter();
+      this.showPinned = false;
+      this.showUnpinned = false;
+      this.pinFilter();
     });
   }
   ngOnInit() {
       this.cardupdate.currentNotes.subscribe(updateNotes =>
       this.allnotes = updateNotes);
+      this.showPinned = false;
+      this.showUnpinned = false;
+      this.pinFilter();
     console.log('new note');
     console.log('length ', this.allnotes.length);
   }
+
+private pinFilter()
+{
+  console.log("Pin filte called")
+  this.allnotes.forEach(element=>{
+    console.log("Pin status "+element.isPin)
+
+    if(element.isPin==true)
+    {
+      this.showPinned=true;
+    }
+    else{
+      this.showUnpinned=true;
+    }
+  })
+}
+
+
+
+
+
+
+
+
+
+  // private content_filter() {
+  //   this.allnotes.forEach(x => {
+  //     if (x.note.pinned == true) {
+  //       this.showPinned = true;
+  //     }
+
+  //     if (x.note.pinned == false) {
+  //       this.showUnpinned = true;
+  //     }
+  //   })
+  // }
+
 }
 
   // private allnotes: NoteModel[];

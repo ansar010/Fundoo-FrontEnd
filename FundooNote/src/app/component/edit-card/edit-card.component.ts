@@ -28,7 +28,7 @@ export class EditCardComponent implements OnInit {
     color : string;
 
   isOpen: boolean = false;
-
+  private pinIcon: boolean; 
   
   // mat dialog ref keep the track of open dialog
   constructor(
@@ -41,8 +41,19 @@ export class EditCardComponent implements OnInit {
   
     ngOnInit() {
       console.log("data->"+this.noteDetail.title);
-    }
+      console.log("pin data ->"+this.noteDetail.isPin);
 
+      this.pinIcon=this.noteDetail.isPin;
+      console.log("pinIcon data ->"+!(this.pinIcon));
+
+    }
+    
+    // method to change pin 
+    changePin(){
+      // this.pinIcon=!this.pinIcon;
+      // this.noteDetail.isPin=this.pinIcon;
+      this.snackBar.open('can not change pin status here!!','Error',{duration:3000})
+    }
   // method to change the color   
   changeColor(color)
   {

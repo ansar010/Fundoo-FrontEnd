@@ -103,8 +103,14 @@
           <mat-divider></mat-divider>
 
           <p class="textSize">LABELS</p>
-          <button class="sideNavListItems" mat-button></button>
+          
+          <button class="sideNavListItems" mat-button (click)="OpenEditLabel()">   
+            <mat-icon>edit</mat-icon>
+             Edit Labels
+          </button>
+          
           <mat-divider></mat-divider>
+          
           <div>
 
             <button mat-button [routerLink]="['archive']" (click)="headerName= 'Archive'"

@@ -21,10 +21,13 @@
                         <app-add-note></app-add-note>
             </div>
           </div>
+          <div *ngIf=showPinned fxLayout="row" fxLayoutAlign="start center"  style="margin-top: 2%; margin-left: 12%;">
+            <p>PINNED</p>
+          </div>
         <div  style="margin-top: 2%;">
           <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
               <div *ngFor="let note of allnotes">
-                  <div>
+                  <div *ngIf=note.isPin>
                     <app-note-bar [noteDetail]=note>
               
                     </app-note-bar>
@@ -32,6 +35,20 @@
               </div>
             </div>
             </div>
+            <div *ngIf=showUnpinned fxLayout="row" fxLayoutAlign="start center"  style="margin-top: 2%; margin-left: 12%;">
+              <p>OTHERS</p>
+            </div>
+            <div  style="margin-top: 2%;">
+              <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+                  <div *ngFor="let note of allnotes">
+                      <div *ngIf=!note.isPin>
+                        <app-note-bar [noteDetail]=note>
+                  
+                        </app-note-bar>
+                      </div>
+                  </div>
+                </div>
+                </div>
           </div>
 
 <!-- <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid"> -->
