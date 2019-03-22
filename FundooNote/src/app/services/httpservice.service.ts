@@ -2,23 +2,21 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { NoteModel } from '../model/note.model';
-import { notEqual } from 'assert';
 import { Observable } from 'rxjs';
-import { RecievNotes } from '../model/recievenote.model';
 import { Label } from '../model/label.model';
 
 
-// const httpOptions = {
-//   headers: new HttpHeaders().set('Content-Type', 'application/json')
-//     .set('Access-Control-Allow-Origin', '*')
-// };
-
 const httpOptions = {
-  headers: new HttpHeaders({
-    'content-type': 'application/json',
-    'token': localStorage.getItem('token')
-  })
+  headers: new HttpHeaders({'token': localStorage.getItem('token')}).set('Content-Type', 'application/json')
+    .set('Access-Control-Allow-Origin', '*')
 };
+
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'content-type': 'application/json',
+//     'token': localStorage.getItem('token')
+//   })
+// };
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +24,7 @@ const httpOptions = {
 export class HttpserviceService {
 
   // private baseUrl = 'http://192.168.0.134:8080/user/';
-    //  private baseUrl = 'http://localhost:8080/user/';
+  //  private baseUrl = 'http://localhost:8080/user/';
 
   constructor(private http: HttpClient) { }
 
@@ -37,12 +35,12 @@ export class HttpserviceService {
   public putRequest(url, data): any {
     return this.http.put(environment.baseUrl + url, data, httpOptions);
   }
-// --------------------------------------------------------------------------------------//
-  
-// Note Services
+  // --------------------------------------------------------------------------------------//
+
+  // Note Services
   public noteIDPutRequest(url, note: NoteModel): any {
-   console.log("Note->"+note.id);
-   
+    console.log('Note->' + note.id);
+
     return this.http.put(environment.baseUrl + url + note.id, '', httpOptions);
   }
 
@@ -72,13 +70,13 @@ export class HttpserviceService {
 
   // }
   public notePostRequest(url, data): any {
-    return this.http.post(environment.baseUrl + url, data,httpOptions);
+    return this.http.post(environment.baseUrl + url, data, httpOptions);
   }
 
-public noteListsGetRequest(url,archive,trash): Observable<NoteModel[]> {
-  console.log('archive->'+archive,'trash->'+trash)
-  return this.http.get<NoteModel[]>(environment.baseUrl+url+'?isArchive='+archive+'&isTrash='+trash,httpOptions);
-}  
+  public noteListsGetRequest(url, archive, trash): Observable<NoteModel[]> {
+    console.log('archive->' + archive, 'trash->' + trash);
+    return this.http.get<NoteModel[]>(environment.baseUrl + url + '?isArchive=' + archive + '&isTrash=' + trash, httpOptions);
+  }
 
   public noteGetRequest(): any {
 
@@ -105,7 +103,7 @@ public noteListsGetRequest(url,archive,trash): Observable<NoteModel[]> {
   // }
 
   public notePutRequest(url, data): any {
-    
+
     return this.http.put(environment.baseUrl + url, data, httpOptions);
   }
 
@@ -117,27 +115,45 @@ public noteListsGetRequest(url,archive,trash): Observable<NoteModel[]> {
   public loggingIn() {
     return !!localStorage.getItem('token');
   }
-// --------------------------------------------------------------------------------------//
+  // --------------------------------------------------------------------------------------//
 
-// method to create label
-public labelPostRequest(url,data): any {
-  return this.http.post(environment.baseUrl + url, data,httpOptions);
- }
+  // method to create label
+  public labelPostRequest(url, data): any {
+    return this.http.post(environment.baseUrl + url, data, httpOptions);
+  }
 
- // method to update label
- public labelPutRequest(url,data): any {
-  return this.http.put(environment.baseUrl + url, data,httpOptions);
- }
+  // method to update label
+  public labelPutRequest(url, data): any {
+    return this.http.put(environment.baseUrl + url, data, httpOptions);
+  }
 
- // method to get all label
- public getAllLabelRequest(url): Observable<Label[]> {
-  // return this.http.post(environment.baseUrl + url, data,httpOptions);
-  return this.http.get<Label[]>(environment.baseUrl+url,httpOptions);
- }
+  // method to get all label
+  public getAllLabelRequest(url): Observable<Label[]> {
+    // return this.http.post(environment.baseUrl + url, data,httpOptions);
+    return this.http.get<Label[]>(environment.baseUrl + url, httpOptions);
+  }
 
- // method to delete label
- public labelDeleteRequest(url): any {
-  return this.http.delete(environment.baseUrl + url,httpOptions);
- }
+  // method to delete label
+  public labelDeleteRequest(url): any {
+    return this.http.delete(environment.baseUrl + url, httpOptions);
+  }
+
+  // // method for add label to note
+  // public labelAddNoteRequest(url): any {
+  //   return this.http.delete(environment.baseUrl + url, httpOptions);
+  // }
+
+  // public addLabelToNote(labelid: Number, noteid: Number): any {
+  //   console.log(httpOptions);
+  //   return this.http.post(environment.baseUrl + 'label/addLabeltonote?labelId=' + labelid + '&noteId=' + noteid, httpOptions);
+  // }
+
+  public addLabelToNote(labelid: Number, noteid: Number): any {
+    return this.http.post(environment.baseUrl + 'label/addLabeltonote?labelId=' + labelid + '&noteId=' + noteid, httpOptions);
+  }
+
+  // public addLabelToNote(url): any {
+  //   return this.http.post(environment.baseUrl + url, httpOptions);
+  // }
 }
 

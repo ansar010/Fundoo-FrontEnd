@@ -11,17 +11,22 @@ export class TrashNoteComponent implements OnInit {
 
   showIconAndLetter: boolean = true;
   private allnotes: NoteModel[];
+  private showIcon: boolean = true;
 
   // @Input() noteDetail: NoteModel[];
 
-  constructor(private cardUpdate:CardUpdateServiceService) { 
-    this.cardUpdate.changemessage('false','true');
+  constructor(private cardUpdate: CardUpdateServiceService) {
+    this.cardUpdate.changemessage('false', 'true');
   }
-  
+
   ngOnInit() {
     this.cardUpdate.currentNotes.subscribe(
-      updatenotes=>
-      this.allnotes=updatenotes);
+      updatenotes =>
+        this.allnotes = updatenotes);
+        // this.cardUpdate.changemessage('false', 'true');
+        if (this.allnotes.length > 0) {
+          this.showIcon = !this.showIcon;
+        }
   }
 
   // restoreNote() : void{

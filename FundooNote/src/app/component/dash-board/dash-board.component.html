@@ -1,4 +1,3 @@
-
 <!-- ********************ToolBar Display************************* -->
 
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
@@ -70,8 +69,8 @@
           </button>
           <mat-menu #accountMenu="matMenu">
             <!-- <ng-template matMenuContent let-name="name"> -->
-              <!-- <button mat-menu-item>Settings</button> -->
-              <button mat-menu-item (click)="signOut()">Sign out</button>
+            <!-- <button mat-menu-item>Settings</button> -->
+            <button mat-menu-item (click)="signOut()">Sign out</button>
             <!-- </ng-template> -->
           </mat-menu>
         </div>
@@ -103,14 +102,14 @@
           <mat-divider></mat-divider>
 
           <p class="textSize">LABELS</p>
-          
-          <button class="sideNavListItems" mat-button (click)="OpenEditLabel()">   
+
+          <button class="sideNavListItems" mat-button (click)="OpenEditLabel()">
             <mat-icon>edit</mat-icon>
-             Edit Labels
+            Edit Labels
           </button>
-          
+
           <mat-divider></mat-divider>
-          
+
           <div>
 
             <button mat-button [routerLink]="['archive']" (click)="headerName= 'Archive'"

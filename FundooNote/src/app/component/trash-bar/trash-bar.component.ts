@@ -12,48 +12,15 @@ import { CardUpdateServiceService } from 'src/app/services/card-update-service.s
 })
 export class TrashBarComponent implements OnInit {
 
-  @Input() noteDetail : NoteModel;
+  @Input() noteDetail: NoteModel;
 
-  constructor(private httpService : HttpserviceService, private snackBar : MatSnackBar, private cardUpdate : CardUpdateServiceService) { }
+  constructor(private httpService: HttpserviceService, private snackBar: MatSnackBar, private cardUpdate: CardUpdateServiceService) { }
 
-  //   @Input() noteDetail: NoteModel;
-
-  //   constructor(private httpService: HttpserviceService, private snackBar: MatSnackBar) { }
-
-  //   ngOnInit() {
-  //   }
-
-  //   deleteForever()
-  //   {
-  //     this.httpService.noteDeleteRequest('note/', this.noteDetail);
-  //   }
-  // }
-  // @Input() noteDetail: NoteModel;
-
-  // constructor(private httpService: HttpserviceService, private snackBar: MatSnackBar,
-  //   private dialog: MatDialog) { }
 
   ngOnInit() {
-    console.log("Trash bar note->"+this.noteDetail.id)
+    console.log('Trash bar note->' + this.noteDetail.id);
   }
 
-  // restore() {
-  //   this.noteDetail.isTrash = false;
-  //   this.httpService.noteIDPutRequest(,this.notedetails.note).subscribe(
-  //     response => {
-  //       if (response.statusCode == 166) {
-  //         this.snackBar.open(response.statusMessage, "", {
-  //           duration: 2000,
-
-  //         })
-  //         this.cardupdate.changemessage2();
-  //       }
-  //     },
-  //     error => {
-  //       console.log("Error", error);
-  //     }
-  //   );
-  // }
 
   restoreNote(): void {
     this.noteDetail.isTrash = false;
@@ -64,10 +31,11 @@ export class TrashBarComponent implements OnInit {
             this.snackBar.open(response.statusMessage, '', { duration: 2000 });
             this.cardUpdate.updateMessage();
           } else {
-            this.snackBar.open(response.statusMessage, '', { duration: 3000 });
+            this.snackBar.open(response.statusMessage, '', { duration: 2000 });
 
           }
         }
+
       );
   }
 
@@ -79,17 +47,18 @@ export class TrashBarComponent implements OnInit {
           this.snackBar.open(data.statusMessage, '', {
             duration: 2000,
           });
+          this.cardUpdate.updateMessage();
         } else {
           this.snackBar.open(data.statusMessage, '', {
             duration: 3000,
           });
         }
-        this.cardUpdate.updateMessage();
+
       },
 
       error => {
 
-        this.snackBar.open('Network Problem', 'Fail', { duration: 3000 });
+        this.snackBar.open('Network Problem', 'Fail', { duration: 2000 });
         console.log('Error', error);
       }
     );

@@ -15,12 +15,12 @@ import { CardUpdateServiceService } from 'src/app/services/card-update-service.s
 })
 export class AddNoteComponent implements OnInit {
 
-  noteDto: NoteDto =new NoteDto();
-  
+  noteDto: NoteDto = new NoteDto();
+
   private showAddNote: boolean;
-  private isPinned: boolean=false;
-  
-   colorCode: Array<Object> = [
+  private isPinned: boolean = false;
+
+  colorCode: Array<Object> = [
     { name: 'white', colorCode: 'rgb(255, 255, 255)' },
     { name: 'lightGreen', colorCode: 'rgb(204, 255, 144)' },
     { name: 'purple', colorCode: 'rgb(215, 174, 251)' },
@@ -34,67 +34,67 @@ export class AddNoteComponent implements OnInit {
     { name: 'darkBlue', colorCode: 'rgb(174, 203, 250)' },
     { name: 'gray', colorCode: 'rgb(232, 234, 237)' }
   ];
-    color: string;
- 
-    constructor(private httpService:HttpserviceService,
-        private snackBar:MatSnackBar,private currentNotes: CardUpdateServiceService){}
+  color: string;
 
-  ngOnInit(){
+  constructor(private httpService: HttpserviceService,
+    private snackBar: MatSnackBar, private currentNotes: CardUpdateServiceService) { }
+
+  ngOnInit() {
   }
 
-  // method to expand note bar 
-  changeBar(){
-    this.showAddNote=true;
+  // method to expand note bar
+  changeBar() {
+    this.showAddNote = true;
   }
 
   // Method to change pin
-  changePin(){
+  changePin() {
 
-    this.isPinned=!this.isPinned;
+    this.isPinned = !this.isPinned;
   }
 
   // Method to change color
   changeColor(color) {
-         this.color = color;
-       }
+    this.color = color;
+  }
 
 
   // colorchange(singlecolor: string) {
   //   this.noteDto.color = singlecolor;
   //  }
 
-    // Method to create note
-    close(){
+  // Method to create note
+  close() {
 
-      this.noteDto.color=this.color;
-      this.noteDto.isPin=this.isPinned;
-      console.log("Add pin "+this.noteDto.isPin);
-      this.httpService.notePostRequest('note',this.noteDto).subscribe(
-        response=>  {
-               if (response.statusCode === 100) {
-                      this.snackBar.open(response.statusMessage, '',
-                        {
-                          duration: 2000
-                        });
-                        // this.Child.getNote();
-                        this.currentNotes.updateMessage();
-                    } else {
-                      this.snackBar.open(response.statusMessage, 'Fail', { duration: 3000 });
-                    }
-          
-                  },
-          
-                  error => {
-                    this.snackBar.open('Network Problem', 'fail', {
-                      duration: 2000,
-                    });
-                  }
-                );
-      this.showAddNote=false;
-      this.isPinned=false;
-      this.noteDto=new NoteDto();
-      this.color='';
-       }
+    this.noteDto.color = this.color;
+    this.noteDto.isPin = this.isPinned;
+    console.log('Add pin ' + this.noteDto.isPin);
+    this.httpService.notePostRequest('note', this.noteDto).subscribe(
+      response => {
+        if (response.statusCode === 100) {
+          this.snackBar.open(response.statusMessage, '',
+            {
+              duration: 2000
+            });
+          // this.Child.getNote();
+          this.currentNotes.updateMessage();
+        } else {
+          this.snackBar.open(response.statusMessage, 'Fail', { duration: 3000 });
+        }
+
+      },
+
+      error => {
+        this.snackBar.open('Network Problem', 'fail', {
+          duration: 2000,
+        });
+      }
+    );
+    this.showAddNote = false;
+    this.isPinned = false;
+    this.noteDto = new NoteDto();
+    this.color = '';
+  }
 }
 //   colorCode: Array<Object> = [
 //     { name: 'white', colorCode: 'rgb(255, 255, 255)' },

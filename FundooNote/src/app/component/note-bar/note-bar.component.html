@@ -1,52 +1,54 @@
 <div class="noteGrid">
-<mat-card  class="inputNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
+  <mat-card class="inputNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
     <div fxLayout="row">
       <textarea value="{{noteDetail.title}}" class="addNoteInput" placeholder="Take a note..." matInput
-      cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;" (click)="openEditDialog(noteDetail)"></textarea>
-    <div fxFlex fxLayoutAlign="end start" class="inputNote">
+        cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"
+        style="overflow: hidden;" (click)="openEditDialog(noteDetail)"></textarea>
+      <div fxFlex fxLayoutAlign="end start" class="inputNote">
         <span class="buttons">
-        <button *ngIf="!pinIcon" matTooltip="Pin note" mat-icon-button color="basic" (click)=changePin()>
-          <img src="../../../src/assets/pin.svg">
-        </button>
-        <button *ngIf="pinIcon" matTooltip="UnPin note" mat-icon-button color="basic" (click)="changePin()">
-          <img src="../../../src/assets/barpin.svg">
-        </button>
+          <button *ngIf="!pinIcon" matTooltip="Pin note" mat-icon-button color="basic" (click)=changePin()>
+            <img src="../../../src/assets/pin.svg">
+          </button>
+          <button *ngIf="pinIcon" matTooltip="UnPin note" mat-icon-button color="basic" (click)="changePin()">
+            <img src="../../../src/assets/barpin.svg">
+          </button>
         </span>
       </div>
     </div>
     <p></p>
 
-    <mat-card-content >
-      <textarea  value="{{noteDetail.description}}"  class="addNoteInput" matInput
-        cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;" (click)="openEditDialog(noteDetail)"></textarea>
+    <mat-card-content>
+      <textarea value="{{noteDetail.description}}" class="addNoteInput" matInput cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;"
+        (click)="openEditDialog(noteDetail)"></textarea>
     </mat-card-content>
 
     <mat-card-actions class="inputNote">
       <div class="buttons">
-      <button mat-icon-button matTooltip="Remind me">
-        <img src="../../../assets/remindme.svg" alt="reminder" />
-      </button>
-      
-      <button mat-icon-button matTooltip="Collaborator">
-        <img src="../../../assets/collaborator.svg" alt="collaborator">
-      </button>
-      
-      <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
-        <img src="../../../assets/color.svg" alt="color" />
+        <button mat-icon-button matTooltip="Remind me">
+          <img src="../../../assets/remindme.svg" alt="reminder" />
+        </button>
 
-      </button>
+        <button mat-icon-button matTooltip="Collaborator">
+          <img src="../../../assets/collaborator.svg" alt="collaborator">
+        </button>
 
-      <button mat-icon-button matTooltip="Add Image">
-        <img src="../../../assets/addimage.svg" alt="image" />
-      </button>
+        <button mat-icon-button matTooltip="Change color" [matMenuTriggerFor]="colorMenu">
+          <img src="../../../assets/color.svg" alt="color" />
 
-      <button mat-icon-button matTooltip="Archive" (click)="archiveNote()">
-        <img src="../../../assets/archive.svg" alt="archive" />
-      </button>
-      <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-    </div>
+        </button>
+
+        <button mat-icon-button matTooltip="Add Image">
+          <img src="../../../assets/addimage.svg" alt="image" />
+        </button>
+
+        <button mat-icon-button matTooltip="Archive" (click)="archiveNote()">
+          <img src="../../../assets/archive.svg" alt="archive" />
+        </button>
+        <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>
@@ -113,15 +115,15 @@
         <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
           <mat-icon>more_vert</mat-icon>
         </button> -->
-        <!-- <button mat-icon-button matTooltip="Undo">
+<!-- <button mat-icon-button matTooltip="Undo">
             <mat-icon>undo</mat-icon>
           </button>
           <button mat-icon-button matTooltip="Redo">
             <mat-icon>redo</mat-icon>
           </button> -->
-        <!-- <button mat-button color="warn" (click)="close()" style="margin-left: 23%;">
+<!-- <button mat-button color="warn" (click)="close()" style="margin-left: 23%;">
             close</button> -->
-      <!-- </mat-card-actions>
+<!-- </mat-card-actions>
     </mat-card>
   </div>
 </div> -->
@@ -174,7 +176,7 @@
 
 
 
-  <!-- <mat-menu #colorMenu="matMenu">
+<!-- <mat-menu #colorMenu="matMenu">
       <mat-list>
          <div *ngFor="let colorx of colors" style="overflow: hidden;">
             <span *ngFor="let singlecolor of colorx">
@@ -199,6 +201,26 @@
   </ng-template>
 </mat-menu>
 
-<mat-menu #moreMenu="matMenu">
+<!-- <mat-menu #moreMenu="matMenu">
   <button mat-menu-item (click)="trashNote()">Move to Trash</button>
-</mat-menu>
+</mat-menu> -->
+
+
+
+
+ <mat-menu #moreMenu="matMenu">
+    <button mat-menu-item (click)="trashNote()">Move to Trash</button>
+    <button mat-menu-item [matMenuTriggerFor]="menulabel">Add Label</button>
+               <mat-menu #menulabel="matMenu">
+                  <mat-list>
+                     <div *ngFor="let label of allLabels">
+                        {{label.labelName}} <button (click)="haveThisLabel(label,noteDetail)">Add</button>
+                        <button (click)="removeThisLabel(label,noteDetail)">Remove</button>
+                        <!-- <mat-checkboxb >Check me!</mat-checkbox> -->
+                        <!-- {{label.labelName}} <button mat-icon-button (click)="lncheck(label,notedetails)"></button> -->
+                     </div>
+                  </mat-list>
+               </mat-menu>
+               <!-- <button mat-menu-item (click)="trashnote()">Move To trash</button>
+               <button mat-menu-item (click)="restore()">Restore</button> -->
+            </mat-menu>

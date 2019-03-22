@@ -9,15 +9,14 @@ import { CardUpdateServiceService } from 'src/app/services/card-update-service.s
   styleUrls: ['./note.component.scss']
 })
 export class NoteComponent implements OnInit {
-private allnotes: NoteModel[];
+  private allnotes: NoteModel[];
 
-private showPinned:boolean=false;
-private showUnpinned:boolean=false;
+  private showPinned: boolean = false;
+  private showUnpinned: boolean = false;
 
-// private 
+  // private
   // constructor(private cardupdate: CardUpdateServiceService, private httpNoteService: HttpNoteServiceService) { }
-  constructor(private cardupdate: CardUpdateServiceService)
-  {
+  constructor(private cardupdate: CardUpdateServiceService) {
     this.cardupdate.changemessage('false', 'false');
     this.cardupdate.currentNotes.subscribe(updatenotes => {
       console.log(updatenotes);
@@ -28,30 +27,28 @@ private showUnpinned:boolean=false;
     });
   }
   ngOnInit() {
-      this.cardupdate.currentNotes.subscribe(updateNotes =>
+    this.cardupdate.currentNotes.subscribe(updateNotes =>
       this.allnotes = updateNotes);
-      this.showPinned = false;
-      this.showUnpinned = false;
-      this.pinFilter();
+    this.showPinned = false;
+    this.showUnpinned = false;
+    this.pinFilter();
     console.log('new note');
     console.log('length ', this.allnotes.length);
+
   }
 
-private pinFilter()
-{
-  console.log("Pin filte called")
-  this.allnotes.forEach(element=>{
-    console.log("Pin status "+element.isPin)
+  private pinFilter() {
+    console.log('Pin filte called');
+    this.allnotes.forEach(element => {
+      console.log('Pin status ' + element.isPin);
 
-    if(element.isPin==true)
-    {
-      this.showPinned=true;
-    }
-    else{
-      this.showUnpinned=true;
-    }
-  })
-}
+      if (element.isPin === true) {
+        this.showPinned = true;
+      } else {
+        this.showUnpinned = true;
+      }
+    });
+  }
 
 
 

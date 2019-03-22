@@ -7,49 +7,48 @@ import { HttpserviceService } from './httpservice.service';
 })
 export class CardUpdateServiceService {
 
-private isArchive = 'false';
-private isTrash  = 'false';
+  private obtainNotes = new BehaviorSubject([]);
 
-private obtainNotes = new BehaviorSubject([]);
+  private isArchive = 'false';
+  private isTrash = 'false';
 
-currentNotes = this.obtainNotes.asObservable();
 
-constructor(private httpService: HttpserviceService){
-  console.log('update card constructor');
-this.httpService.noteListsGetRequest('note/notelists',this.isArchive,this.isTrash).subscribe(
-  response=>{
-    this.obtainNotes.next(response);
-    console.log(this.currentNotes);
-  }
-  // error=>
-  // {
+  private isLabelOnNotes: boolean = false;
+  private labelName: string;
 
-  // }
-)  
-}
+  currentNotes = this.obtainNotes.asObservable();
 
-  updateMessage(){
-      this.httpService.noteListsGetRequest('note/notelists',this.isArchive,this.isTrash).subscribe(
-        response=>
-        {
-          this.obtainNotes.next(response);
-        }
-
-      );
+  constructor(private httpService: HttpserviceService) {
+    console.log('update card constructor');
+    this.httpService.noteListsGetRequest('note/notelists', this.isArchive, this.isTrash).subscribe(
+      response => {
+        this.obtainNotes.next(response);
+        console.log(this.currentNotes);
+      }
+    );
   }
 
-changemessage(archive: string, trash: string) {
-  this.isArchive = archive;
-  this.isTrash = trash;
-  this.httpService.noteListsGetRequest('note/notelists',archive, trash).subscribe(
-    response => {
+  updateMessage() {
+    this.httpService.noteListsGetRequest('note/notelists', this.isArchive, this.isTrash).subscribe(
+      response => {
+        this.obtainNotes.next(response);
+      }
 
-      console.log(response);
-      this.obtainNotes.next(response);
-    },
-    error => {
-      console.log(error);
-    }
+    );
+  }
+
+  changemessage(archive: string, trash: string) {
+    this.isArchive = archive;
+    this.isTrash = trash;
+    this.httpService.noteListsGetRequest('note/notelists', archive, trash).subscribe(
+      response => {
+
+        console.log(response);
+        this.obtainNotes.next(response);
+      },
+      error => {
+        console.log(error);
+      }
     );
   }
 }

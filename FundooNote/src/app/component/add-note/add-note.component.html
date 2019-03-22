@@ -54,19 +54,6 @@
     </mat-card-actions>
   </mat-card>
 
-
-  <!-- <mat-menu #colorMenu="matMenu">
-    <mat-list>
-       <div *ngFor="let colorx of colors" style="overflow: hidden;">
-          <span *ngFor="let singlecolor of colorx">
-             <button mat-icon-button (click)="colorchange(singlecolor)">
-                <mat-icon style="font-size: 40px" class="colorIcons" [style.color]="singlecolor">fiber_manual_record</mat-icon>
-             </button>
-          </span>
-       </div>
-    </mat-list>
-  </mat-menu> -->
-
 <mat-menu #colorMenu="matMenu" class="colorMenu" [overlapTrigger]="false">
   <ng-template matMenuContent let-note="note">
     <div fxLayout="row wrap" fxLayoutAlign="end

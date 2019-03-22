@@ -1,14 +1,14 @@
 .fontSize{
     font-size: 60%;
 }
-.widthadjust{
+.width{
     width: 60%
 }
 
 /deep/ .mat-dialog-container {
     padding: 0 !important;
     border-radius: 8px;
-    overflow: hidden;
+    // overflow: hidden;
     padding-top: 0 !important; 
     }
 

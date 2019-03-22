@@ -1,45 +1,43 @@
-<!-- <div  fxLayout="column" fxLayoutAlign="center center">
-  <div class="NotificationIcon" *ngIf=showIconAndLetter>
+<div *ngIf="showIcon" fxLayout="column" fxLayoutAlign="center center">
+  <div class="NotificationIcon">
     <mat-icon style="font-size: 90px">archive</mat-icon>
     <div class="textSize">
       <h1>
         Your archived notes appear here..!
       </h1>
     </div>
-  </div>
-  <div>
-  </div> -->
-  <!-- <div *ngIf="(allnotes).length == 0" fxLayout="row" fxLayoutAlign="center center" fxFlexOffset="40%" style="overflow: hidden;">
+</div>
+<!-- <div  fxLayout="row" fxLayoutAlign="center center" fxFlexOffset="40%" style="overflow: hidden;">
 
       <p class="textsize">No archived notes 
       </p> 
       <i class="material-icons " style="font-size: 90px;" >archive</i>
-    </div> -->
+</div> -->
+</div>
 
 
+<div fxFlex *ngIf="showIcon==false">
+  <div style="margin-top: 2%;">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+      <div *ngFor="let note of allnotes">
+        <div>
+          <app-note-bar [noteDetail]=note>
 
-    <div fxFlex>
-        <div  style="margin-top: 2%;">
-            <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
-                <div *ngFor="let note of allnotes">
-                    <div>
-                      <app-note-bar [noteDetail]=note>
-                
-                      </app-note-bar>
-                    </div>
-                </div>
-              </div>
-              </div>
+          </app-note-bar>
+        </div>
+      </div>
     </div>
+  </div>
+</div>
 
-  <!-- <div fxLayout="row wrap">
+<!-- <div fxLayout="row wrap">
     <div *ngFor="let note of allnotes">
         <app-note-bar [noteDetail]=note>
         </app-note-bar>
       </div>
     </div> -->
 
-    <!-- <div *ngIf="(allnotes).length > 0">
+<!-- <div *ngIf="(allnotes).length > 0">
 
         <div  fxLayout="row wrap" fxLayoutAlign="start center" fxFlexOffset="10%" fxLayoutGap=" 20px grid">
           <div *ngFor="let note of allnotes">
