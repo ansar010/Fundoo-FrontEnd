@@ -16,7 +16,11 @@ export class NoteBarComponent implements OnInit {
   private pinIcon: boolean;
 
   allLabels: Label[];
+// -------
+private show: boolean = false;
 
+private searchLabelValue: string;
+// -------
   colorCode: Array<Object> = [
     { name: 'white', colorCode: 'rgb(255, 255, 255)' },
     { name: 'lightGreen', colorCode: 'rgb(204, 255, 144)' },
@@ -44,6 +48,15 @@ export class NoteBarComponent implements OnInit {
     console.log('Pin check-> ' + this.noteDetail.isPin);
     this.pinIcon = this.noteDetail.isPin;
 
+    // this.httpService.getAllLabelRequest('label/').subscribe(
+    //   labels => {
+    //     this.allLabels = labels;
+    //   }
+    // );
+    this.getLabels();
+  }
+
+  getLabels() {
     this.httpService.getAllLabelRequest('label/').subscribe(
       labels => {
         this.allLabels = labels;
@@ -166,17 +179,64 @@ export class NoteBarComponent implements OnInit {
     );
   }
 
-  haveThisLabel(label: Label, note: NoteModel) {
-    console.log(label.labelName + ' ' + note.id);
-    this.httpService.addLabelToNote(label.id, note.id).subscribe(
-      // this.httpService.addLabelToNote('label/addLabeltonote?labelId=' + label.id + '&noteId='+note.id).subscribe(
-    response => {
-
-        console.log(response);
-        // this.cardupdate.changemessage2();
-      }
-    );
+  // --------
+  stopPropagation(event) {
+    console.log('propogation' + event);
+    event.stopPropagation();
   }
+
+  onSearchChange(searchValue: string) {
+    if (!searchValue) {
+    //   this.show = false;
+      this.getLabels();
+    } else {
+      // this.show = true;
+      this.allLabels = this.allLabels.filter(label => label.labelName.toLowerCase().indexOf(searchValue.toLowerCase()) > -1);
+      this.searchLabelValue = searchValue;
+    }
+  }
+
+  addLabelToNote(event, labelId: LongRange, noteId: LongRange) {
+    console.log('event data');
+    console.log(event);
+    this.httpService.lableNotePostRequest('label/addLabeltonote?labelId=' + labelId + '&noteId=' + noteId)
+      .subscribe(
+        (response: any) => {
+          // this.getLabels();
+          // this.updateService.changeUpdate(false, false);
+          this.snackBar.open(response.statusMessage, '', { duration: 2000 });
+
+        }
+      );
+  }
+
+  // addLabelToNote(event, labelId: LongRange, noteId: LongRange) {
+  //   console.log("event data")
+  //   console.log(event)
+  //   this.noteService.addLabelToNote(labelId, noteId)
+  //     .subscribe(
+  //       (response: any) => {
+  //         this.getLabels();
+  //         this.updateService.changeUpdate(false, false);
+  //         this.snackBar.open(response.statusMessage, "", { duration: 5000, verticalPosition: "top" });
+
+  //       }
+  //     );
+  // }
+
+  // --------
+
+  // haveThisLabel(label: Label, note: NoteModel) {
+  //   console.log(label.labelName + ' ' + note.id);
+  //   this.httpService.addLabelToNote(label.id, note.id).subscribe(
+  //     // this.httpService.addLabelToNote('label/addLabeltonote?labelId=' + label.id + '&noteId='+note.id).subscribe(
+  //   response => {
+
+  //       console.log(response);
+  //       // this.cardupdate.changemessage2();
+  //     }
+  //   );
+  // }
 
 
 

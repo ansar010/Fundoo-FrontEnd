@@ -21,6 +21,21 @@
       <textarea value="{{noteDetail.description}}" class="addNoteInput" matInput cdkTextareaAutosize
         #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;"
         (click)="openEditDialog(noteDetail)"></textarea>
+
+        <!-- <div fxLayout="row wrap" style=" margin:10px">
+          <mat-chip-list #chipList>
+            <div *ngFor="let label of myNote.note.labels">
+              <mat-chip class="noteLabels" routerLink="../labels/{{label.labelValue}}">
+                {{label.labelValue}}
+                <button mat-icon-button class="cancleIcon">
+                  <mat-icon matChipRemove (click)="removeLabel(label.labelId, myNote.note.noteId)"
+                    style="margin-top: -18px; margin-left: -3px">close</mat-icon>
+                </button>
+              </mat-chip>
+            </div>
+          </mat-chip-list>
+        </div> -->
+
     </mat-card-content>
 
     <mat-card-actions class="inputNote">
@@ -208,19 +223,59 @@
 
 
 
- <mat-menu #moreMenu="matMenu">
-    <button mat-menu-item (click)="trashNote()">Move to Trash</button>
-    <button mat-menu-item [matMenuTriggerFor]="menulabel">Add Label</button>
+ <!-- <mat-menu #moreMenu="matMenu">
+    <button mat-menu-item (click)="trashNote()">Move to Trash</button> -->
+
+    
+    <!-- <button mat-menu-item [matMenuTriggerFor]="menulabel">Add Label</button>
                <mat-menu #menulabel="matMenu">
                   <mat-list>
                      <div *ngFor="let label of allLabels">
                         {{label.labelName}} <button (click)="haveThisLabel(label,noteDetail)">Add</button>
-                        <button (click)="removeThisLabel(label,noteDetail)">Remove</button>
+                        <button (click)="removeThisLabel(label,noteDetail)">Remove</button> -->
                         <!-- <mat-checkboxb >Check me!</mat-checkbox> -->
                         <!-- {{label.labelName}} <button mat-icon-button (click)="lncheck(label,notedetails)"></button> -->
-                     </div>
+                     <!-- </div>
                   </mat-list>
-               </mat-menu>
+               </mat-menu> -->
                <!-- <button mat-menu-item (click)="trashnote()">Move To trash</button>
                <button mat-menu-item (click)="restore()">Restore</button> -->
-            </mat-menu>
+            <!-- </mat-menu> -->
+
+            <mat-menu #moreMenu="matMenu" (click)="stopPropagation($event);">
+              <button mat-menu-item (click)="trashNote()">Move to Trash</button>
+            
+              <button mat-menu-item [matMenuTriggerFor]="labelMenu">
+                Add Label
+              </button>
+              <mat-menu #labelMenu="matMenu" fxLayout="column" 
+             >
+             <!-- (click)="$event.stopPropagation();" -->
+             <span style="font-family: sans-serif; font-size: 15px; margin-left: 10px">
+                  Label note
+                </span>
+                <div fxLayout="row">
+                  <input matInput  placeholder="Enter label name"
+                    style="font-family: sans-serif; font-size: 12px; margin-bottom:10px;margin-left: 10px" (click)="stopPropagation($event)" (input)="onSearchChange($event.target.value)">
+                    <!-- (change)="changeShow()" (input)="onSearchChange($event.target.value)"
+                     -->
+                  <mat-icon style="zoom:0.7; color: grey; margin-right:10px ">
+                    search
+                  </mat-icon>
+                </div>
+                <div style="margin-bottom: 25px; margin-left: 10px">
+                  <div *ngFor="let label of allLabels">
+                    <mat-checkbox 
+                      style="font-family: sans-serif; color: black; zoom:0.8" (click)="$event.stopPropagation()" (change)="addLabelToNote($event, label.id, noteDetail.id)">{{label.labelName}}</mat-checkbox>
+                      <!-- (click)="$event.stopPropagation()"
+                      (change)="addLabelToNote($event, label.labelId, myNote.note.noteId)" -->
+                  </div>
+                </div>
+                <!-- <div *ngIf="show===true">
+                  <button mat-menu-item style="zoom:0.8; position: absolute; bottom: 0;"
+                    (click)="createNewLabel($event, myNote.note.noteId, searchLabelValue)">
+                    <mat-icon>add</mat-icon>
+                    Create label {{searchLabelValue}}
+                  </button>
+                </div> -->
+              </mat-menu>

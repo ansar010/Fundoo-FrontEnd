@@ -19,8 +19,9 @@ export class DashBoardComponent implements OnInit, OnDestroy {
   headerName: string;
 
   allLabels: Label[];
-  // label:Label=new Label();
+  label: Label = new Label();
   labelDto: LabelDto = new LabelDto();
+  // private labels: Label[];
 
   constructor(private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
     , private dialog: MatDialog,
@@ -30,6 +31,9 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    // this.getLabels();
+
   }
   ngOnInit() {
     this.headerName = 'FundooNote';
@@ -54,6 +58,9 @@ export class DashBoardComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
+
+
+
 
   // Method to edit label
   OpenEditLabel() {
@@ -91,6 +98,22 @@ export class DashBoardComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  // openLabelDialog(): void {
+  //   const dialogRef = this.dialog.open(EditLabelComponent, {
+  //     width: '320px',
+  //     data: this.labels
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     this.getLabels();
+  //   });
+  // }
+
+  // getLabels() {
+  //   this.httpService.getAllLabelRequest('label/').subscribe(
+  //     (data) => this.labels = data
+  //   );
+  // }
 
 
   signOut() {

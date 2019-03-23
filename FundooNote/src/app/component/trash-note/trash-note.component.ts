@@ -25,7 +25,7 @@ export class TrashNoteComponent implements OnInit {
         this.allnotes = updatenotes);
         // this.cardUpdate.changemessage('false', 'true');
         if (this.allnotes.length > 0) {
-          this.showIcon = !this.showIcon;
+          this.showIcon = this.showIcon;
         }
   }
 

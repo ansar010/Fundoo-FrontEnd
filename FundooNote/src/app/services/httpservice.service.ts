@@ -4,10 +4,12 @@ import { environment } from '../../environments/environment';
 import { NoteModel } from '../model/note.model';
 import { Observable } from 'rxjs';
 import { Label } from '../model/label.model';
+import { JsonPipe } from '@angular/common';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({'token': localStorage.getItem('token')}).set('Content-Type', 'application/json')
+  headers: new HttpHeaders({'token': localStorage.getItem('token')})
+    .set('Content-Type', 'application/json')
     .set('Access-Control-Allow-Origin', '*')
 };
 
@@ -129,6 +131,8 @@ export class HttpserviceService {
 
   // method to get all label
   public getAllLabelRequest(url): Observable<Label[]> {
+    console.log("token get label "+httpOptions.headers.get);
+
     // return this.http.post(environment.baseUrl + url, data,httpOptions);
     return this.http.get<Label[]>(environment.baseUrl + url, httpOptions);
   }
@@ -148,10 +152,30 @@ export class HttpserviceService {
   //   return this.http.post(environment.baseUrl + 'label/addLabeltonote?labelId=' + labelid + '&noteId=' + noteid, httpOptions);
   // }
 
-  public addLabelToNote(labelid: Number, noteid: Number): any {
-    return this.http.post(environment.baseUrl + 'label/addLabeltonote?labelId=' + labelid + '&noteId=' + noteid, httpOptions);
-  }
+  // public addLabelToNote(labelid: Number, noteid: Number): any {
+  //   return this.http.post(environment.baseUrl + 'label/addLabeltonote?labelId=' + labelid + '&noteId=' + noteid, httpOptions);
+  // }
+public lableNotePostRequest(url): any {
+  console.log("Url "+ url);
+  console.log("token"+httpOptions.headers.get('token'));
 
+  const header1 = {
+    headers: new HttpHeaders({
+      'token': localStorage.getItem('token')
+    })
+  };
+  // console.log("token"+header1);
+  // var a = JSON.parse(localStorage.getItem('token'));
+  // console.log('sfdadsfsfas'+a);
+  console.log("token : "+localStorage.getItem('token'));
+  console.log("token : "+httpOptions.headers.get('token'));
+  console.log("token : "+header1.headers.get('token'));
+  
+  
+  console.log(typeof(httpOptions.headers.get('token')));
+  
+  return this.http.post(environment.baseUrl + url , header1);
+}
   // public addLabelToNote(url): any {
   //   return this.http.post(environment.baseUrl + url, httpOptions);
   // }

@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { NoteModel } from 'src/app/model/note.model';
 import { Label } from 'src/app/model/label.model';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
+import { LabelDto } from 'src/app/model/labelDto.model';
 
 @Component({
   selector: 'app-edit-label',
@@ -11,12 +12,83 @@ import { HttpserviceService } from 'src/app/services/httpservice.service';
 })
 export class EditLabelComponent implements OnInit {
 
+
+  // private labelName: string;
+  // private labelDto = new LabelDto();
+
+  // constructor(public dialogRef: MatDialogRef<EditLabelComponent>,
+  //   @Inject(MAT_DIALOG_DATA) private labels: Label[],
+  //   private httpService: HttpserviceService,
+  //   private snackBar: MatSnackBar) { }
+  // private labelName: String;
+  // private labelDto = new LabelDto();
+
   constructor(
     public dialogRef: MatDialogRef<EditLabelComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Label[], private httpService: HttpserviceService,
     private snackbar: MatSnackBar) { }
-  // Label: string;
-  labelName: string;
+
+  // ngOnInit() {
+  // }
+
+
+  // updateLabel(label: Label) {
+  //   label.labelName = this.labelName;
+  //    this.httpService.labelPutRequest('label/?labelId=' + label.id, label).subscribe(
+  //   (response: any) => {
+  //       this.snackBar.open(response.body.statusMessage, '', { duration: 2000, verticalPosition: 'top' });
+  //     }
+  //   );
+  // }
+
+  // updateLabel(label: Label) {
+  //   label.labelName = this.labelName;
+  //   this.labelService.updateLabel(label).subscribe(
+  //     (response: any) => {
+  //       this.snackBar.open(response.body.statusMessage, "", { duration: 2000, verticalPosition: "top" });
+  //     }
+  //   );
+  // }
+
+  // createLabel() {
+  //   this.labelDto.labelName = this.labelName;
+  //   this.labelService.createLabel(this.labelDto).subscribe(
+  //     (response: any) => {
+  //       this.getLabels();
+  //       this.snackBar.open(response.body.statusMessage, "", { duration: 2000, verticalPosition: "top" });
+  //     })
+  // }
+
+  // getLabels() {
+  //   this.labelService.getLabels().subscribe
+  //   {
+  //     (data) => this.labels = data;
+  //   }
+  // }
+
+  // onClick(): void {
+
+  //   this.dialogRef.close();
+  // }
+
+  // deleteLabel(labelId: LongRange) {
+  //   this.labels = this.labels.filter(label => label.labelId !== labelId);
+  //   this.labelService.deleteLabel(labelId).subscribe(
+  //     (response: any) => {
+  //       this.getLabels();
+  //       this.snackBar.open(response.statusMessage, "", { duration: 2000, verticalPosition: "top" })
+  //     }
+  //   )
+  // }
+  // focusInput(myInput) {
+
+  //   myInput.focus();
+  // }
+
+
+
+
+    labelName: string;
 
   ngOnInit() {
     // console.log(this.abel.length)
@@ -62,68 +134,9 @@ export class EditLabelComponent implements OnInit {
         }
       }
     );
-    // this.noteCurdService.deleteLabel(deleteLabel.id).subscribe(
-    //   response =>
-    //   {
-    //     console.log(response);
-    //     this.noteCurdService.getAllLabels().subscribe(
-    //       response=>
-    //       {
-    //       //  console.log('sdfgsdfgsfgd'+response);
-    //       //  this.data=response;
-    //      //   console.log(response);
-    //       })
-    //   }
-    // )
-    // console.log(deleteLabel.id);
+
   }
 
 }
 
 
-// constructor(public dialogRef: MatDialogRef<EditlabeldialogComponent>,
-//   @Inject(MAT_DIALOG_DATA) private data: Label[],private noteCurdService:NotecrudService) {
-// }
-
-// Label:string;
-
-// ngOnInit() {
-//   console.log(this.data);
-// }
-
-// onNoClick(): void {
-//   this.dialogRef.close();
-// }
-
-// labelnameupdate(updateLabel:Label)
-// {
-//   console.log(updateLabel);
-//   this.noteCurdService.updateLabel(updateLabel).subscribe(
-//     response=>
-//     {
-//      console.log(response);
-//     }
-//   );
-// }
-
-// deleteLabel(deleteLabel)
-// {
-//   console.log(deleteLabel);
-
-//   this.noteCurdService.deleteLabel(deleteLabel.id).subscribe(
-//     response =>
-//     {
-//       console.log(response);
-//       this.noteCurdService.getAllLabels().subscribe(
-//         response=>
-//         {
-//         //  console.log('sdfgsdfgsfgd'+response);
-//         //  this.data=response;
-//        //   console.log(response);
-//         })
-//     }
-//   )
-//   // console.log(deleteLabel.id);
-// }
-
-// }

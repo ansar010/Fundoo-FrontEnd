@@ -1,3 +1,3 @@
-export class LabelDto{
+export class LabelDto {
     labelName: string;
 }
