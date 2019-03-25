@@ -80,6 +80,9 @@ export class DashBoardComponent implements OnInit, OnDestroy {
           response => {
             if (response.statusCode === 100) {
               this.snackBar.open(response.statusMessage, 'success', { duration: 2000 });
+            } else {
+              this.snackBar.open(response.statusMessage, 'fail', { duration: 2000 });
+
             }
             console.log(response);
             this.httpService.getAllLabelRequest('label/').subscribe(

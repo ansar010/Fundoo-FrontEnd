@@ -204,10 +204,13 @@ private searchLabelValue: string;
     this.httpService.lableNotePostRequest('label/addLabeltonote?labelId=' + labelId + '&noteId=' + noteId)
       .subscribe(
         (response: any) => {
+          // if(response==100){
           // this.getLabels();
           this.cardUpdate.updateMessage();
-          this.snackBar.open(response.statusMessage, '', { duration: 2000 });
-
+          this.snackBar.open(response.statusMessage, 'Success', { duration: 2000 });
+          // } else {
+          //   this.snackBar.open(response.statusMessage,'Fail',{duration:2000 });
+          // }
         }
       );
   }
