@@ -1,3 +1,5 @@
+import { Label } from './label.model';
+
 export class NoteModel {
     id: number;
     title: String;
@@ -8,4 +10,5 @@ export class NoteModel {
     isPin: boolean;
     isTrash: boolean;
     userID: number;
+    labels: Label[];
 }

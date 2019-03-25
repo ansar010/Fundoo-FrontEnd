@@ -7,18 +7,18 @@ import { Label } from '../model/label.model';
 import { JsonPipe } from '@angular/common';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({'token': localStorage.getItem('token')})
-    .set('Content-Type', 'application/json')
-    .set('Access-Control-Allow-Origin', '*')
-};
-
 // const httpOptions = {
-//   headers: new HttpHeaders({
-//     'content-type': 'application/json',
-//     'token': localStorage.getItem('token')
-//   })
+//   headers: new HttpHeaders({'token': localStorage.getItem('token')})
+//     .set('Content-Type', 'application/json')
+//     .set('Access-Control-Allow-Origin', '*')
 // };
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    // 'content-type': 'application/json',
+    'token': localStorage.getItem('token')
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -156,28 +156,11 @@ export class HttpserviceService {
   //   return this.http.post(environment.baseUrl + 'label/addLabeltonote?labelId=' + labelid + '&noteId=' + noteid, httpOptions);
   // }
 public lableNotePostRequest(url): any {
-  console.log("Url "+ url);
-  console.log("token"+httpOptions.headers.get('token'));
 
-  const header1 = {
-    headers: new HttpHeaders({
-      'token': localStorage.getItem('token')
-    })
-  };
-  // console.log("token"+header1);
-  // var a = JSON.parse(localStorage.getItem('token'));
-  // console.log('sfdadsfsfas'+a);
-  console.log("token : "+localStorage.getItem('token'));
-  console.log("token : "+httpOptions.headers.get('token'));
-  console.log("token : "+header1.headers.get('token'));
-  
-  
-  console.log(typeof(httpOptions.headers.get('token')));
-  
-  return this.http.post(environment.baseUrl + url , header1);
+  console.log('sdfsf' + httpOptions.headers.get('token'));
+
+  return this.http.post(environment.baseUrl + url ,null, httpOptions);
 }
-  // public addLabelToNote(url): any {
-  //   return this.http.post(environment.baseUrl + url, httpOptions);
-  // }
+
 }
 

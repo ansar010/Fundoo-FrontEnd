@@ -71,6 +71,7 @@
             <!-- <ng-template matMenuContent let-name="name"> -->
             <!-- <button mat-menu-item>Settings</button> -->
             <button mat-menu-item (click)="signOut()">Sign out</button>
+            <input type="file">
             <!-- </ng-template> -->
           </mat-menu>
         </div>
@@ -102,6 +103,21 @@
           <mat-divider></mat-divider>
 
           <p class="textSize">LABELS</p>
+
+          <div *ngIf="allLabels ? allLabels.length>0: false">
+            <div *ngFor="let label of allLabels">
+              <button (click)="headerName= label.labelName"
+              [ngClass]="{'sideNavListItems': headerName!='Remainders', 'sideNavlistItemsColored': headerName==label.labelName}"
+
+              mat-button  >
+                  <!-- routerLink="labels/{{label.labelValue}}" routerLinkActive="active" -->
+                <mat-icon>
+                  label
+                </mat-icon>
+                {{label.labelName}}
+              </button>
+            </div>
+          </div>
 
           <button class="sideNavListItems" mat-button (click)="OpenEditLabel()">
             <mat-icon>edit</mat-icon>

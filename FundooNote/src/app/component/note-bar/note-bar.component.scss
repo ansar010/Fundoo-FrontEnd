@@ -11,6 +11,28 @@
   display: inline-block;
 }
 
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate {
+  background-color:rgb(136, 133, 133) !important; 
+}
+
+.noteLabels
+{
+  margin-right: 10px;
+  width:fit-content;
+  font-style: "sans-serif";
+  background-repeat: round;
+  opacity: 1;
+  background-color: rgba(188, 190, 190, 0.250);
+  zoom:0.8;
+}
+
+.cancleIcon
+{
+  margin-right: -10px;
+  display: none;
+}
+
 // .takeanote{
 //     resize: unset;
 //  border:none;

@@ -22,11 +22,12 @@
         #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;"
         (click)="openEditDialog(noteDetail)"></textarea>
 
-        <!-- <div fxLayout="row wrap" style=" margin:10px">
+        <div fxLayout="row wrap" style=" margin:10px">
           <mat-chip-list #chipList>
-            <div *ngFor="let label of myNote.note.labels">
-              <mat-chip class="noteLabels" routerLink="../labels/{{label.labelValue}}">
-                {{label.labelValue}}
+            <div *ngFor="let label of noteDetail.labels">
+              <mat-chip class="noteLabels">
+                  <!-- routerLink="../labels/{{label.labelValue}}" -->
+                {{label.labelName}}
                 <button mat-icon-button class="cancleIcon">
                   <mat-icon matChipRemove (click)="removeLabel(label.labelId, myNote.note.noteId)"
                     style="margin-top: -18px; margin-left: -3px">close</mat-icon>
@@ -34,7 +35,7 @@
               </mat-chip>
             </div>
           </mat-chip-list>
-        </div> -->
+        </div>
 
     </mat-card-content>
 
@@ -248,7 +249,7 @@
               <button mat-menu-item [matMenuTriggerFor]="labelMenu">
                 Add Label
               </button>
-              <mat-menu #labelMenu="matMenu" fxLayout="column" 
+              <mat-menu #labelMenu="matMenu" fxLayout="column" (click)="$event.stopPropagation();"
              >
              <!-- (click)="$event.stopPropagation();" -->
              <span style="font-family: sans-serif; font-size: 15px; margin-left: 10px">

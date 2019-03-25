@@ -46,6 +46,8 @@ private searchLabelValue: string;
   ngOnInit() {
     console.log('noteDetail->' + this.noteDetail.isArchive);
     console.log('Pin check-> ' + this.noteDetail.isPin);
+    console.log('noteDetail label->' + this.noteDetail.labels);
+
     this.pinIcon = this.noteDetail.isPin;
 
     // this.httpService.getAllLabelRequest('label/').subscribe(
@@ -203,7 +205,7 @@ private searchLabelValue: string;
       .subscribe(
         (response: any) => {
           // this.getLabels();
-          // this.updateService.changeUpdate(false, false);
+          this.cardUpdate.updateMessage();
           this.snackBar.open(response.statusMessage, '', { duration: 2000 });
 
         }
