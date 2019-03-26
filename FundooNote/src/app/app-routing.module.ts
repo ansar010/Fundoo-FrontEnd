@@ -12,6 +12,7 @@ import { ArchiveNoteComponent } from './component/archive-note/archive-note.comp
 import { combineLatest } from 'rxjs';
 import { TrashNoteComponent } from './component/trash-note/trash-note.component';
 import { AuthGuardGuard } from './services/auth-guard.guard';
+import { LabelComponent } from './component/label/label.component';
 // import { NoteBarComponent } from './component/note-bar/note-bar.component';
 // import { MaterialDashboardComponent } from './component/material-dashboard/material-dashboard.component';
 // import { NoteComponent } from './component/note/note.component';
@@ -39,7 +40,7 @@ const routes: Routes = [
     path: 'resetPassword/:token',
     component: ResetPasswordComponent
   },
-  
+
   {
     canActivate: [AuthGuardGuard],
     path: 'dashboard',
@@ -60,7 +61,19 @@ const routes: Routes = [
       {
         path: 'trash',
         component: TrashNoteComponent
+      },
+      {
+        path: 'label/:labelName',
+        component: LabelComponent,
+        runGuardsAndResolvers: 'always'
       }
+      // {path:'labels/:labelvalue',component:LabelsComponent , runGuardsAndResolvers: 'pathParamsChange'},
+
+      // {
+      //   path:'labels/:labelValue',
+      //   component:LabeledNoteComponent,
+      //   runGuardsAndResolvers:"always"
+      // }
     ]
 
 

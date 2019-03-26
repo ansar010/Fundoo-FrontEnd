@@ -24,6 +24,7 @@ import { TrashNoteComponent } from './component/trash-note/trash-note.component'
 import { TrashBarComponent } from './component/trash-bar/trash-bar.component';
 import { DeleteCardComponent } from './component/delete-card/delete-card.component';
 import { EditLabelComponent } from './component/edit-label/edit-label.component';
+import { LabelComponent } from './component/label/label.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { EditLabelComponent } from './component/edit-label/edit-label.component'
     TrashBarComponent,
     DeleteCardComponent,
     EditLabelComponent,
+    LabelComponent,
     
   ],
   imports: [

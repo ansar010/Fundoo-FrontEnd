@@ -1,0 +1,40 @@
+<div fxFlex>
+  <div style="margin-top: 2%;">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+      <div *ngFor="let note of allnotes">
+        <app-note-bar [noteDetail]=note>
+
+        </app-note-bar>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- 
+<div fxLayout="row" fxLayoutGap="10px">
+  <div >
+
+  </div>
+
+<div  fxLayout="column"  fxLayoutGap="20px">
+
+  <div fxLayoutAlign="center start">
+          <app-notebar >
+
+          </app-notebar>
+
+  </div>
+          <div  fxLayout="row wrap" fxLayoutAlign="center center"  fxLayoutGap="15px grid">
+          
+              <div *ngFor="let note of allnotes" >
+                 
+                  <app-singlecard  [notedetails]=note>
+
+                  </app-singlecard>
+                
+              </div>
+
+          </div>
+</div>
+
+</div> -->

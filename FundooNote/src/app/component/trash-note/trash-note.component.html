@@ -18,8 +18,10 @@
     </p> 
     <i class="material-icons " style="font-size: 90px;" >archive</i>
   </div> -->
+  
+  <!-- -------------------------------------------------------------- -->
 
-<div *ngIf="showIcon">
+<!-- <div  *ngIf="allnotes ? allnotes.length==0: false">
   <div class="center">
   </div>
   <div class="NotificationIcon">
@@ -30,9 +32,9 @@
     <h1> No notes in Trash
     </h1>
   </div>
-</div>
+</div> -->
 
-<div fxFlex *ngIf="!showIcon">
+<div fxFlex  *ngIf="allnotes ? allnotes.length>0: false">
   <div style="margin-top: 2%;">
     <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
       <div *ngFor="let note of allnotes">
@@ -45,6 +47,7 @@
     </div>
   </div>
 </div>
+<!-- -------------------------------------------------------------- -->
 
 <!-- <div class="center" fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
 

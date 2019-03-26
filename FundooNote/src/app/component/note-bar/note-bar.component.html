@@ -25,12 +25,12 @@
         <div fxLayout="row wrap" style=" margin:10px">
           <mat-chip-list #chipList>
             <div *ngFor="let label of noteDetail.labels">
-              <mat-chip class="noteLabels">
+              <mat-chip class="noteLabels" routerLink="../label/{{label.labelName}}">
                   <!-- routerLink="../labels/{{label.labelValue}}" -->
                 {{label.labelName}}
                 <button mat-icon-button class="cancleIcon">
-                  <mat-icon matChipRemove (click)="removeLabel(label.labelId, myNote.note.noteId)"
-                    style="margin-top: -18px; margin-left: -3px">close</mat-icon>
+                  <mat-icon matChipRemove (click)="removeLabel(label.id, noteDetail.id)"
+                    style="margin-top: -18px; margin-left: 20px">close</mat-icon>
                 </button>
               </mat-chip>
             </div>
@@ -249,8 +249,7 @@
               <button mat-menu-item [matMenuTriggerFor]="labelMenu">
                 Add Label
               </button>
-              <mat-menu #labelMenu="matMenu" fxLayout="column" (click)="$event.stopPropagation();"
-             >
+              <mat-menu #labelMenu="matMenu" fxLayout="column" (click)="$event.stopPropagation();">
              <!-- (click)="$event.stopPropagation();" -->
              <span style="font-family: sans-serif; font-size: 15px; margin-left: 10px">
                   Label note

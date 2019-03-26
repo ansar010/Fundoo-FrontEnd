@@ -18,6 +18,7 @@
 
 .noteLabels
 {
+  height: 27px;
   margin-right: 10px;
   width:fit-content;
   font-style: "sans-serif";
@@ -29,8 +30,10 @@
 
 .cancleIcon
 {
-  margin-right: -10px;
-  display: none;
+  margin-top: 11px;
+
+  // margin-right: 10px;
+  // display: none;
 }
 
 // .takeanote{

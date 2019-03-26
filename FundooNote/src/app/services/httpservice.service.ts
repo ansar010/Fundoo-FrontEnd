@@ -137,7 +137,11 @@ export class HttpserviceService {
     return this.http.get<Label[]>(environment.baseUrl + url, httpOptions);
   }
 
-  // method to delete label
+  public getLabeledNote(url): Observable<NoteModel[]> {
+    return this.http.get<NoteModel[]>(environment.baseUrl + url, httpOptions);
+  }
+
+  // method to delete label 
   public labelDeleteRequest(url): any {
     return this.http.delete(environment.baseUrl + url, httpOptions);
   }
@@ -159,7 +163,7 @@ public lableNotePostRequest(url): any {
 
   console.log('sdfsf' + httpOptions.headers.get('token'));
 
-  return this.http.post(environment.baseUrl + url ,null, httpOptions);
+  return this.http.post(environment.baseUrl + url , null, httpOptions);
 }
 
 }

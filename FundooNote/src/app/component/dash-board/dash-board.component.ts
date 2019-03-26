@@ -6,6 +6,7 @@ import { EditLabelComponent } from '../edit-label/edit-label.component';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
 import { Label } from 'src/app/model/label.model';
 import { LabelDto } from 'src/app/model/labelDto.model';
+import { CardUpdateServiceService } from 'src/app/services/card-update-service.service';
 
 @Component({
   selector: 'app-dash-board',
@@ -26,7 +27,8 @@ export class DashBoardComponent implements OnInit, OnDestroy {
   constructor(private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
     , private dialog: MatDialog,
     private httpService: HttpserviceService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private cardUpdate: CardUpdateServiceService) {
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -68,7 +70,7 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(EditLabelComponent, {
       width: '300px',
       // height: '350px',
-      data: { allLabel: this.allLabels }
+      data: this.allLabels
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -80,6 +82,7 @@ export class DashBoardComponent implements OnInit, OnDestroy {
           response => {
             if (response.statusCode === 100) {
               this.snackBar.open(response.statusMessage, 'success', { duration: 2000 });
+              this.cardUpdate.updateMessage();
             } else {
               this.snackBar.open(response.statusMessage, 'fail', { duration: 2000 });
 

@@ -107,10 +107,9 @@
           <div *ngIf="allLabels ? allLabels.length>0: false">
             <div *ngFor="let label of allLabels">
               <button (click)="headerName= label.labelName"
-              [ngClass]="{'sideNavListItems': headerName!='Remainders', 'sideNavlistItemsColored': headerName==label.labelName}"
-
-              mat-button  >
-                  <!-- routerLink="labels/{{label.labelValue}}" routerLinkActive="active" -->
+                [ngClass]="{'sideNavListItems': headerName!='Remainders', 'sideNavlistItemsColored': headerName==label.labelName}"
+                routerLink="label/{{label.labelName}}" mat-button>
+                <!-- routerLink="labels/{{label.labelValue}}" routerLinkActive="active" -->
                 <mat-icon>
                   label
                 </mat-icon>

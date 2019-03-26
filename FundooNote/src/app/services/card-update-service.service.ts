@@ -29,12 +29,25 @@ export class CardUpdateServiceService {
   }
 
   updateMessage() {
+    if (this.isLabelOnNotes === false) {
     this.httpService.noteListsGetRequest('note/notelists', this.isArchive, this.isTrash).subscribe(
       response => {
         this.obtainNotes.next(response);
       }
 
     );
+    } else {
+      this.httpService.getLabeledNote('note/labeledNote?labelName=' + this.labelName).subscribe
+      (
+        response => {
+          console.log(response);
+          this.obtainNotes.next(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   changemessage(archive: string, trash: string) {
@@ -51,8 +64,50 @@ export class CardUpdateServiceService {
       }
     );
   }
+
+  labelNotes(label: string) {
+    this.labelName = label;
+    this.isLabelOnNotes = true;
+    this.httpService.getLabeledNote('note/labeledNote?labelName=' + label).subscribe
+      (
+        response => {
+          console.log(response);
+          this.obtainNotes.next(response);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    // this.notecrud.labelNotes(label).subscribe(
+    //   response =>
+    //   {
+    //     this.allNotes2.next(response);
+    //     console.log(response);
+    //   },
+    //   error => {
+    //     console.log(error);
+    //   }
+    // )
+  }
+
+
 }
 
+// labelNotes( label:string)
+//   {
+//     this.labelName=label;
+//     this.isLabelNotes=true;
+//     this.notecrud.labelNotes(label).subscribe(
+//       response =>
+//       {
+//         this.allNotes2.next(response);
+//         console.log(response);
+//       },
+//       error => {
+//         console.log(error);
+//       }
+//     )
+//   }
 // updateMessage(){
 
 // }
