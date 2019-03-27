@@ -232,21 +232,31 @@ private searchLabelValue: string;
         }
       );
   }
+  addPhoto(file) {
+    console.log(file);
+    this.httpService.addImageToNoteRequest(String(this.noteDetail.id), file).subscribe(
+      response => {
+        if (response.statusCode === 100) {
+          // this.getLabels();
+        // this.cardUpdate.updateMessage();
+        this.snackBar.open(response.statusMessage, 'Success', { duration: 2000 });
+               this.cardUpdate.updateMessage();
 
-  // addLabelToNote(event, labelId: LongRange, noteId: LongRange) {
-  //   console.log("event data")
-  //   console.log(event)
-  //   this.noteService.addLabelToNote(labelId, noteId)
-  //     .subscribe(
-  //       (response: any) => {
-  //         this.getLabels();
-  //         this.updateService.changeUpdate(false, false);
-  //         this.snackBar.open(response.statusMessage, "", { duration: 5000, verticalPosition: "top" });
-
-  //       }
-  //     );
+      } else {
+          this.snackBar.open(response.statusMessage, 'Fail' , {duration: 2000 });
+        }
+      }
+    );
+  }
+  // addCardPhoto(file) {
+  //   console.log(file);
+  //   console.log("print");
+  //   this.notecrudservice.noteImageAdd(String(this.notedetails.note.id), file).subscribe(
+  //     response => {
+  //       console.log(response);
+  //     }
+  //   );
   // }
-
   // --------
 
   // haveThisLabel(label: Label, note: NoteModel) {

@@ -1,6 +1,16 @@
 <div class="noteGrid">
   <mat-card class="inputNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
+      <span  fxLayout="column" fxLayoutAlign="space-around stretch" *ngIf="noteDetail.image !== null && noteDetail.image !== ''">
+          <img src="http://localhost:8080/user/note/getnoteimage/{{noteDetail.id}}" width="200px" height="150px" >
+      </span>
     <div fxLayout="row">
+        <!-- <span *ngIf="noteDetail.image !== null && noteDetail.image !== ''">
+            <img src="http://localhost:8080/user/note/getnoteimage/{{noteDetail.id}}" width="200px" height="150px" >
+        </span> -->
+        <!-- <span *ngIf="notedetails.note.image !== null && notedetails.note.image !== ''">
+            <img src="http://localhost:8082/api/notes/imageget/{{notedetails.note.id}}" width="200px" height="150px"
+               mat-card-image class="hah">
+         </span> -->
       <textarea value="{{noteDetail.title}}" class="addNoteInput" placeholder="Take a note..." matInput
         cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40"
         style="overflow: hidden;" (click)="openEditDialog(noteDetail)"></textarea>
@@ -53,11 +63,19 @@
           <img src="../../../assets/color.svg" alt="color" />
 
         </button>
-
-        <button mat-icon-button matTooltip="Add Image">
+        <!-- this file.files can take multiple file ,here it witll take first file -->
+        <input #file type="file" (change)="addPhoto(file.files)" class="showInput">
+       
+        <button mat-icon-button matTooltip="Add Image" (click)="file.click()">
           <img src="../../../assets/addimage.svg" alt="image" />
         </button>
+        <!-- <input #file type="file" (change)="addCardPhoto(file.files)" class="inputnotshow">
 
+            <button mat-icon-button #upload type="menu" (click)="file.click()">
+               <mat-icon>
+                  add_photo_alternate
+               </mat-icon>
+            </button> -->
         <button mat-icon-button matTooltip="Archive" (click)="archiveNote()">
           <img src="../../../assets/archive.svg" alt="archive" />
         </button>

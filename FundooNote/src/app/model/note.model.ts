@@ -10,5 +10,6 @@ export class NoteModel {
     isPin: boolean;
     isTrash: boolean;
     userID: number;
+    image: String;
     labels: Label[];
 }

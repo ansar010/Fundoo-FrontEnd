@@ -131,7 +131,7 @@ export class HttpserviceService {
 
   // method to get all label
   public getAllLabelRequest(url): Observable<Label[]> {
-    console.log("token get label "+httpOptions.headers.get);
+    console.log('token get label ' + httpOptions.headers.get);
 
     // return this.http.post(environment.baseUrl + url, data,httpOptions);
     return this.http.get<Label[]>(environment.baseUrl + url, httpOptions);
@@ -141,30 +141,30 @@ export class HttpserviceService {
     return this.http.get<NoteModel[]>(environment.baseUrl + url, httpOptions);
   }
 
-  // method to delete label 
+  // method to delete label
   public labelDeleteRequest(url): any {
     return this.http.delete(environment.baseUrl + url, httpOptions);
   }
+  public lableNotePostRequest(url): any {
 
-  // // method for add label to note
-  // public labelAddNoteRequest(url): any {
-  //   return this.http.delete(environment.baseUrl + url, httpOptions);
+    console.log('sdfsf' + httpOptions.headers.get('token'));
+
+    return this.http.post(environment.baseUrl + url, null, httpOptions);
+  }
+
+  public addImageToNoteRequest(id: String, file: File): any {
+    const formData: FormData = new FormData();
+    // sending file in key and value pair
+    formData.append('file', file[0]);
+    return this.http.post(environment.baseUrl + 'note/imageupload/' + id, formData, httpOptions);
+
+  }
+  // public noteImageAdd(id: string, file: File) {
+  //   let formdata: FormData = new FormData();
+  //   formdata.append('file', file[0]);
+  //   console.log("send here");
+  //   return this.http.post(this.noteUrl + "/imageupload/" + id, formdata, httpOptions2);
   // }
-
-  // public addLabelToNote(labelid: Number, noteid: Number): any {
-  //   console.log(httpOptions);
-  //   return this.http.post(environment.baseUrl + 'label/addLabeltonote?labelId=' + labelid + '&noteId=' + noteid, httpOptions);
-  // }
-
-  // public addLabelToNote(labelid: Number, noteid: Number): any {
-  //   return this.http.post(environment.baseUrl + 'label/addLabeltonote?labelId=' + labelid + '&noteId=' + noteid, httpOptions);
-  // }
-public lableNotePostRequest(url): any {
-
-  console.log('sdfsf' + httpOptions.headers.get('token'));
-
-  return this.http.post(environment.baseUrl + url , null, httpOptions);
-}
 
 }
 
