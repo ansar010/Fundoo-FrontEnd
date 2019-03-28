@@ -109,6 +109,13 @@
   width: 100%
 }
 //
+.profile{
+  width: 60px;
+  height: 60px;
+}
+::ng-deep .test {
+  white-space: pre-line;
+}
 .example-container {
     display: flex;
     flex-direction: column;
@@ -141,6 +148,10 @@
   .name{
     padding-left: 10%;
   }
+
+  ::ng-deep .mat-menu-content:not(:empty){
+    padding: 0  !important; 
+   }
 //responsive side nav ends
 
 

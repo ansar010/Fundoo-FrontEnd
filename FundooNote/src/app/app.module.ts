@@ -48,7 +48,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     EditLabelComponent,
     LabelComponent,
     ProfilepicDialogComponent,
-    
+
   ],
   imports: [
     FlexLayoutModule,

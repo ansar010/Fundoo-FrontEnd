@@ -9,6 +9,7 @@ import { LabelDto } from 'src/app/model/labelDto.model';
 import { CardUpdateServiceService } from 'src/app/services/card-update-service.service';
 import { UserInfo } from 'src/app/model/userinfo.model';
 import { ProfilepicDialogComponent } from '../profilepic-dialog/profilepic-dialog.component';
+import { CurrentViewService } from 'src/app/services/current-view.service';
 
 @Component({
   selector: 'app-dash-board',
@@ -20,18 +21,19 @@ export class DashBoardComponent implements OnInit, OnDestroy {
   private _mobileQueryListener: () => void;
 
   headerName: string;
-  token:string=localStorage.getItem('token');
+  token: string = localStorage.getItem('token');
   allLabels: Label[];
   label: Label = new Label();
   labelDto: LabelDto = new LabelDto();
-  // private labels: Label[];
-    userInfo:UserInfo;
+  userInfo: UserInfo;
+  gridView: boolean;
 
   constructor(private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
     , private dialog: MatDialog,
     private httpService: HttpserviceService,
     private snackBar: MatSnackBar,
-    private cardUpdate: CardUpdateServiceService) {
+    private cardUpdate: CardUpdateServiceService,
+    private view: CurrentViewService) {
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -43,6 +45,12 @@ export class DashBoardComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.headerName = 'FundooNote';
 
+    this.view.currentView.subscribe(
+      response => {
+        this.gridView = response;
+      }
+    );
+
     this.httpService.getAllLabelRequest('label/').subscribe(
       response => {
         console.log(response.values);
@@ -52,13 +60,12 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     );
 
     this.httpService.getUserInfo().subscribe(
-      (response:UserInfo) =>
-      {
+      (response: UserInfo) => {
         console.log(response.name);
-        
-        this.userInfo=response;
+
+        this.userInfo = response;
       }
-    )
+    );
     //   this.notecrudservice.getAllLabels().subscribe(
     //     response=>
     //     {
@@ -116,55 +123,43 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     });
   }
 
-  // openLabelDialog(): void {
-  //   const dialogRef = this.dialog.open(EditLabelComponent, {
-  //     width: '320px',
-  //     data: this.labels
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.getLabels();
-  //   });
-  // }
+  getMoreInformation(): string {
+    return 'Google Account \n ' + this.userInfo.name + '\n' + this.userInfo.email;
+  }
 
-  // getLabels() {
-  //   this.httpService.getAllLabelRequest('label/').subscribe(
-  //     (data) => this.labels = data
-  //   );
-  // }
-
- 
+  changeView() {
+    this.view.onViewChange();
+    console.log('GridView:' + this.gridView);
+  }
 
   signOut() {
     localStorage.clear();
     this.router.navigate(['login']);
   }
 
-  ProfileSelect()
-  {
+  ProfileSelect() {
     const dialogRef = this.dialog.open(ProfilepicDialogComponent, {
       width: '300px',
       // height:'350px'
     });
 
-      dialogRef.afterClosed().subscribe(
-        (image:any) =>
-        {
-          console.log('image'+image.file);
-          if(image!=null)
-          { 
-            this.httpService.uploadProfilePic(image.file).subscribe(
-              response=>{
+    dialogRef.afterClosed().subscribe(
+      (image: any) => {
+        console.log('image' + image.file);
+        if (image != null) {
+          this.httpService.uploadProfilePic(image.file).subscribe(
+            response => {
               if (response.statusCode === 100) {
                 this.snackBar.open(response.statusMessage, 'success', { duration: 2000 });
                 this.cardUpdate.updateMessage();
               } else {
                 this.snackBar.open(response.statusMessage, 'fail', { duration: 2000 });
-  
+
               }
             }
-              );
-          }
-        })
+          );
+        }
+      });
   }
 
 }

@@ -216,19 +216,22 @@ private searchLabelValue: string;
       );
   }
 
-  removeLabel(event, labelId: LongRange, noteId: LongRange) {
+  removeLabel(labelId: LongRange, noteId: LongRange) {
     console.log('event data');
+    console.log('event data->', noteId);
+     console.log(this.noteDetail.id);
     console.log(event);
     this.httpService.lableNotePostRequest('label/deleteLabelfromnote?labelId=' + labelId + '&noteId=' + noteId)
       .subscribe(
         (response: any) => {
+          if (response.statusCode === 100) {
           // if(response==100){
           // this.getLabels();
-          // this.cardUpdate.updateMessage();
+          this.cardUpdate.updateMessage();
           this.snackBar.open(response.statusMessage, 'Success', { duration: 2000 });
-          // } else {
-          //   this.snackBar.open(response.statusMessage,'Fail',{duration:2000 });
-          // }
+          } else {
+            this.snackBar.open(response.statusMessage,'Fail',{duration:2000 });
+          }
         }
       );
   }

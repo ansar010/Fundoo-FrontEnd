@@ -8,13 +8,12 @@ import { MatDialogRef } from '@angular/material';
 })
 export class ProfilepicDialogComponent implements OnInit {
 
-  
+
   // imageChangedEvent: any = '';
   // croppedImage;
   imageChangedEvent: any = '';
   croppedImage: any = '';
-  constructor(public dialogRef: MatDialogRef<ProfilepicDialogComponent>)
-   { }
+  constructor(public dialogRef: MatDialogRef<ProfilepicDialogComponent>) { }
 
   ngOnInit() { }
 
@@ -22,15 +21,13 @@ export class ProfilepicDialogComponent implements OnInit {
     this.imageChangedEvent = event;
   }
 
-  imageCropped(event:any) {
-  console.log(event);
-  this.croppedImage = event;
+  imageCropped(event: any) {
+    console.log(event);
+    this.croppedImage = event;
   }
-   
-  setProfile()
-  {
-    if(this.croppedImage!=null)
-    {
+
+  setProfile() {
+    if (this.croppedImage != null) {
       this.dialogRef.close(this.croppedImage);
     }
   }

@@ -33,7 +33,7 @@
     </h1>
   </div>
 </div> -->
-
+<div *ngIf="gridView">
 <div fxFlex  *ngIf="allnotes ? allnotes.length>0: false">
   <div style="margin-top: 2%;">
     <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
@@ -46,6 +46,22 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+<div *ngIf="!gridView">
+    <div fxFlex  *ngIf="allnotes ? allnotes.length>0: false">
+      <div style="margin-top: 2%;">
+        <div fxLayout="column wrap" fxLayoutAlign="center center" fxLayoutGap="15px grid">
+          <div *ngFor="let note of allnotes">
+            <div>
+              <app-trash-bar [noteDetail]=note>
+    
+              </app-trash-bar>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
 <!-- -------------------------------------------------------------- -->
 

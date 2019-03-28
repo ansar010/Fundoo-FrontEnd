@@ -167,8 +167,8 @@ export class HttpserviceService {
     return this.http.post(environment.baseUrl + 'imageupload/', formData, httpOptions);
 
   }
-  public getUserInfo():Observable<UserInfo>{
-    return this.http.get<UserInfo>(environment.baseUrl+'userDetails',httpOptions);
+  public getUserInfo(): Observable<UserInfo> {
+    return this.http.get<UserInfo>(environment.baseUrl + 'userdetails', httpOptions);
   }
 }
 

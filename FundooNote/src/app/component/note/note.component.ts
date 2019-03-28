@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
 import { NoteModel } from 'src/app/model/note.model';
 import { CardUpdateServiceService } from 'src/app/services/card-update-service.service';
+import { CurrentViewService } from 'src/app/services/current-view.service';
 
 @Component({
   selector: 'app-note',
@@ -13,10 +14,9 @@ export class NoteComponent implements OnInit {
 
   private showPinned: boolean = false;
   private showUnpinned: boolean = false;
+  private gridView: boolean;
 
-  // private
-  // constructor(private cardupdate: CardUpdateServiceService, private httpNoteService: HttpNoteServiceService) { }
-  constructor(private cardupdate: CardUpdateServiceService) {
+  constructor(private cardupdate: CardUpdateServiceService, private view: CurrentViewService) {
     this.cardupdate.changemessage('false', 'false');
     this.cardupdate.currentNotes.subscribe(updatenotes => {
       console.log(updatenotes);
@@ -29,6 +29,16 @@ export class NoteComponent implements OnInit {
   ngOnInit() {
     this.cardupdate.currentNotes.subscribe(updateNotes =>
       this.allnotes = updateNotes);
+
+    this.view.currentView.subscribe(
+      response => {
+        this.gridView = response;
+        console.log('GridView:' + this.gridView);
+
+      }
+    );
+    console.log('GridView:' + this.gridView);
+
     this.showPinned = false;
     this.showUnpinned = false;
     this.pinFilter();

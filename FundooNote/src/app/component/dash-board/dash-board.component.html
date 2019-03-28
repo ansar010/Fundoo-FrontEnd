@@ -33,9 +33,9 @@
         </div>
 
         <div>
-          <button mat-icon-button matTooltip="List View" color="basic" id="grid" (click)="Change()" (click)="grid()"
-            (click)="listView()">
-            <mat-icon>view_list</mat-icon>
+          <button mat-icon-button  color="basic" id="grid" (click)="changeView()">
+            <mat-icon matTooltip="Grid View" *ngIf="!gridView">view_module</mat-icon>
+            <mat-icon matTooltip="List View" *ngIf="gridView">view_stream</mat-icon>
           </button>
         </div>
 
@@ -64,26 +64,29 @@
         </div>
 
         <div>
-          <button mat-icon-button matTooltip="Google Account" [matMenuTriggerFor]=accountMenu>
-            <mat-icon class="account_circle">account_circle</mat-icon>
+          <button mat-icon-button matTooltip="{{getMoreInformation()}}" matTooltipClass="test"
+            [matMenuTriggerFor]=accountMenu>
+            <!-- <mat-icon class="account_circle">account_circle</mat-icon> -->
+            <img mat-card-avatar src="http://localhost:8080/user/getimage/{{token}}" />
           </button>
           <mat-menu #accountMenu="matMenu" class="menuborder">
-            <ng-template matMenuContent >
-            <mat-card class="example-card">
-                <mat-card-header >
-                    <div mat-card-avatar class="profile" (click)="ProfileSelect()" >
-                      <img mat-card-avatar class="profile" src="http://localhost:8080/user/getimage/{{token}}"/>  
-                    </div>
-                    <mat-card-title>{{userinfo.name}}</mat-card-title>
-                    <mat-card-subtitle>{{userinfo.email}}</mat-card-subtitle>
+            <ng-template matMenuContent>
+              <mat-card class="example-card">
+                <mat-card-header>
+                  <div mat-card-avatar matTooltip="Profile" class="profile" (click)="ProfileSelect()">
+                    <img mat-card-avatar class="profile" src="http://localhost:8080/user/getimage/{{token}}" />
+                  </div>
+                  <mat-card-title>{{userInfo.name}}</mat-card-title>
+                  <mat-card-subtitle>{{userInfo.email}}</mat-card-subtitle>
                 </mat-card-header>
-              <mat-card-content>
-                <button style="float:right" mat-raised-button (click)="signout()">SignOut</button>
-               
-            </mat-card-content>
-            </mat-card>
-          </ng-template>
-         </mat-menu>
+                <mat-divider></mat-divider>
+                <mat-card-actions fxLayout="row" fxLayoutAlign="end end">
+                  <button style="float:right" mat-raised-button (click)="signout()">SignOut</button>
+
+                </mat-card-actions>
+              </mat-card>
+            </ng-template>
+          </mat-menu>
           <!-- <mat-menu #accountMenu="matMenu">           
             <button mat-menu-item (click)="signOut()">Sign out</button>
             <input type="file">
