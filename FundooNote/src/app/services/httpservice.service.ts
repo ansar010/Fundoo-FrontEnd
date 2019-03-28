@@ -5,6 +5,7 @@ import { NoteModel } from '../model/note.model';
 import { Observable } from 'rxjs';
 import { Label } from '../model/label.model';
 import { JsonPipe } from '@angular/common';
+import { UserInfo } from '../model/userinfo.model';
 
 
 // const httpOptions = {
@@ -159,12 +160,15 @@ export class HttpserviceService {
     return this.http.post(environment.baseUrl + 'note/imageupload/' + id, formData, httpOptions);
 
   }
-  // public noteImageAdd(id: string, file: File) {
-  //   let formdata: FormData = new FormData();
-  //   formdata.append('file', file[0]);
-  //   console.log("send here");
-  //   return this.http.post(this.noteUrl + "/imageupload/" + id, formdata, httpOptions2);
-  // }
+  public uploadProfilePic(file: File): any {
+    const formData: FormData = new FormData();
+    // sending file in key and value pair
+    formData.append('file', file);
+    return this.http.post(environment.baseUrl + 'imageupload/', formData, httpOptions);
 
+  }
+  public getUserInfo():Observable<UserInfo>{
+    return this.http.get<UserInfo>(environment.baseUrl+'userDetails',httpOptions);
+  }
 }
 

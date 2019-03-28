@@ -87,6 +87,17 @@
   .sideNavListItems:hover {
     background-color: #e6e6e6;
   }
+  .menuborder{
+  
+    overflow: hidden;
+    background-color: aquamarine;
+    border: none;
+    max-width: none !important;
+  
+  }
+  .example-card{
+    overflow: hidden; 
+  }
 //----
 .navList{
     width: 250px;

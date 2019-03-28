@@ -67,13 +67,27 @@
           <button mat-icon-button matTooltip="Google Account" [matMenuTriggerFor]=accountMenu>
             <mat-icon class="account_circle">account_circle</mat-icon>
           </button>
-          <mat-menu #accountMenu="matMenu">
-            <!-- <ng-template matMenuContent let-name="name"> -->
-            <!-- <button mat-menu-item>Settings</button> -->
+          <mat-menu #accountMenu="matMenu" class="menuborder">
+            <ng-template matMenuContent >
+            <mat-card class="example-card">
+                <mat-card-header >
+                    <div mat-card-avatar class="profile" (click)="ProfileSelect()" >
+                      <img mat-card-avatar class="profile" src="http://localhost:8080/user/getimage/{{token}}"/>  
+                    </div>
+                    <mat-card-title>{{userinfo.name}}</mat-card-title>
+                    <mat-card-subtitle>{{userinfo.email}}</mat-card-subtitle>
+                </mat-card-header>
+              <mat-card-content>
+                <button style="float:right" mat-raised-button (click)="signout()">SignOut</button>
+               
+            </mat-card-content>
+            </mat-card>
+          </ng-template>
+         </mat-menu>
+          <!-- <mat-menu #accountMenu="matMenu">           
             <button mat-menu-item (click)="signOut()">Sign out</button>
             <input type="file">
-            <!-- </ng-template> -->
-          </mat-menu>
+          </mat-menu> -->
         </div>
       </div>
     </mat-toolbar>

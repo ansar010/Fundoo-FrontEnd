@@ -25,6 +25,8 @@ import { TrashBarComponent } from './component/trash-bar/trash-bar.component';
 import { DeleteCardComponent } from './component/delete-card/delete-card.component';
 import { EditLabelComponent } from './component/edit-label/edit-label.component';
 import { LabelComponent } from './component/label/label.component';
+import { ProfilepicDialogComponent } from './component/profilepic-dialog/profilepic-dialog.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { LabelComponent } from './component/label/label.component';
     DeleteCardComponent,
     EditLabelComponent,
     LabelComponent,
+    ProfilepicDialogComponent,
     
   ],
   imports: [
@@ -57,10 +60,12 @@ import { LabelComponent } from './component/label/label.component';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
+    ImageCropperModule
   ],
   providers: [],
   entryComponents : [EditCardComponent,
-                    EditLabelComponent],
+                    EditLabelComponent,
+                    ProfilepicDialogComponent],
 
   bootstrap: [AppComponent]
 })
