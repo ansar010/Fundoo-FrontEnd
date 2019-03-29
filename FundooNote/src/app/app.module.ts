@@ -27,6 +27,9 @@ import { EditLabelComponent } from './component/edit-label/edit-label.component'
 import { LabelComponent } from './component/label/label.component';
 import { ProfilepicDialogComponent } from './component/profilepic-dialog/profilepic-dialog.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+// import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,9 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-    ImageCropperModule
+    ImageCropperModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule
   ],
   providers: [],
   entryComponents : [EditCardComponent,

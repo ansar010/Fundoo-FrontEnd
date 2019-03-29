@@ -55,9 +55,67 @@
 
     <mat-card-actions class="inputNote">
       <div class="buttons">
-        <button mat-icon-button matTooltip="Remind me">
+        <button mat-icon-button matTooltip="Remind me" [matMenuTriggerFor]="remainderMenu">
           <img src="../../../assets/remindme.svg" alt="reminder" />
         </button>
+        <mat-menu #remainderMenu="matMenu" class="remainderMenuSize">
+          <span mat-menu-item>Remainder:</span>
+          <button mat-menu-item>
+              <span style="float:left;">Later today</span>
+              <span style="float:right;opacity:.5;"> 8:00 PM</span>
+           </button>
+           <button mat-menu-item>
+              <span style="float:left;">Tommorow</span>
+              <span style="float:right;opacity:.5;"> 8:00 PM</span>
+           </button>
+           <button mat-menu-item>
+              <span style="float:left;">Next week</span>
+              <span style="float:right;opacity:.5;"> Mon,8:00 PM</span>
+           </button>
+           <button mat-menu-item>
+              <span style="float:left;">Next week</span>
+              <span style="float:right;opacity:.5;"> Mon,8:00 PM</span>
+           </button>
+           
+        </mat-menu>
+
+
+
+
+
+        <!-- Notifiction Alert Menu start-->
+ <!-- <button mat-icon-button [matMenuTriggerFor]="notificationmenu">
+  <mat-icon>
+     notifications
+  </mat-icon>
+</button>
+<mat-menu #notificationmenu="matMenu" class="custom" >
+  <span mat-menu-item>Remainder</span>
+  <button mat-menu-item>
+     <div>
+        <span style="float:left;">Later Today</span>
+
+        <span style="float:right;"> 8:00 PM</span>
+     </div>
+  </button>
+  <button mat-menu-item>
+     <div>
+        <span style="float:left;">Tomorrow</span>
+
+        <span style="float:right;"> 8:00 PM</span>
+     </div>
+  </button>
+  <button mat-menu-item>
+     <div>
+        <span style="float:left;">NextWeek</span>
+
+        <span style="float:right;">Mon, 8:00 PM</span>
+     </div>
+  </button>
+ 
+</mat-menu>
+     <input  [formControl]="dateTime" [owlDateTime]="dt2" dateTimeChange="method" #openid (dateTimeChange)="SetRemainder($event)" style="display: none;">
+   <owl-date-time #dt2 ></owl-date-time> -->
 
         <button mat-icon-button matTooltip="Collaborator">
           <img src="../../../assets/collaborator.svg" alt="collaborator">
@@ -264,7 +322,44 @@
 <!-- <mat-menu #moreMenu="matMenu">
   <button mat-menu-item (click)="trashNote()">Move to Trash</button>
 </mat-menu> -->
+ <!-- Notifiction Alert Menu start-->
+ <!-- <button mat-icon-button [matMenuTriggerFor]="notificationmenu">
+  <mat-icon>
+     notifications
+  </mat-icon>
+</button>
+<mat-menu #notificationmenu="matMenu" class="custom" >
+  <span mat-menu-item>Remainder</span>
+  <button mat-menu-item>
+     <div>
+        <span style="float:left;">Later Today</span>
 
+        <span style="float:right;"> 8:00 PM</span>
+     </div>
+  </button>
+  <button mat-menu-item>
+     <div>
+        <span style="float:left;">Tomorrow</span>
+
+        <span style="float:right;"> 8:00 PM</span>
+     </div>
+  </button>
+  <button mat-menu-item>
+     <div>
+        <span style="float:left;">NextWeek</span>
+
+        <span style="float:right;">Mon, 8:00 PM</span>
+     </div>
+  </button>
+  <button mat-menu-item [owlDateTimeTrigger]="dt2">
+     <div>
+        <span style="float:left;">Pick data & Time</span>
+     </div>
+  </button>
+
+</mat-menu>
+     <input  [formControl]="dateTime" [owlDateTime]="dt2" dateTimeChange="method" #openid (dateTimeChange)="SetRemainder($event)" style="display: none;">
+   <owl-date-time #dt2 ></owl-date-time> -->
 
 
 

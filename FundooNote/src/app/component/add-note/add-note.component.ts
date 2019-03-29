@@ -40,6 +40,7 @@ export class AddNoteComponent implements OnInit {
     private snackBar: MatSnackBar, private currentNotes: CardUpdateServiceService) { }
 
   ngOnInit() {
+    
   }
 
   // method to expand note bar
