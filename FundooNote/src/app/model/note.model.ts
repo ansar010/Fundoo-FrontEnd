@@ -5,11 +5,12 @@ export class NoteModel {
     title: String;
     description: String;
     color: String;
-    remainder: String;
     isArchive: boolean;
     isPin: boolean;
     isTrash: boolean;
     userID: number;
-    image: String;
+    imageUrl: String;
+    // remainder: Date;
+    remainder: any;
     labels: Label[];
 }

@@ -5,6 +5,7 @@ import { HttpserviceService } from 'src/app/services/httpservice.service';
 import { EditCardComponent } from '../edit-card/edit-card.component';
 import { CardUpdateServiceService } from 'src/app/services/card-update-service.service';
 import { Label } from 'src/app/model/label.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-note-bar',
@@ -39,17 +40,34 @@ private searchLabelValue: string;
 
   @Input() noteDetail: NoteModel;
   constructor(private cardUpdate: CardUpdateServiceService, private httpService: HttpserviceService,
-    private snackBar: MatSnackBar, private dialog: MatDialog) { }
-  // private pinIcon: boolean=this.noteDetail.isPin;
+    private snackBar: MatSnackBar, private dialog: MatDialog,
+    private datePipe: DatePipe) { }
+    
+    //declaration of date 
+     selectedDate: Date;
 
+  // private pinIcon: boolean=this.noteDetail.isPin;
 
   ngOnInit() {
     console.log('noteDetail->' + this.noteDetail.isArchive);
     console.log('Pin check-> ' + this.noteDetail.isPin);
     console.log('noteDetail label->' + this.noteDetail.labels);
 
-    this.pinIcon = this.noteDetail.isPin;
+    
+    // console.log(this.noteDetail.remainder.toLocaleDateString+' '+this.noteDetail.remainder.toLocaleTimeString);
+    // console.log(this.noteDetail.remainder.toLocaleDateString+' '+this.noteDetail.remainder.toLocaleTimeString);
 
+    this.pinIcon = this.noteDetail.isPin;
+    if(this.noteDetail.remainder!==null)
+    {
+      // this.selectedDate=this.noteDetail.remainder;
+      console.log(this.noteDetail.remainder.toLocaleString());
+      let d:Date= new Date(this.noteDetail.remainder);
+      console.log(d.toLocaleString());
+      this.selectedDate = new Date(this.noteDetail.remainder);
+
+      console.log(this.selectedDate.toLocaleDateString()+' '+this.selectedDate.toLocaleTimeString());
+    }
     // this.httpService.getAllLabelRequest('label/').subscribe(
     //   labels => {
     //     this.allLabels = labels;
@@ -140,6 +158,41 @@ private searchLabelValue: string;
     );
   }
 
+  SetRemainder(event){
+    console.log(event.value);
+    console.log(event.value);
+       let date=new Date(event.value);
+      //  this.d=new Date(this.notedetails.note.remainder);
+            this.selectedDate=new Date(this.noteDetail.remainder);
+
+       this.noteDetail.remainder=date;
+    console.log(this.noteDetail.remainder);
+
+    this.httpService.notePutRequest('note', this.noteDetail).subscribe(
+      response => {
+        if (response.statusCode === 100) {
+          this.snackBar.open(response.statusMessage, 'success', {
+            duration: 2000,
+          });
+        }
+        this.cardUpdate.updateMessage();
+      },
+      error => {
+        console.log('Error', error);
+      }
+    ); 
+ }
+ removeRemainder() {
+   this.noteDetail.remainder=null;
+   this.httpService.notePutRequest('note',this.noteDetail).subscribe(
+     response=>
+     {
+     if(response.statusCode==100) {
+      this.snackBar.open('remainder removed successfully','removed',{duration :2000})
+     }
+    }
+   )
+ }
 
   trashNote() {
     this.noteDetail.isTrash = true;
@@ -235,6 +288,8 @@ private searchLabelValue: string;
         }
       );
   }
+
+  
   addPhoto(file) {
     console.log(file);
     this.httpService.addImageToNoteRequest(String(this.noteDetail.id), file).subscribe(

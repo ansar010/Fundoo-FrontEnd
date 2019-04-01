@@ -30,6 +30,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 // import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     OwlDateTimeModule,
     OwlNativeDateTimeModule
   ],
-  providers: [],
+  providers: [DatePipe],
   entryComponents : [EditCardComponent,
                     EditLabelComponent,
                     ProfilepicDialogComponent],

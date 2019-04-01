@@ -21,10 +21,12 @@
       <div fxFlex fxLayoutAlign="end start" class="inputNote">
         <span class="buttons">
           <button *ngIf="!pinIcon" matTooltip="Pin note" mat-icon-button color="basic" (click)=changePin()>
-            <img src="../../../src/assets/pin.svg">
+            <img src="../../../assets/pin.svg" alt="pin">
           </button>
           <button *ngIf="pinIcon" matTooltip="UnPin note" mat-icon-button color="basic" (click)="changePin()">
-            <img src="../../../src/assets/barpin.svg">
+            <img src="../../../assets/barpin.svg" alt="unpin">
+            <!-- <img src="../../../assets/remindme.svg" alt="reminder" /> -->
+
           </button>
         </span>
       </div>
@@ -48,10 +50,50 @@
                 </button>
               </mat-chip>
             </div>
+            <div>
+              <mat-chip-list>
+                <mat-chip *ngIf='noteDetail.remainder!==null' (removed)="removeRemainder()">
+                  {{selectedDate.toLocaleDateString()+" "+selectedDate.toLocaleTimeString()}}
+                  <mat-icon matChipRemove >cancel</mat-icon>
+
+                </mat-chip>
+              </mat-chip-list>
+            </div>
+            <!-- <div *ngFor="let label of noteDetail.labels">
+              <mat-chip class="noteLabels" routerLink="../label/{{label.labelName}}">
+                {{label.labelName}}
+                <button mat-icon-button class="cancleIcon">
+                  <mat-icon matChipRemove (click)="removeLabel(label.id, noteDetail.id)"
+                    style="margin-top: -18px; margin-left: 20px">close</mat-icon>
+                </button>
+              </mat-chip>
+            </div> -->
           </mat-chip-list>
         </div>
-
-    </mat-card-content>
+        <!-- <mat-chip-list >
+            
+          <mat-chip  class="chipsize" *ngIf="notedetails.note.remainder!==null" (removed)="removeRemainder()"> {{d.toLocaleDateString()+" "+d.toLocaleTimeString()}}
+                <mat-icon matChipRemove >cancel</mat-icon>
+          </mat-chip>
+       
+ </mat-chip-list> -->
+ 
+ <!-- <div fxLayout="row wrap" style=" margin:10px">
+  <mat-chip-list #Reminder>
+    <div *ngIf="myNote.note.reminder">
+      <mat-chip class="noteLabels" >
+      <button mat-icon-button class="scheduleIcon" ><mat-icon style="margin-top: -16px;">schedule</mat-icon></button>
+        {{myNote.note.reminder | date : 'dd-MM-yyyy HH:ss'}}
+        <button mat-icon-button class="cancleIcon">
+          <mat-icon matChipRemove (click)="removeReminder(myNote.note)"
+            style="margin-top: -18px; margin-left: -3px">close</mat-icon>
+        </button>
+      </mat-chip>
+    </div>
+  </mat-chip-list>
+</div> -->
+ 
+</mat-card-content>
 
     <mat-card-actions class="inputNote">
       <div class="buttons">
@@ -72,51 +114,16 @@
               <span style="float:left;">Next week</span>
               <span style="float:right;opacity:.5;"> Mon,8:00 PM</span>
            </button>
-           <button mat-menu-item>
-              <span style="float:left;">Next week</span>
-              <span style="float:right;opacity:.5;"> Mon,8:00 PM</span>
+           <button mat-menu-item [owlDateTimeTrigger]="dt2">
+            <span style="float:left;"><mat-icon style="margin-top: -5px;">schedule</mat-icon>Pick data & Time</span>
            </button>
            
         </mat-menu>
+        <input [owlDateTime]="dt2"  (dateTimeChange)="SetRemainder($event)" style="display: none;">
+        <owl-date-time #dt2 ></owl-date-time>
 
 
-
-
-
-        <!-- Notifiction Alert Menu start-->
- <!-- <button mat-icon-button [matMenuTriggerFor]="notificationmenu">
-  <mat-icon>
-     notifications
-  </mat-icon>
-</button>
-<mat-menu #notificationmenu="matMenu" class="custom" >
-  <span mat-menu-item>Remainder</span>
-  <button mat-menu-item>
-     <div>
-        <span style="float:left;">Later Today</span>
-
-        <span style="float:right;"> 8:00 PM</span>
-     </div>
-  </button>
-  <button mat-menu-item>
-     <div>
-        <span style="float:left;">Tomorrow</span>
-
-        <span style="float:right;"> 8:00 PM</span>
-     </div>
-  </button>
-  <button mat-menu-item>
-     <div>
-        <span style="float:left;">NextWeek</span>
-
-        <span style="float:right;">Mon, 8:00 PM</span>
-     </div>
-  </button>
- 
-</mat-menu>
-     <input  [formControl]="dateTime" [owlDateTime]="dt2" dateTimeChange="method" #openid (dateTimeChange)="SetRemainder($event)" style="display: none;">
-   <owl-date-time #dt2 ></owl-date-time> -->
-
+       
         <button mat-icon-button matTooltip="Collaborator">
           <img src="../../../assets/collaborator.svg" alt="collaborator">
         </button>
