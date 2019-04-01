@@ -1,5 +1,4 @@
-export class UserInfo
-{
+export class UserInfo {
     name: string;
-    email :string;
+    email: string;
 }

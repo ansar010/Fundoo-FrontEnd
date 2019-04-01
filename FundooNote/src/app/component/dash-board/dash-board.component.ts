@@ -40,13 +40,19 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     // this.getLabels();
+    this.httpService.getUserInfo().subscribe(
+      (response: UserInfo) => {
+        console.log(response.name);
 
+        this.userInfo = response;
+      }
+    );
   }
   ngOnInit() {
     this.headerName = 'FundooNote';
- 
+
     this.view.currentView.subscribe(
-      response => { 
+      response => {
         this.gridView = response;
       }
     );
@@ -59,13 +65,16 @@ export class DashBoardComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.httpService.getUserInfo().subscribe(
-      (response: UserInfo) => {
-        console.log(response.name);
+    // this.httpService.getUserInfo().subscribe(
+    //   (response: UserInfo) => {
+    //     console.log(response.name);
 
-        this.userInfo = response;
-      }
-    );
+    //     this.userInfo = response;
+    //   }
+    // );
+
+
+    
     //   this.notecrudservice.getAllLabels().subscribe(
     //     response=>
     //     {
