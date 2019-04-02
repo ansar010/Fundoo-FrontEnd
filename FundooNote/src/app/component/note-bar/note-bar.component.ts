@@ -6,6 +6,7 @@ import { EditCardComponent } from '../edit-card/edit-card.component';
 import { CardUpdateServiceService } from 'src/app/services/card-update-service.service';
 import { Label } from 'src/app/model/label.model';
 import { DatePipe } from '@angular/common';
+import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
 
 @Component({
   selector: 'app-note-bar',
@@ -194,6 +195,20 @@ private searchLabelValue: string;
    )
  }
 
+
+ addPerson() {
+  const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+    width: '600px',
+    height: '250px',
+    data: { notedetails: this.noteDetail }
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+
+  }
+  );
+
+}
   trashNote() {
     this.noteDetail.isTrash = true;
     this.noteDetail.isArchive = false;

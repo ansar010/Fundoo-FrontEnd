@@ -73,7 +73,8 @@ import { CollaboratorDialogComponent } from './component/collaborator-dialog/col
   providers: [DatePipe],
   entryComponents : [EditCardComponent,
                     EditLabelComponent,
-                    ProfilepicDialogComponent],
+                    ProfilepicDialogComponent,
+                    CollaboratorDialogComponent],
 
   bootstrap: [AppComponent]
 })
