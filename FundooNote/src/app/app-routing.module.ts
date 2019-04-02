@@ -47,6 +47,7 @@ const routes: Routes = [
     component: DashBoardComponent,
     children: [
       {
+        // path: '', redirectTo: 'addNote', pathMatch: 'full'
         path: '',
         component: NoteComponent
       },

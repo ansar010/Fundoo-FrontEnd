@@ -74,7 +74,7 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     // );
 
 
-    
+
     //   this.notecrudservice.getAllLabels().subscribe(
     //     response=>
     //     {

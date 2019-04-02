@@ -4,6 +4,7 @@ import { LoginModel } from 'src/app/model/login.model';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { HttpserviceService } from 'src/app/services/httpservice.service';
+import { CardUpdateServiceService } from 'src/app/services/card-update-service.service';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +18,10 @@ export class LoginComponent implements OnInit {
   loading;
 
   constructor(private formBuilder: FormBuilder,
-     private router: Router,
+    private router: Router,
     private snackBar: MatSnackBar,
-    private httpService: HttpserviceService) {
+    private httpService: HttpserviceService,
+    private updateService: CardUpdateServiceService) {
 
   }
 
@@ -48,29 +50,34 @@ export class LoginComponent implements OnInit {
     console.log(this.loginModel);
     this.loading = true;
     this.httpService.postRequest('login', this.loginModel).subscribe(
-          data => {
-            this.loading = false;
-             console.log(data);
-            // console.log(data.statusCode);
-             if (data.statusCode === 100) {
-               this.snackBar.open(data.statusMessage, 'logged-In', { duration: 2000, });
-               // console.log(response.header.get('jwtToken'));
-               localStorage.setItem('token', data.token);
-               this.router.navigate(['/dashboard'])       ;
-                     } else {
-                this.loading = false;
-                this.snackBar.open(data.statusMessage, 'login fail', {
-                  duration: 3000
-                });
-              }
-          },
-          error => {
-            this.loading = false;
-            this.snackBar.open('Network Problem', 'login Fails', {
-              duration: 2000,
-            });
-          }
-         );
+      data => {
+        this.loading = false;
+        console.log(data);
+        // console.log(data.statusCode);
+        if (data.statusCode === 100) {
+          this.snackBar.open(data.statusMessage, 'logged-In', { duration: 2000, });
+          // console.log(response.header.get('jwtToken'));
+          localStorage.setItem('token', data.token);
+          // this.updateService.changemessage('false', 'false');
+          // this.updateService.changemessage('false', 'false');
+          // setTimeout(() => this.updateService.changemessage('false', 'false'), 3000);
+          // this.updateService.updateMessage();
+          this.router.navigate(['/dashboard']);
+
+        } else {
+          this.loading = false;
+          this.snackBar.open(data.statusMessage, 'login fail', {
+            duration: 3000
+          });
+        }
+      },
+      error => {
+        this.loading = false;
+        this.snackBar.open('Network Problem', 'login Fails', {
+          duration: 2000,
+        });
+      }
+    );
   }
 
 }

@@ -31,6 +31,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { DatePipe } from '@angular/common';
+import { CollaboratorDialogComponent } from './component/collaborator-dialog/collaborator-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { DatePipe } from '@angular/common';
     EditLabelComponent,
     LabelComponent,
     ProfilepicDialogComponent,
+    CollaboratorDialogComponent,
 
   ],
   imports: [

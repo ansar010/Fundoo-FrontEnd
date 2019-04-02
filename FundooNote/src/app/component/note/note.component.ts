@@ -17,7 +17,14 @@ export class NoteComponent implements OnInit {
   private gridView: boolean;
 
   constructor(private cardupdate: CardUpdateServiceService, private view: CurrentViewService) {
+    // setTimeout(() => this.cardupdate.changemessage('false', 'false'), 3000);
+
+
+  }
+
+  ngOnInit() {
     this.cardupdate.changemessage('false', 'false');
+
     this.cardupdate.currentNotes.subscribe(updatenotes => {
       console.log(updatenotes);
       this.allnotes = updatenotes;
@@ -25,8 +32,7 @@ export class NoteComponent implements OnInit {
       this.showUnpinned = false;
       this.pinFilter();
     });
-  }
-  ngOnInit() {
+
     this.cardupdate.currentNotes.subscribe(updateNotes =>
       this.allnotes = updateNotes);
 
@@ -37,6 +43,7 @@ export class NoteComponent implements OnInit {
 
       }
     );
+
     console.log('GridView:' + this.gridView);
 
     this.showPinned = false;
