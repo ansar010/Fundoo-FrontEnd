@@ -18,11 +18,11 @@ export class NoteBarComponent implements OnInit {
   private pinIcon: boolean;
 
   allLabels: Label[];
-// -------
-private show: boolean = false;
+  // -------
+  private show: boolean = false;
 
-private searchLabelValue: string;
-// -------
+  private searchLabelValue: string;
+  // -------
   colorCode: Array<Object> = [
     { name: 'white', colorCode: 'rgb(255, 255, 255)' },
     { name: 'lightGreen', colorCode: 'rgb(204, 255, 144)' },
@@ -43,9 +43,9 @@ private searchLabelValue: string;
   constructor(private cardUpdate: CardUpdateServiceService, private httpService: HttpserviceService,
     private snackBar: MatSnackBar, private dialog: MatDialog,
     private datePipe: DatePipe) { }
-    
-    //declaration of date 
-     selectedDate: Date;
+
+  //declaration of date 
+  selectedDate: Date;
 
   // private pinIcon: boolean=this.noteDetail.isPin;
 
@@ -54,20 +54,19 @@ private searchLabelValue: string;
     console.log('Pin check-> ' + this.noteDetail.isPin);
     console.log('noteDetail label->' + this.noteDetail.labels);
 
-    
+
     // console.log(this.noteDetail.remainder.toLocaleDateString+' '+this.noteDetail.remainder.toLocaleTimeString);
     // console.log(this.noteDetail.remainder.toLocaleDateString+' '+this.noteDetail.remainder.toLocaleTimeString);
 
     this.pinIcon = this.noteDetail.isPin;
-    if(this.noteDetail.remainder!==null)
-    {
+    if (this.noteDetail.remainder !== null) {
       // this.selectedDate=this.noteDetail.remainder;
       console.log(this.noteDetail.remainder.toLocaleString());
-      let d:Date= new Date(this.noteDetail.remainder);
+      let d: Date = new Date(this.noteDetail.remainder);
       console.log(d.toLocaleString());
       this.selectedDate = new Date(this.noteDetail.remainder);
 
-      console.log(this.selectedDate.toLocaleDateString()+' '+this.selectedDate.toLocaleTimeString());
+      console.log(this.selectedDate.toLocaleDateString() + ' ' + this.selectedDate.toLocaleTimeString());
     }
     // this.httpService.getAllLabelRequest('label/').subscribe(
     //   labels => {
@@ -159,14 +158,14 @@ private searchLabelValue: string;
     );
   }
 
-  SetRemainder(event){
+  SetRemainder(event) {
     console.log(event.value);
     console.log(event.value);
-       let date=new Date(event.value);
-      //  this.d=new Date(this.notedetails.note.remainder);
-            this.selectedDate=new Date(this.noteDetail.remainder);
+    let date = new Date(event.value);
+    //  this.d=new Date(this.notedetails.note.remainder);
+    this.selectedDate = new Date(this.noteDetail.remainder);
 
-       this.noteDetail.remainder=date;
+    this.noteDetail.remainder = date;
     console.log(this.noteDetail.remainder);
 
     this.httpService.notePutRequest('note', this.noteDetail).subscribe(
@@ -181,34 +180,33 @@ private searchLabelValue: string;
       error => {
         console.log('Error', error);
       }
-    ); 
- }
- removeRemainder() {
-   this.noteDetail.remainder=null;
-   this.httpService.notePutRequest('note',this.noteDetail).subscribe(
-     response=>
-     {
-     if(response.statusCode==100) {
-      this.snackBar.open('remainder removed successfully','removed',{duration :2000})
-     }
+    );
+  }
+  removeRemainder() {
+    this.noteDetail.remainder = null;
+    this.httpService.notePutRequest('note', this.noteDetail).subscribe(
+      response => {
+        if (response.statusCode == 100) {
+          this.snackBar.open('remainder removed successfully', 'removed', { duration: 2000 })
+        }
+      }
+    )
+  }
+
+
+  addPerson() {
+    const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
+      width: '600px',
+      height: '250px',
+      data: this.noteDetail
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
     }
-   )
- }
-
-
- addPerson() {
-  const dialogRef = this.dialog.open(CollaboratorDialogComponent, {
-    width: '600px',
-    height: '250px',
-    data: { notedetails: this.noteDetail }
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
+    );
 
   }
-  );
-
-}
   trashNote() {
     this.noteDetail.isTrash = true;
     this.noteDetail.isArchive = false;
@@ -257,7 +255,7 @@ private searchLabelValue: string;
 
   onSearchChange(searchValue: string) {
     if (!searchValue) {
-    //   this.show = false;
+      //   this.show = false;
       this.getLabels();
     } else {
       // this.show = true;
@@ -275,10 +273,10 @@ private searchLabelValue: string;
           if (response.statusCode === 100) {
             this.getLabels();
 
-          this.cardUpdate.updateMessage();
-          this.snackBar.open(response.statusMessage, 'Success', { duration: 2000 });
-        } else {
-            this.snackBar.open(response.statusMessage, 'Fail' , {duration: 2000 });
+            this.cardUpdate.updateMessage();
+            this.snackBar.open(response.statusMessage, 'Success', { duration: 2000 });
+          } else {
+            this.snackBar.open(response.statusMessage, 'Fail', { duration: 2000 });
           }
         }
       );
@@ -287,36 +285,36 @@ private searchLabelValue: string;
   removeLabel(labelId: LongRange, noteId: LongRange) {
     console.log('event data');
     console.log('event data->', noteId);
-     console.log(this.noteDetail.id);
+    console.log(this.noteDetail.id);
     console.log(event);
     this.httpService.lableNotePostRequest('label/deleteLabelfromnote?labelId=' + labelId + '&noteId=' + noteId)
       .subscribe(
         (response: any) => {
           if (response.statusCode === 100) {
-          // if(response==100){
-          // this.getLabels();
-          this.cardUpdate.updateMessage();
-          this.snackBar.open(response.statusMessage, 'Success', { duration: 2000 });
+            // if(response==100){
+            // this.getLabels();
+            this.cardUpdate.updateMessage();
+            this.snackBar.open(response.statusMessage, 'Success', { duration: 2000 });
           } else {
-            this.snackBar.open(response.statusMessage,'Fail',{duration:2000 });
+            this.snackBar.open(response.statusMessage, 'Fail', { duration: 2000 });
           }
         }
       );
   }
 
-  
+
   addPhoto(file) {
     console.log(file);
     this.httpService.addImageToNoteRequest(String(this.noteDetail.id), file).subscribe(
       response => {
         if (response.statusCode === 100) {
           // this.getLabels();
-        // this.cardUpdate.updateMessage();
-        this.snackBar.open(response.statusMessage, 'Success', { duration: 2000 });
-               this.cardUpdate.updateMessage();
+          // this.cardUpdate.updateMessage();
+          this.snackBar.open(response.statusMessage, 'Success', { duration: 2000 });
+          this.cardUpdate.updateMessage();
 
-      } else {
-          this.snackBar.open(response.statusMessage, 'Fail' , {duration: 2000 });
+        } else {
+          this.snackBar.open(response.statusMessage, 'Fail', { duration: 2000 });
         }
       }
     );

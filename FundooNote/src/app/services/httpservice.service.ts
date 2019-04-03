@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { Label } from '../model/label.model';
 import { JsonPipe } from '@angular/common';
 import { UserInfo } from '../model/userinfo.model';
+import { CollabedUserInfo } from '../model/CollabedUserInfo.model';
+import { headersToString } from 'selenium-webdriver/http';
 
 
 // const httpOptions = {
@@ -170,5 +172,19 @@ export class HttpserviceService {
   public getUserInfo(): Observable<UserInfo> {
     return this.http.get<UserInfo>(environment.baseUrl + 'userdetails', httpOptions);
   }
+
+  // --------------------------------------------------------------------------------------//
+    // Services for Collaborator
+    
+    // service to get collborated user
+    public getCollabedUserInfo(url): Observable<CollabedUserInfo[]> {
+      return this.http.get<CollabedUserInfo[]>(environment.baseUrl + 'note/getcollaboratoruser' + url, httpOptions);
+    }
+
+    // service to add Collaborator
+    public addCollaborator(url):any {
+      return this.http.post(environment.baseUrl + url, null, httpOptions);
+    }
+
 }
 

@@ -54,6 +54,7 @@ export class NoteComponent implements OnInit {
 
   }
 
+
   private pinFilter() {
     console.log('Pin filte called');
     this.allnotes.forEach(element => {

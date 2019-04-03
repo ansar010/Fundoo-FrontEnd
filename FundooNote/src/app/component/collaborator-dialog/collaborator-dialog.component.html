@@ -1,13 +1,66 @@
-<mat-card style="height: 100%">
-  Collaborators
+<!-- <mat-card style="height: 100%">
+ <p>Collaborators</p>
   <mat-divider></mat-divider>
-</mat-card>
+  <header>
+
+  </header>
+</mat-card> -->
 
 
+<span mat-dialog-title fxLayout="row">
+  Collaborators
+</span>
+<mat-divider style="margin-top:-10px"></mat-divider>
 
+<div mat-dialog-content fxLayout="column" style="overflow: hidden;">
+  <span fxLayout="row">
+    <button mat-icon-button class="icon">
+      <!-- <mat-icon>person_outline</mat-icon> -->
+      <img mat-card-avatar src="http://localhost:8080/user/getimage/{{token}}" />
+    </button>
+    <div fxLayout="column">
+      <span class="usernameStyle">
+        {{userInfo.name}}<span style="font-style: italic">(Owner)</span>
+      </span>
+      <span class="emailStyle">
+        {{userInfo.email}}
+      </span>
+    </div>
+  </span>
 
-
-
+  <div *ngFor="let collabUser of collabUserInfo">
+    <span fxLayout="row" style="position: relative;">
+      <button mat-icon-button class="icon">
+        <img mat-card-avatar src="http://localhost:8080/user/getcollabuserimage/{{collabUser.userId}}" />
+      </button>
+      <div fxLayout="column">
+        <span class="usernameStyle">
+          {{collabUser.name}}
+        </span>
+        <span class="emailStyle">
+          {{collabUser.email}}
+        </span>
+      </div>
+      <button mat-icon-button class="closeStyle" (click)="removeCollaborator(collabUser.email)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </span>
+  </div>
+  <span fxLayout="row" style="position: relative;">
+    <button mat-icon-button class="icon">
+      <mat-icon>person_add</mat-icon>
+    </button>
+    <input matInput #emailId type="email" (input)="enteredEmail($event.target.value)" class="emailStyle"
+      placeholder="Person Email to share Note...">
+    <button mat-icon-button class="closeStyle" (click)="addCollaborator()">
+      <mat-icon>done</mat-icon>
+    </button>
+  </span>
+</div>
+<div fxLayout="row" fxLayoutAlign="end end" mat-dialog-actions class="buttomStyle" >
+  <button mat-raised-button class="actionButton" (click)="cancel" [mat-dialog-close]>Cancel</button>
+  <button mat-raised-button class="actionButton" (click)="save()" [mat-dialog-close]>Save</button>
+</div>
 
 
 
@@ -23,9 +76,9 @@
         <mat-card-subtitle><i>ansar@gmail.com </i></mat-card-subtitle>
       </mat-card-header>
 <mat-card-content> -->
-    <!-- <span style="background-image :url('../../../assets/user.svg'); width: 40px; height: 40px;"> </span> -->
+<!-- <span style="background-image :url('../../../assets/user.svg'); width: 40px; height: 40px;"> </span> -->
 
-      <!-- <div fxLayout="column" *ngFor="let collab of data.notedetails.collabList" >
+<!-- <div fxLayout="column" *ngFor="let collab of data.notedetails.collabList" >
       <div fxLayout="row" >
           <img src="../../../assets/user.svg" 
           style="vertical-align: middle; width: 40px;height: 40px;border-radius: 50%;">
@@ -54,3 +107,62 @@
 
 </mat-card>
    -->
+
+
+
+<!-- <span mat-dialog-title fxLayout="row">
+  Collaborators
+</span>
+<mat-divider style="margin-top:-10px"></mat-divider>
+<div mat-dialog-content fxLayout="column" style="overflow: hidden;">
+  <span fxLayout="row">
+    <button mat-icon-button class="icon">
+      <mat-icon>person_outline</mat-icon>
+    </button>
+    <div fxLayout="column">
+      <span class="usernameStyle">
+        {{user.userName}}<span style="font-style: italic">(Owner)</span>
+      </span>
+      <span class="emailStyle">
+        {{user.emailId}}
+      </span>
+    </div>
+  </span>
+
+
+  <div *ngFor="let userInfo of userInfos ">
+    <span fxLayout="row" style="position: relative;">
+      <button mat-icon-button class="icon">
+        <mat-icon>person_outline</mat-icon>
+      </button>
+      <div fxLayout="column">
+        <span class="usernameStyle">
+          {{userInfo.userName}}
+        </span>
+        <span class="emailStyle">
+          {{userInfo.emailId}}
+        </span>
+      </div>
+      <button mat-icon-button class="btnCollab" (click)="removeCollab(userInfo.emailId)">
+        <mat-icon>close</mat-icon>
+      </button>
+    </span>
+  </div>
+
+  <span fxLayout="row" style="position: relative;">
+    <button mat-icon-button class="icon">
+      <mat-icon>person_add</mat-icon>
+    </button>
+    <input matInput #emailId type="email" (input)="getUser($event.target.value)" class="emailStyle"
+      placeholder="Enter the email-id...">
+    <button mat-icon-button class="btnCollab" (click)="addCollab()">
+      <mat-icon>done</mat-icon>
+    </button>
+  </span>
+</div>
+
+<div mat-dialog-actions class="actionDialog">
+  <button mat-raised-button class="actionButton" (click)="cancel" [mat-dialog-close]>Cancel</button>
+  <button mat-raised-button class="actionButton" (click)="save()" [mat-dialog-close]>Save</button>
+</div>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->

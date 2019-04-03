@@ -48,6 +48,7 @@ export class DashBoardComponent implements OnInit, OnDestroy {
       }
     );
   }
+
   ngOnInit() {
     this.headerName = 'FundooNote';
 

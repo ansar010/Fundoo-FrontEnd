@@ -1,4 +1,5 @@
 import { Label } from './label.model';
+import { User } from './user.model';
 
 export class NoteModel {
     id: number;
@@ -13,4 +14,5 @@ export class NoteModel {
     // remainder: Date;
     remainder: any;
     labels: Label[];
+    collabedUsers: User[];
 }

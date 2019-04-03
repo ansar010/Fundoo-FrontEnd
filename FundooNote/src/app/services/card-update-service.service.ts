@@ -23,30 +23,30 @@ export class CardUpdateServiceService {
     this.httpService.noteListsGetRequest('note/notelists', this.isArchive, this.isTrash).subscribe(
       response => {
         this.obtainNotes.next(response);
-        console.log(this.currentNotes);
+        console.log('data at card update comp: ', this.currentNotes);
       }
     );
   }
 
   updateMessage() {
     if (this.isLabelOnNotes === false) {
-    this.httpService.noteListsGetRequest('note/notelists', this.isArchive, this.isTrash).subscribe(
-      response => {
-        this.obtainNotes.next(response);
-      }
+      this.httpService.noteListsGetRequest('note/notelists', this.isArchive, this.isTrash).subscribe(
+        response => {
+          this.obtainNotes.next(response);
+        }
 
-    );
+      );
     } else {
       this.httpService.getLabeledNote('note/labeledNote?labelName=' + this.labelName).subscribe
-      (
-        response => {
-          console.log(response);
-          this.obtainNotes.next(response);
-        },
-        error => {
-          console.log(error);
-        }
-      );
+        (
+          response => {
+            console.log(response);
+            this.obtainNotes.next(response);
+          },
+          error => {
+            console.log(error);
+          }
+        );
     }
   }
 
