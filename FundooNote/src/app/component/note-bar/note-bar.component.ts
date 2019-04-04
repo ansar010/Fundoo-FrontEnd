@@ -7,6 +7,8 @@ import { CardUpdateServiceService } from 'src/app/services/card-update-service.s
 import { Label } from 'src/app/model/label.model';
 import { DatePipe } from '@angular/common';
 import { CollaboratorDialogComponent } from '../collaborator-dialog/collaborator-dialog.component';
+import { CollabedUserInfo } from 'src/app/model/CollabedUserInfo.model';
+import { UserInfo } from 'src/app/model/userinfo.model';
 
 @Component({
   selector: 'app-note-bar',
@@ -19,10 +21,14 @@ export class NoteBarComponent implements OnInit {
 
   allLabels: Label[];
   // -------
-  private show: boolean = false;
+  // private show: boolean = false;
 
   private searchLabelValue: string;
   // -------
+  collabUserInfo: CollabedUserInfo[];
+  userInfo: UserInfo;
+  showTrash: boolean;
+
   colorCode: Array<Object> = [
     { name: 'white', colorCode: 'rgb(255, 255, 255)' },
     { name: 'lightGreen', colorCode: 'rgb(204, 255, 144)' },
@@ -42,9 +48,18 @@ export class NoteBarComponent implements OnInit {
   @Input() noteDetail: NoteModel;
   constructor(private cardUpdate: CardUpdateServiceService, private httpService: HttpserviceService,
     private snackBar: MatSnackBar, private dialog: MatDialog,
-    private datePipe: DatePipe) { }
+    private datePipe: DatePipe) {
 
-  //declaration of date 
+    // this.httpService.getUserInfo().subscribe(
+    //   (response: UserInfo) => {
+    //     console.log(response.name);
+    //     this.userInfo = response;
+    //   }
+    // );
+    // console.log('info'+this.userInfo.userId)
+  }
+
+  // declaration of date
   selectedDate: Date;
 
   // private pinIcon: boolean=this.noteDetail.isPin;
@@ -54,7 +69,6 @@ export class NoteBarComponent implements OnInit {
     console.log('Pin check-> ' + this.noteDetail.isPin);
     console.log('noteDetail label->' + this.noteDetail.labels);
 
-
     // console.log(this.noteDetail.remainder.toLocaleDateString+' '+this.noteDetail.remainder.toLocaleTimeString);
     // console.log(this.noteDetail.remainder.toLocaleDateString+' '+this.noteDetail.remainder.toLocaleTimeString);
 
@@ -62,8 +76,8 @@ export class NoteBarComponent implements OnInit {
     if (this.noteDetail.remainder !== null) {
       // this.selectedDate=this.noteDetail.remainder;
       console.log(this.noteDetail.remainder.toLocaleString());
-      let d: Date = new Date(this.noteDetail.remainder);
-      console.log(d.toLocaleString());
+      // let d: Date = new Date(this.noteDetail.remainder);
+      // console.log(d.toLocaleString());
       this.selectedDate = new Date(this.noteDetail.remainder);
 
       console.log(this.selectedDate.toLocaleDateString() + ' ' + this.selectedDate.toLocaleTimeString());
@@ -73,7 +87,25 @@ export class NoteBarComponent implements OnInit {
     //     this.allLabels = labels;
     //   }
     // );
-    this.getLabels();
+
+    // if (this.noteDetail.title === 'secondUserNote2') {
+    //   console.log('hello bhai user id ' + this.noteDetail.user.userId);
+    // }
+
+    // this.getLabels();
+    // this.getCollabUserInfo();
+    // this.getUserDetails();
+
+    // this.collabDeleteValidation();
+  }
+
+  collabDeleteValidation() {
+    console.log('delete validation' + this.userInfo.userId + '' + this.noteDetail.user.userId);
+    if (this.userInfo.userId === this.noteDetail.user.userId) {
+      this.showTrash = true;
+    } else {
+      this.showTrash = false;
+    }
   }
 
   getLabels() {
@@ -84,7 +116,16 @@ export class NoteBarComponent implements OnInit {
     );
   }
 
-  changePin() {
+  getUserDetails() {
+  this.httpService.getUserInfo().subscribe(
+    (response: UserInfo) => {
+      console.log(response.name);
+      this.userInfo = response;
+    }
+  );
+}
+
+changePin() {
     console.log('change pin status ' + this.noteDetail.isPin);
     this.pinIcon = !this.pinIcon;
     this.httpService.noteIDPutRequest('note/pin/', this.noteDetail).subscribe(
@@ -182,6 +223,7 @@ export class NoteBarComponent implements OnInit {
       }
     );
   }
+
   removeRemainder() {
     this.noteDetail.remainder = null;
     this.httpService.notePutRequest('note', this.noteDetail).subscribe(
@@ -190,7 +232,7 @@ export class NoteBarComponent implements OnInit {
           this.snackBar.open('remainder removed successfully', 'removed', { duration: 2000 })
         }
       }
-    )
+    );
   }
 
 
@@ -207,6 +249,7 @@ export class NoteBarComponent implements OnInit {
     );
 
   }
+
   trashNote() {
     this.noteDetail.isTrash = true;
     this.noteDetail.isArchive = false;
@@ -317,6 +360,20 @@ export class NoteBarComponent implements OnInit {
           this.snackBar.open(response.statusMessage, 'Fail', { duration: 2000 });
         }
       }
+    );
+  }
+
+  getCollabUserInfo() {
+    this.httpService.getCollabedUserInfo('?noteId=' + this.noteDetail.id).subscribe(
+      users => {
+        console.log(users.length);
+        this.collabUserInfo = users;
+        this.collabUserInfo = users;
+        console.log(this.collabUserInfo);
+        console.log('collab user length' + this.collabUserInfo.length);
+
+      }
+
     );
   }
   // addCardPhoto(file) {

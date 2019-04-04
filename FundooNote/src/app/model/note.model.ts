@@ -9,7 +9,7 @@ export class NoteModel {
     isArchive: boolean;
     isPin: boolean;
     isTrash: boolean;
-    userID: number;
+    user: User;
     imageUrl: String;
     // remainder: Date;
     remainder: any;

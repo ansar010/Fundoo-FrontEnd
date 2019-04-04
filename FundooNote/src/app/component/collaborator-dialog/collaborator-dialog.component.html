@@ -16,14 +16,14 @@
   <span fxLayout="row">
     <button mat-icon-button class="icon">
       <!-- <mat-icon>person_outline</mat-icon> -->
-      <img mat-card-avatar src="http://localhost:8080/user/getimage/{{token}}" />
+      <img mat-card-avatar src="http://localhost:8080/user/getcollabuserimage/{{data.user.userId}}" />
     </button>
     <div fxLayout="column">
       <span class="usernameStyle">
-        {{userInfo.name}}<span style="font-style: italic">(Owner)</span>
+        {{data.user.name}}<span style="font-style: italic">(Owner)</span>
       </span>
       <span class="emailStyle">
-        {{userInfo.email}}
+        {{data.user.email}}
       </span>
     </div>
   </span>
@@ -50,8 +50,9 @@
     <button mat-icon-button class="icon">
       <mat-icon>person_add</mat-icon>
     </button>
-    <input matInput #emailId type="email" (input)="enteredEmail($event.target.value)" class="emailStyle"
+    <input matInput #emailId type="email" [(ngModel)]="collabUserMail"  class="emailStyle"
       placeholder="Person Email to share Note...">
+      <!-- (input)="enteredEmail()" -->
     <button mat-icon-button class="closeStyle" (click)="addCollaborator()">
       <mat-icon>done</mat-icon>
     </button>

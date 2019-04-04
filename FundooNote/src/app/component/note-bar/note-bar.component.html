@@ -59,6 +59,49 @@
                 </mat-chip>
               </mat-chip-list>
             </div>
+            <div *ngFor="let collabUser of collabUserInfo">
+                <!-- <mat-chip class=chipSize> -->
+                  <button mat-icon-button >
+                      <img mat-card-avatar class=imageStyle src="http://localhost:8080/user/getcollabuserimage/{{collabUser.userId}}" />
+                    </button>
+                <!-- </mat-chip> -->
+              </div>
+            
+            <!-- <div fxLayout="row wrap" fxLayoutGap="4px grid">
+              <mat-chip-list *ngFor="let collabUser of collabUserInfo" style="margin-left:2%;"> -->
+                 <!-- <mat-icon *ngIf="users.image==null" matTooltip={{users.email}}>
+                    account_circle
+                 </mat-icon> -->
+                 <!-- <div *ngFor="let collabUser of collabUserInfo"> -->
+                  <!-- <span fxLayout="row" style="position: relative;"> -->
+                    <!-- <button mat-icon-button class="icon"> -->
+                      <!-- <mat-chip>
+                      <img mat-card-avatar src="http://localhost:8080/user/getcollabuserimage/{{collabUser.userId}}" />
+                    </mat-chip> -->
+                      <!-- </button> -->
+                    <!-- <div fxLayout="column">
+                      <span class="usernameStyle">
+                        {{collabUser.name}}
+                      </span>
+                      <span class="emailStyle">
+                        {{collabUser.email}}
+                      </span>
+                    </div>
+                    <button mat-icon-button class="closeStyle" (click)="removeCollaborator(collabUser.email)">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </span>
+                </div> -->
+
+                <!-- <div fxLayout="row wrap" fxLayoutGap="4px grid">
+                    <mat-chip-list *ngFor="let users of notedetails.collabList" style="margin-left:2%;">
+                       <mat-icon *ngIf="users.image==null" matTooltip={{users.email}}>
+                          account_circle
+                       </mat-icon>
+                    </mat-chip-list>
+                 </div> -->
+              <!-- </mat-chip-list>
+           </div> -->
             <!-- <div *ngFor="let label of noteDetail.labels">
               <mat-chip class="noteLabels" routerLink="../label/{{label.labelName}}">
                 {{label.labelName}}
@@ -170,7 +213,8 @@
 
 
 <mat-menu #moreMenu="matMenu" (click)="stopPropagation($event);">
-  <button mat-menu-item (click)="trashNote()">Move to Trash</button>
+  <button *ngIf="showTrash" mat-menu-item (click)="trashNote()">Move to Trash</button>
+  <!-- <button  mat-menu-item (click)="trashNote()">Remove mySelf </button> -->
 
   <button mat-menu-item [matMenuTriggerFor]="labelMenu">
     Add Label

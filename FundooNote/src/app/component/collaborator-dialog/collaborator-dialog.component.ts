@@ -26,16 +26,17 @@ export class CollaboratorDialogComponent implements OnInit {
     this.httpService.getUserInfo().subscribe(
       (response: UserInfo) => {
         console.log(response.name);
-
         this.userInfo = response;
       }
     );
   }
 
-  private email: string;
 
   ngOnInit() {
     this.getCollabUserInfo();
+    if (this.data.title === 'secondUserNote2') {
+      console.log('different user id ' + this.data.user.userId);
+    }
     // console.log(this.data.notedetails.collabList);
     console.log(this.data.id);
 
@@ -55,21 +56,21 @@ export class CollaboratorDialogComponent implements OnInit {
     );
   }
 
-  enteredEmail(email: string) {
-    console.log('email', email);
-    this.collabUserMail = email;
-  }
+  // enteredEmail() {
+  //   console.log('email', email);
+  //   this.collabUserMail = email;
+  // }
 
   save() {
     this.httpService.addCollaborator('note/addcollaborator?noteId=' + this.data.id + '&userMailId=' + this.collabUserMail).subscribe(
       response => {
-        if (response.statusCode === 100) {
-          this.matSnackBar.open(response.statusMessage, 'success', { duration: 2000 });
-          this.getCollabUserInfo();
-        } else {
-          this.matSnackBar.open(response.statusMessage, 'Fail', { duration: 2000 });
+        // if (response.statusCode === 100) {
+        //   this.matSnackBar.open(response.statusMessage, 'success', { duration: 2000 });
+        //   this.getCollabUserInfo();
+        // } else {
+        //   this.matSnackBar.open(response.statusMessage, 'Fail', { duration: 2000 });
 
-        }
+        // }
       }
     );
   }
@@ -80,6 +81,7 @@ export class CollaboratorDialogComponent implements OnInit {
         if (response.statusCode === 100) {
           this.matSnackBar.open(response.statusMessage, 'success', { duration: 2000 });
           this.getCollabUserInfo();
+          this.collabUserMail = '';
         } else {
           this.matSnackBar.open(response.statusMessage, 'Fail', { duration: 2000 });
 
