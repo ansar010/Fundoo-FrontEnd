@@ -26,9 +26,12 @@ export class NoteBarComponent implements OnInit {
   private searchLabelValue: string;
   // -------
   collabUserInfo: CollabedUserInfo[];
-  userInfo: UserInfo;
+  // userInfo: UserInfo = new UserInfo();
+ 
+  // variable to display collabRemove
   showTrash: boolean;
 
+  email: string;
   colorCode: Array<Object> = [
     { name: 'white', colorCode: 'rgb(255, 255, 255)' },
     { name: 'lightGreen', colorCode: 'rgb(204, 255, 144)' },
@@ -68,9 +71,11 @@ export class NoteBarComponent implements OnInit {
     console.log('noteDetail->' + this.noteDetail.isArchive);
     console.log('Pin check-> ' + this.noteDetail.isPin);
     console.log('noteDetail label->' + this.noteDetail.labels);
+    console.log('noteDetail user id->' + this.noteDetail.user.userId);
 
     // console.log(this.noteDetail.remainder.toLocaleDateString+' '+this.noteDetail.remainder.toLocaleTimeString);
     // console.log(this.noteDetail.remainder.toLocaleDateString+' '+this.noteDetail.remainder.toLocaleTimeString);
+    this.getUserDetails();
 
     this.pinIcon = this.noteDetail.isPin;
     if (this.noteDetail.remainder !== null) {
@@ -92,21 +97,23 @@ export class NoteBarComponent implements OnInit {
     //   console.log('hello bhai user id ' + this.noteDetail.user.userId);
     // }
 
-    // this.getLabels();
-    // this.getCollabUserInfo();
-    // this.getUserDetails();
+    this.getLabels();
+    this.getCollabUserInfo();
+    // console.log(' get user->' + this.userInfo.userId);
 
     // this.collabDeleteValidation();
   }
 
-  collabDeleteValidation() {
-    console.log('delete validation' + this.userInfo.userId + '' + this.noteDetail.user.userId);
-    if (this.userInfo.userId === this.noteDetail.user.userId) {
-      this.showTrash = true;
-    } else {
-      this.showTrash = false;
-    }
-  }
+  // collabDeleteValidation() {
+  //   console.log('delete validation' + this.userInfo.userId + '' + this.noteDetail.user.userId);
+
+  //   if (this.userInfo.userId === this.noteDetail.user.userId) {
+
+  //     this.showTrash = true;
+  //   } else {
+  //     this.showTrash = false;
+  //   }
+  // }
 
   getLabels() {
     this.httpService.getAllLabelRequest('label/').subscribe(
@@ -119,8 +126,14 @@ export class NoteBarComponent implements OnInit {
   getUserDetails() {
   this.httpService.getUserInfo().subscribe(
     (response: UserInfo) => {
-      console.log(response.name);
-      this.userInfo = response;
+      console.log('aaa' + response.userId);
+      console.log('ddd' + this.noteDetail.user.userId);
+      this.email = response.email;
+      if (response.userId === this.noteDetail.user.userId) {
+        this.showTrash = true;
+      } else {
+        this.showTrash = false;
+      }
     }
   );
 }
@@ -376,6 +389,23 @@ changePin() {
 
     );
   }
+
+  removeMySelf() {
+    console.log('Email' + this.email);
+    this.httpService.addCollaborator('note/removecollaborator?noteId=' + this.noteDetail.id + '&userMailId=' + this.email).subscribe(
+      response => {
+        if (response.statusCode === 100) {
+          this.snackBar.open(response.statusMessage, 'success', { duration: 2000 });
+          this.getCollabUserInfo();
+          this.cardUpdate.updateMessage();
+        } else {
+          this.snackBar.open(response.statusMessage, 'Fail', { duration: 2000 });
+
+        }
+      }
+    );
+  }
+
   // addCardPhoto(file) {
   //   console.log(file);
   //   console.log("print");

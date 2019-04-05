@@ -25,7 +25,7 @@ export class DashBoardComponent implements OnInit, OnDestroy {
   allLabels: Label[];
   label: Label = new Label();
   labelDto: LabelDto = new LabelDto();
-  userInfo: UserInfo;
+  userInfo: UserInfo = new UserInfo();
   gridView: boolean;
 
   constructor(private router: Router, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
@@ -40,13 +40,8 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     // this.getLabels();
-    this.httpService.getUserInfo().subscribe(
-      (response: UserInfo) => {
-        console.log(response.name);
+  this.getUserInfo();
 
-        this.userInfo = response;
-      }
-    );
   }
 
   ngOnInit() {
@@ -89,7 +84,15 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
+  getUserInfo() {
+  this.httpService.getUserInfo().subscribe(
+    (response: UserInfo) => {
+      console.log(response.name);
 
+      this.userInfo = response;
+    }
+  );
+}
 
 
   // Method to edit label

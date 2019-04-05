@@ -1,5 +1,5 @@
 export class UserInfo {
-    userId: LongRange;
+    userId: number;
     name: string;
     email: string;
 }
