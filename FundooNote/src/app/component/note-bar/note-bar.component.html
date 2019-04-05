@@ -1,17 +1,17 @@
 <div class="noteGrid">
   <mat-card class="inputNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
     <!-- <mat-card-header> -->
-      
-    <span  *ngIf="noteDetail.image !== null && noteDetail.image !== ''">
-          <img  src="http://localhost:8080/user/note/getnoteimage/{{noteDetail.id}}" width="200px" height="150px" >
-          <!-- mat-card-image -->
-        </span>
-   <!-- </mat-card-header> -->
-      <div fxLayout="row">
-        <!-- <span *ngIf="noteDetail.image !== null && noteDetail.image !== ''">
+
+    <span *ngIf="noteDetail.image !== null && noteDetail.image !== ''">
+      <img src="http://localhost:8080/user/note/getnoteimage/{{noteDetail.id}}" width="200px" height="150px">
+      <!-- mat-card-image -->
+    </span>
+    <!-- </mat-card-header> -->
+    <div fxLayout="row">
+      <!-- <span *ngIf="noteDetail.image !== null && noteDetail.image !== ''">
             <img src="http://localhost:8080/user/note/getnoteimage/{{noteDetail.id}}" width="200px" height="150px" >
         </span> -->
-        <!-- <span *ngIf="notedetails.note.image !== null && notedetails.note.image !== ''">
+      <!-- <span *ngIf="notedetails.note.image !== null && notedetails.note.image !== ''">
             <img src="http://localhost:8082/api/notes/imageget/{{notedetails.note.id}}" width="200px" height="150px"
                mat-card-image class="hah">
          </span> -->
@@ -38,48 +38,49 @@
         #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="0" cdkAutosizeMaxRows="40" style="overflow: hidden;"
         (click)="openEditDialog(noteDetail)"></textarea>
 
-        <div fxLayout="row wrap" style=" margin:10px">
-          <mat-chip-list #chipList>
-            <div *ngFor="let label of noteDetail.labels">
-              <mat-chip class="noteLabels" routerLink="../label/{{label.labelName}}">
-                  <!-- routerLink="../labels/{{label.labelValue}}" -->
-                {{label.labelName}}
-                <button mat-icon-button class="cancleIcon">
-                  <mat-icon matChipRemove (click)="removeLabel(label.id, noteDetail.id)"
-                    style="margin-top: -18px; margin-left: 20px">close</mat-icon>
-                </button>
-              </mat-chip>
-            </div>
-            <div>
-              <mat-chip-list>
-                <mat-chip *ngIf='noteDetail.remainder!==null' (removed)="removeRemainder()">
-                  {{selectedDate.toLocaleDateString()+" "+selectedDate.toLocaleTimeString()}}
-                  <mat-icon matChipRemove >cancel</mat-icon>
+      <div fxLayout="row wrap" style=" margin:10px">
+        <mat-chip-list #chipList>
+          <div *ngFor="let label of noteDetail.labels">
+            <mat-chip class="noteLabels" routerLink="../label/{{label.labelName}}">
+              <!-- routerLink="../labels/{{label.labelValue}}" -->
+              {{label.labelName}}
+              <button mat-icon-button class="cancleIcon">
+                <mat-icon matChipRemove (click)="removeLabel(label.id, noteDetail.id)"
+                  style="margin-top: -18px; margin-left: 20px">close</mat-icon>
+              </button>
+            </mat-chip>
+          </div>
+          <div>
+            <mat-chip-list>
+              <mat-chip *ngIf='noteDetail.remainder!==null' (removed)="removeRemainder()">
+                {{selectedDate.toLocaleDateString()+" "+selectedDate.toLocaleTimeString()}}
+                <mat-icon matChipRemove>cancel</mat-icon>
 
-                </mat-chip>
-              </mat-chip-list>
-            </div>
-            <div *ngFor="let collabUser of collabUserInfo">
-                <!-- <mat-chip class=chipSize> -->
-                  <button mat-icon-button >
-                      <img mat-card-avatar class=imageStyle src="http://localhost:8080/user/getcollabuserimage/{{collabUser.userId}}" />
-                    </button>
-                <!-- </mat-chip> -->
-              </div>
-            
-            <!-- <div fxLayout="row wrap" fxLayoutGap="4px grid">
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+          <div *ngFor="let collabUser of collabUserInfo">
+            <!-- <mat-chip class=chipSize> -->
+            <button mat-icon-button>
+              <img mat-card-avatar class=imageStyle
+                src="http://localhost:8080/user/getcollabuserimage/{{collabUser.userId}}" />
+            </button>
+            <!-- </mat-chip> -->
+          </div>
+
+          <!-- <div fxLayout="row wrap" fxLayoutGap="4px grid">
               <mat-chip-list *ngFor="let collabUser of collabUserInfo" style="margin-left:2%;"> -->
-                 <!-- <mat-icon *ngIf="users.image==null" matTooltip={{users.email}}>
+          <!-- <mat-icon *ngIf="users.image==null" matTooltip={{users.email}}>
                     account_circle
                  </mat-icon> -->
-                 <!-- <div *ngFor="let collabUser of collabUserInfo"> -->
-                  <!-- <span fxLayout="row" style="position: relative;"> -->
-                    <!-- <button mat-icon-button class="icon"> -->
-                      <!-- <mat-chip>
+          <!-- <div *ngFor="let collabUser of collabUserInfo"> -->
+          <!-- <span fxLayout="row" style="position: relative;"> -->
+          <!-- <button mat-icon-button class="icon"> -->
+          <!-- <mat-chip>
                       <img mat-card-avatar src="http://localhost:8080/user/getcollabuserimage/{{collabUser.userId}}" />
                     </mat-chip> -->
-                      <!-- </button> -->
-                    <!-- <div fxLayout="column">
+          <!-- </button> -->
+          <!-- <div fxLayout="column">
                       <span class="usernameStyle">
                         {{collabUser.name}}
                       </span>
@@ -93,16 +94,16 @@
                   </span>
                 </div> -->
 
-                <!-- <div fxLayout="row wrap" fxLayoutGap="4px grid">
+          <!-- <div fxLayout="row wrap" fxLayoutGap="4px grid">
                     <mat-chip-list *ngFor="let users of notedetails.collabList" style="margin-left:2%;">
                        <mat-icon *ngIf="users.image==null" matTooltip={{users.email}}>
                           account_circle
                        </mat-icon>
                     </mat-chip-list>
                  </div> -->
-              <!-- </mat-chip-list>
+          <!-- </mat-chip-list>
            </div> -->
-            <!-- <div *ngFor="let label of noteDetail.labels">
+          <!-- <div *ngFor="let label of noteDetail.labels">
               <mat-chip class="noteLabels" routerLink="../label/{{label.labelName}}">
                 {{label.labelName}}
                 <button mat-icon-button class="cancleIcon">
@@ -111,17 +112,17 @@
                 </button>
               </mat-chip>
             </div> -->
-          </mat-chip-list>
-        </div>
-        <!-- <mat-chip-list >
+        </mat-chip-list>
+      </div>
+      <!-- <mat-chip-list >
             
           <mat-chip  class="chipsize" *ngIf="notedetails.note.remainder!==null" (removed)="removeRemainder()"> {{d.toLocaleDateString()+" "+d.toLocaleTimeString()}}
                 <mat-icon matChipRemove >cancel</mat-icon>
           </mat-chip>
        
  </mat-chip-list> -->
- 
- <!-- <div fxLayout="row wrap" style=" margin:10px">
+
+      <!-- <div fxLayout="row wrap" style=" margin:10px">
   <mat-chip-list #Reminder>
     <div *ngIf="myNote.note.reminder">
       <mat-chip class="noteLabels" >
@@ -135,8 +136,8 @@
     </div>
   </mat-chip-list>
 </div> -->
- 
-</mat-card-content>
+
+    </mat-card-content>
 
     <mat-card-actions class="inputNote">
       <div class="buttons">
@@ -146,27 +147,29 @@
         <mat-menu #remainderMenu="matMenu" class="remainderMenuSize">
           <span mat-menu-item>Remainder:</span>
           <button mat-menu-item>
-              <span style="float:left;">Later today</span>
-              <span style="float:right;opacity:.5;"> 8:00 PM</span>
-           </button>
-           <button mat-menu-item>
-              <span style="float:left;">Tommorow</span>
-              <span style="float:right;opacity:.5;"> 8:00 PM</span>
-           </button>
-           <button mat-menu-item>
-              <span style="float:left;">Next week</span>
-              <span style="float:right;opacity:.5;"> Mon,8:00 PM</span>
-           </button>
-           <button mat-menu-item [owlDateTimeTrigger]="dt2">
-            <span style="float:left;"><mat-icon style="margin-top: -5px;">schedule</mat-icon>Pick data & Time</span>
-           </button>
-           
+            <span style="float:left;">Later today</span>
+            <span style="float:right;opacity:.5;"> 8:00 PM</span>
+          </button>
+          <button mat-menu-item>
+            <span style="float:left;">Tommorow</span>
+            <span style="float:right;opacity:.5;"> 8:00 PM</span>
+          </button>
+          <button mat-menu-item>
+            <span style="float:left;">Next week</span>
+            <span style="float:right;opacity:.5;"> Mon,8:00 PM</span>
+          </button>
+          <button mat-menu-item [owlDateTimeTrigger]="dt2">
+            <span style="float:left;">
+              <mat-icon style="margin-top: -5px;">schedule</mat-icon>Pick data & Time
+            </span>
+          </button>
+
         </mat-menu>
-        <input [owlDateTime]="dt2"  (dateTimeChange)="SetRemainder($event)" style="display: none;">
-        <owl-date-time #dt2 ></owl-date-time>
+        <input [owlDateTime]="dt2" (dateTimeChange)="SetRemainder($event)" style="display: none;">
+        <owl-date-time #dt2></owl-date-time>
 
 
-       
+
         <button mat-icon-button matTooltip="Collaborator" (click)="addPerson()">
           <img src="../../../assets/collaborator.svg" alt="collaborator">
         </button>
@@ -177,11 +180,11 @@
         </button>
         <!-- this file.files can take multiple file ,here it witll take first file -->
         <input #file type="file" (change)="addPhoto(file.files)" class="showInput">
-       
+
         <button mat-icon-button matTooltip="Add Image" (click)="file.click()">
           <img src="../../../assets/addimage.svg" alt="image" />
         </button>
-        
+
         <button mat-icon-button matTooltip="Archive" (click)="archiveNote()">
           <img src="../../../assets/archive.svg" alt="archive" />
         </button>
@@ -212,35 +215,41 @@
 
 
 
-<mat-menu #moreMenu="matMenu" (click)="stopPropagation($event);">
+<mat-menu #moreMenu="matMenu" (click)="$event.stopPropagation();">
+  
   <button *ngIf="showTrash" mat-menu-item (click)="trashNote()">Move to Trash</button>
   <button *ngIf="showTrash == false" mat-menu-item (click)="removeMySelf()">Remove mySelf </button>
 
   <button mat-menu-item [matMenuTriggerFor]="labelMenu">
     Add Label
   </button>
+
   <mat-menu #labelMenu="matMenu" fxLayout="column" (click)="$event.stopPropagation();">
- <!-- (click)="$event.stopPropagation();" -->
- <span style="font-family: sans-serif; font-size: 15px; margin-left: 10px">
+    <span style="font-family: sans-serif; font-size: 15px; margin-left: 10px">
       Label note
     </span>
+
     <div fxLayout="row">
-      <input matInput  placeholder="Enter label name"
-        style="font-family: sans-serif; font-size: 12px; margin-bottom:10px;margin-left: 10px" (click)="stopPropagation($event)" (input)="onSearchChange($event.target.value)">
-        <!-- (change)="changeShow()" (input)="onSearchChange($event.target.value)"
-         -->
+      <input matInput placeholder="Enter label name"
+        style="font-family: sans-serif; font-size: 12px; margin-bottom:10px;margin-left: 10px"
+        (click)="$event.stopPropagation()" (input)="onSearchChange($event.target.value)">
       <mat-icon style="zoom:0.7; color: grey; margin-right:10px ">
         search
       </mat-icon>
     </div>
-    <div style="margin-bottom: 25px; margin-left: 10px">
-      <div *ngFor="let label of allLabels">
-        <mat-checkbox 
-          style="font-family: sans-serif; color: black; zoom:0.8" (click)="$event.stopPropagation()" (change)="addLabelToNote($event, label.id, noteDetail.id)">{{label.labelName}}</mat-checkbox>
-          <!-- (click)="$event.stopPropagation()"
+
+    <div (click)="$event.stopPropagation()" style="margin-bottom: 25px; margin-left: 10px">
+     
+      <div (click)="$event.stopPropagation()" *ngFor="let label of allLabels">
+        <mat-checkbox style="font-family: sans-serif; color: black; zoom:0.8" (click)="$event.stopPropagation()"
+          (change)="addLabelToNote($event, label.id, noteDetail.id)">
+          {{label.labelName}}</mat-checkbox>
+        <!-- (click)="$event.stopPropagation()"
           (change)="addLabelToNote($event, label.labelId, myNote.note.noteId)" -->
       </div>
+   
     </div>
+
   </mat-menu>
 
 
@@ -250,7 +259,7 @@
 
 
 
-<!-- <div class="noteGrid">
+  <!-- <div class="noteGrid">
   <div fxLayout="row" fxLayoutAlign="center center">
    <div class="noteGrid" fxLayout="column">
     <mat-card class="inputNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
@@ -295,21 +304,21 @@
         <button mat-icon-button matTooltip="More" [matMenuTriggerFor]="moreMenu">
           <mat-icon>more_vert</mat-icon>
         </button> -->
-<!-- <button mat-icon-button matTooltip="Undo">
+  <!-- <button mat-icon-button matTooltip="Undo">
             <mat-icon>undo</mat-icon>
           </button>
           <button mat-icon-button matTooltip="Redo">
             <mat-icon>redo</mat-icon>
           </button> -->
-<!-- <button mat-button color="warn" (click)="close()" style="margin-left: 23%;">
+  <!-- <button mat-button color="warn" (click)="close()" style="margin-left: 23%;">
             close</button> -->
-<!-- </mat-card-actions>
+  <!-- </mat-card-actions>
     </mat-card>
   </div>
 </div> -->
 
 
-<!-- <div class="noteBarCenter">
+  <!-- <div class="noteBarCenter">
 
   <div class="addNote" [ngStyle]="{'backgroundColor': noteDetail.color}">
     <div class="addNoteInputDiv">
@@ -356,7 +365,7 @@
 
 
 
-<!-- <mat-menu #colorMenu="matMenu">
+  <!-- <mat-menu #colorMenu="matMenu">
       <mat-list>
          <div *ngFor="let colorx of colors" style="overflow: hidden;">
             <span *ngFor="let singlecolor of colorx">
@@ -370,11 +379,11 @@
 
 
 
-<!-- <mat-menu #moreMenu="matMenu">
+  <!-- <mat-menu #moreMenu="matMenu">
   <button mat-menu-item (click)="trashNote()">Move to Trash</button>
 </mat-menu> -->
- <!-- Notifiction Alert Menu start-->
- <!-- <button mat-icon-button [matMenuTriggerFor]="notificationmenu">
+  <!-- Notifiction Alert Menu start-->
+  <!-- <button mat-icon-button [matMenuTriggerFor]="notificationmenu">
   <mat-icon>
      notifications
   </mat-icon>
@@ -414,27 +423,27 @@
 
 
 
- <!-- <mat-menu #moreMenu="matMenu">
+  <!-- <mat-menu #moreMenu="matMenu">
     <button mat-menu-item (click)="trashNote()">Move to Trash</button> -->
 
-    
-    <!-- <button mat-menu-item [matMenuTriggerFor]="menulabel">Add Label</button>
+
+  <!-- <button mat-menu-item [matMenuTriggerFor]="menulabel">Add Label</button>
                <mat-menu #menulabel="matMenu">
                   <mat-list>
                      <div *ngFor="let label of allLabels">
                         {{label.labelName}} <button (click)="haveThisLabel(label,noteDetail)">Add</button>
                         <button (click)="removeThisLabel(label,noteDetail)">Remove</button> -->
-                        <!-- <mat-checkboxb >Check me!</mat-checkbox> -->
-                        <!-- {{label.labelName}} <button mat-icon-button (click)="lncheck(label,notedetails)"></button> -->
-                     <!-- </div>
+  <!-- <mat-checkboxb >Check me!</mat-checkbox> -->
+  <!-- {{label.labelName}} <button mat-icon-button (click)="lncheck(label,notedetails)"></button> -->
+  <!-- </div>
                   </mat-list>
                </mat-menu> -->
-               <!-- <button mat-menu-item (click)="trashnote()">Move To trash</button>
+  <!-- <button mat-menu-item (click)="trashnote()">Move To trash</button>
                <button mat-menu-item (click)="restore()">Restore</button> -->
-            <!-- </mat-menu> -->
+  <!-- </mat-menu> -->
 
-            
-                <!-- <div *ngIf="show===true">
+
+  <!-- <div *ngIf="show===true">
                   <button mat-menu-item style="zoom:0.8; position: absolute; bottom: 0;"
                     (click)="createNewLabel($event, myNote.note.noteId, searchLabelValue)">
                     <mat-icon>add</mat-icon>

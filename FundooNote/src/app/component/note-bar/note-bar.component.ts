@@ -304,10 +304,10 @@ changePin() {
   }
 
   // --------
-  stopPropagation(event) {
-    console.log('propogation' + event);
-    event.stopPropagation();
-  }
+  // stopPropagation(event) {
+  //   console.log('propogation' + event);
+  //   event.stopPropagation();
+  // }
 
   onSearchChange(searchValue: string) {
     if (!searchValue) {
@@ -327,9 +327,9 @@ changePin() {
       .subscribe(
         response => {
           if (response.statusCode === 100) {
-            this.getLabels();
+            // this.getLabels();
 
-            this.cardUpdate.updateMessage();
+            // this.cardUpdate.updateMessage();
             this.snackBar.open(response.statusMessage, 'Success', { duration: 2000 });
           } else {
             this.snackBar.open(response.statusMessage, 'Fail', { duration: 2000 });

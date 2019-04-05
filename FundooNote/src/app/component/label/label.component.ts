@@ -15,7 +15,7 @@ export class LabelComponent implements OnInit {
   private allnotes: NoteModel[];
   labelName: string;
 
-  constructor(private cardUpdate: CardUpdateServiceService, 
+  constructor(private cardUpdate: CardUpdateServiceService,
               private router: Router, private activeRoute: ActivatedRoute,
               private view: CurrentViewService) {
   }

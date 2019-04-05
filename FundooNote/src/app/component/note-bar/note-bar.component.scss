@@ -3,13 +3,13 @@
   background: transparent;
   opacity: .7;
 }
-.buttons{
-  display: none;
-}
-.noteGrid:hover .buttons, .buttons:hover{
+// .buttons{
+//   display: none;
+// }
+// .noteGrid:hover .buttons, .buttons:hover{
 
-  display: inline-block;
-}
+//   display: inline-block;
+// }
 
 
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-accent .mat-pseudo-checkbox-checked, .mat-accent .mat-pseudo-checkbox-indeterminate, .mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-indeterminate {
