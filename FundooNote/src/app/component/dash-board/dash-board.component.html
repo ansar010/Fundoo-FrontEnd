@@ -140,26 +140,7 @@
             Edit Labels
           </button>
 
-          <!-- <span style="font-size: 12px;font-family:'Calibri'; margin-left: 20px">
-            LABELS
-          </span>
-          <div *ngIf="labels ? labels.length>0: false">
-            <div *ngFor="let label of labels">
-              <button mat-raised-button class="menuButton" routerLink="labels/{{label.labelValue}}" routerLinkActive="active">
-                <mat-icon style="margin-right:40px;margin-left:20px">
-                  label
-                </mat-icon>
-                {{label.labelValue}}
-              </button>
-            </div>
-          </div>
-          <button mat-raised-button class="menuButton" (click)="openLabelDialog()">
-            <mat-icon style="margin-right:40px;margin-left:20px">
-              create
-            </mat-icon>
-            Edit Labels
-          </button> -->
-          <!-- ------ -->
+        
           <mat-divider></mat-divider>
 
           <div>
@@ -188,54 +169,3 @@
 
 
 
-<!-- *****************Side Menu Display********************** -->
-
-<!-- 
-<mat-drawer-container class="example-container">
-  <mat-drawer #sidenav mode="side" opened="true">
-    
-    <div>
-      <button mat-button [routerLink]="['addNote']" (click)="headerName='Fundoo Notes'"
-        [ngClass]="{'sideNavListItems': headerName!='Fundoo Notes', 'sideNavlistItemsColored': headerName=='Fundoo Notes'}">
-        <mat-icon>lightbulb_outline</mat-icon> Notes
-      </button>
-    </div>
-    
-    <div>
-      <button mat-button [routerLink]="['remainder']" (click)="headerName= 'Remainders'"
-        [ngClass]="{'sideNavListItems': headerName!='Remainders', 'sideNavlistItemsColored': headerName=='Remainders'}">
-        <mat-icon>notifications_none</mat-icon> Remainders
-      </button>
-    </div>
-
-    <mat-divider></mat-divider>
-
-    <p class="textSize">LABELS</p>
-
-    <button class="sideNavListItems" mat-button > -->
-<!-- (click)="openDialog()" -->
-
-<!-- <mat-icon>edit</mat-icon> Edit Labels
-    </button>
-    <mat-divider></mat-divider>
-    <div>
-
-      <button mat-button [routerLink]="['archive']" (click)="headerName= 'Archive'"
-        [ngClass]="{'sideNavListItems': headerName!='Archive', 'sideNavlistItemsColored': headerName=='Archive'}">
-        <mat-icon>archive</mat-icon> Archive
-      </button>
-    </div>
-    <div>
-      <button mat-button [routerLink]="['trash']" (click)="headerName= 'Trash'"
-        [ngClass]="{'sideNavListItems': headerName!='Trash', 'sideNavlistItemsColored': headerName=='Trash'}">
-        <mat-icon>delete</mat-icon> Trash
-      </button>
-    </div>
-  </mat-drawer>
-  <mat-drawer-content>
-
-    <router-outlet></router-outlet>
-
-  </mat-drawer-content>
-
-</mat-drawer-container> -->

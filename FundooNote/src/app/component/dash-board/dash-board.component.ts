@@ -60,24 +60,6 @@ export class DashBoardComponent implements OnInit, OnDestroy {
         console.log(this.allLabels.length);
       }
     );
-
-    // this.httpService.getUserInfo().subscribe(
-    //   (response: UserInfo) => {
-    //     console.log(response.name);
-
-    //     this.userInfo = response;
-    //   }
-    // );
-
-
-
-    //   this.notecrudservice.getAllLabels().subscribe(
-    //     response=>
-    //     {
-    //       this.labelsall=response;
-    //       //console.log(this.labelsall.length);
-    //     }
-    // );
   }
 
   ngOnDestroy(): void {
@@ -182,39 +164,3 @@ export class DashBoardComponent implements OnInit, OnDestroy {
 
 
 
-// EditLabelDialog()
-//   {
-//     const dialogRef = this.dialog.open(EditlabeldialogComponent, {
-//       width: '300px',
-//       height:'350px',
-//       data: {labelsall:this.labelsall}
-//     });
-
-//     dialogRef.afterClosed().subscribe(result => {
-//         if(result!=null && result!='')
-//         {
-//           this.label.labelName=result;
-//           this.notecrudservice.createLabel(this.label).subscribe(
-//               response =>
-//               {
-//                console.log(response);
-//                this.notecrudservice.getAllLabels().subscribe(
-//                 response =>
-//                   {
-//                     this.labelsall=response;
-//                   }
-//               )
-//               }
-//             )
-//         }
-//         else{
-//           this.notecrudservice.getAllLabels().subscribe(
-//             response =>
-//               {
-//                 this.labelsall=response;
-//               }
-//           )
-//         }
-
-//     });
-//   }

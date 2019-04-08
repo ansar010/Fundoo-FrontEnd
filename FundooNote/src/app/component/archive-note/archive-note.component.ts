@@ -34,20 +34,4 @@ export class ArchiveNoteComponent implements OnInit {
     }
   }
 }
-  // showIconAndLetter: boolean = true;
-  // showArchiveNoteBar: boolean = true;
-  // // noteBarValue : NoteModel[];
-  // private allnotes: NoteModel[];
-
-
-
-  // constructor(private cardUpdate: CardUpdateServiceService) { }
-
-  // ngOnInit() {
-
-
-
-  //   this.cardUpdate.currentNotes.subscribe(udnotes =>
-  //     this.allnotes = udnotes);
-  // }
 
