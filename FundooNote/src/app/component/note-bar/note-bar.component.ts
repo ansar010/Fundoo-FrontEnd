@@ -241,7 +241,7 @@ changePin() {
     this.noteDetail.remainder = null;
     this.httpService.notePutRequest('note', this.noteDetail).subscribe(
       response => {
-        if (response.statusCode == 100) {
+        if (response.statusCode === 100) {
           this.snackBar.open('remainder removed successfully', 'removed', { duration: 2000 })
         }
       }
@@ -327,7 +327,7 @@ changePin() {
       .subscribe(
         response => {
           if (response.statusCode === 100) {
-            // this.getLabels();
+            this.getLabels();
 
             // this.cardUpdate.updateMessage();
             this.snackBar.open(response.statusMessage, 'Success', { duration: 2000 });

@@ -80,8 +80,11 @@ export class CollaboratorDialogComponent implements OnInit {
       response => {
         if (response.statusCode === 100) {
           this.matSnackBar.open(response.statusMessage, 'success', { duration: 2000 });
+          this.updateService.updateMessage();
+
           this.getCollabUserInfo();
           this.collabUserMail = '';
+
         } else {
           this.matSnackBar.open(response.statusMessage, 'Fail', { duration: 2000 });
 
@@ -95,8 +98,11 @@ export class CollaboratorDialogComponent implements OnInit {
     this.httpService.addCollaborator('note/removecollaborator?noteId=' + this.data.id + '&userMailId=' + email).subscribe(
       response => {
         if (response.statusCode === 100) {
+          this.updateService.updateMessage();
+
           this.matSnackBar.open(response.statusMessage, 'success', { duration: 2000 });
           this.getCollabUserInfo();
+
         } else {
           this.matSnackBar.open(response.statusMessage, 'Fail', { duration: 2000 });
 
