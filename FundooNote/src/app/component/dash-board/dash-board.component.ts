@@ -131,6 +131,19 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     localStorage.clear();
     this.router.navigate(['login']);
   }
+ 
+  onSearchChange(searchValue : string ) {  
+    console.log(searchValue);
+
+    console.log('search api'+searchValue);
+    if(searchValue.length>=2)
+    {
+      this.cardUpdate.searchNotes(searchValue);
+    }
+    else{
+      this.cardUpdate.updateMessage();
+    }
+  }
 
   ProfileSelect() {
     const dialogRef = this.dialog.open(ProfilepicDialogComponent, {

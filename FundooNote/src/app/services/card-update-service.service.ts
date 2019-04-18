@@ -90,7 +90,13 @@ export class CardUpdateServiceService {
     // )
   }
 
-
+searchNotes(textToSearch:String){
+  this.httpService.getSearchedNotes('note/searchnotes/'+textToSearch).subscribe(
+    response=>{
+      this.obtainNotes.next(response);
+    }
+  )
+}
 }
 
 // labelNotes( label:string)

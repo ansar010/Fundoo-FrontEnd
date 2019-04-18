@@ -21,7 +21,7 @@
           <button mat-icon-button>
             <mat-icon>search</mat-icon>
           </button>
-          <input fxFlex="90" type="input" matInput placeholder="Search" [style.fontSize.px]="18" autocomplete="off">
+          <input fxFlex="90" type="input" matInput placeholder="Search" [style.fontSize.px]="18"  (input)="onSearchChange($event.target.value)" autocomplete="off">
         </mat-form-field>
       </div>
 

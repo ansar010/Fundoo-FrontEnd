@@ -185,6 +185,12 @@ export class HttpserviceService {
     public addCollaborator(url):any {
       return this.http.post(environment.baseUrl + url, null, httpOptions);
     }
+// --------------------------------------------------------------------------------------//
+    // Services for searchNote
 
+    public getSearchedNotes(url):Observable<NoteModel[]>
+    {
+      return this.http.get<NoteModel[]>(environment.baseUrl+url,httpOptions);
+    }
 }
 
