@@ -9,6 +9,7 @@
         <mat-card-subtitle>Please fill this form for register</mat-card-subtitle>
         <!-- end of subtitle -->
       </mat-card-header>
+
       <mat-card-content>
         <form [formGroup]="registerForm">
           <mat-form-field>
@@ -40,15 +41,13 @@
               type="text" name="phoneNumber" required>
           </mat-form-field>
           <br>
-          <button  mat-raised-button type="button" color="primary" (click)="register()"
-            [disabled]="!registerForm.valid">submit
-
-
-          </button>
+          <button mat-raised-button type="button" color="primary" (click)="register()"
+            [disabled]="!registerForm.valid">submit</button>
 
           <button style="margin:10px;" mat-raised-button type="button" color="primary"
             onclick="history.go(-1);">Back</button>
-        </form>
+       
+          </form>
         <mat-spinner *ngIf="loading">
         </mat-spinner>
       </mat-card-content>

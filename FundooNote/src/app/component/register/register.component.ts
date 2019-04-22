@@ -1,7 +1,19 @@
+/************************************************************************************************
+*
+*  Purpose         : To Register user
+*
+*  Description     : Sign-up user
+*
+*  @file           : register.ts
+*  @overview       : To add user with details like username,password, email etc.
+*  @author         : Ansar <ansaruddeen030@gmail.com>
+*  @since          : 22-04-2019
+*
+*************************************************************************************************/
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user.model';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { UserServiceService } from 'src/app/services/user-service.service';
+// import { UserServiceService } from 'src/app/services/user-service.service';
 import { MatSnackBar } from '@angular/material';
 import { Util } from 'src/app/utility/util';
 import { Router } from '@angular/router';
