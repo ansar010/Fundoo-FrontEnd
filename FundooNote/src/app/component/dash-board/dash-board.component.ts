@@ -40,7 +40,7 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     // this.getLabels();
-  this.getUserInfo();
+    this.getUserInfo();
 
   }
 
@@ -67,14 +67,14 @@ export class DashBoardComponent implements OnInit, OnDestroy {
   }
 
   getUserInfo() {
-  this.httpService.getUserInfo().subscribe(
-    (response: UserInfo) => {
-      console.log(response.name);
+    this.httpService.getUserInfo().subscribe(
+      (response: UserInfo) => {
+        console.log(response.name);
 
-      this.userInfo = response;
-    }
-  );
-}
+        this.userInfo = response;
+      }
+    );
+  }
 
 
   // Method to edit label
@@ -131,16 +131,14 @@ export class DashBoardComponent implements OnInit, OnDestroy {
     localStorage.clear();
     this.router.navigate(['login']);
   }
- 
-  onSearchChange(searchValue : string ) {  
-    console.log(searchValue);
 
-    console.log('search api'+searchValue);
-    if(searchValue.length>=2)
-    {
+  onSearchChange(searchValue: string) {
+    // console.log(searchValue);
+    // this.cardUpdate.searchNotes(searchValue);
+    this.cardUpdate.updateMessage();
+    if (searchValue.length >= 2) {
       this.cardUpdate.searchNotes(searchValue);
-    }
-    else{
+    } else {
       this.cardUpdate.updateMessage();
     }
   }

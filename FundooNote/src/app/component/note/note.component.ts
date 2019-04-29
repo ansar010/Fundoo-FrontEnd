@@ -16,6 +16,8 @@ export class NoteComponent implements OnInit {
   private showUnpinned: boolean = false;
   private gridView: boolean;
 
+  // searchedText: string;
+
   constructor(private cardupdate: CardUpdateServiceService, private view: CurrentViewService) {
     // setTimeout(() => this.cardupdate.changemessage('false', 'false'), 3000);
 
@@ -25,7 +27,11 @@ export class NoteComponent implements OnInit {
   ngOnInit() {
     this.cardupdate.changemessage('false', 'false');
 
-    this.cardupdate.currentNotes.subscribe(updatenotes => {
+    // this.cardupdate.current_search.subscribe(response => {
+    //   console.log('note component ' + response);
+    //   this.searchedText = response; });
+
+      this.cardupdate.currentNotes.subscribe(updatenotes => {
       console.log(updatenotes);
       this.allnotes = updatenotes;
       this.showPinned = false;
@@ -51,7 +57,6 @@ export class NoteComponent implements OnInit {
     this.pinFilter();
     console.log('new note');
     console.log('length ', this.allnotes.length);
-
   }
 
 
@@ -68,14 +73,6 @@ export class NoteComponent implements OnInit {
     });
   }
 
-
-
-
-
-
-
-
-
   // private content_filter() {
   //   this.allnotes.forEach(x => {
   //     if (x.note.pinned == true) {
@@ -89,41 +86,3 @@ export class NoteComponent implements OnInit {
   // }
 
 }
-
-  // private allnotes: NoteModel[];
-
-  // constructor(private cardupdate: CardUpdateServiceService, private httpNoteService: HttpNoteServiceService) { }
-
-  // ngOnInit() {
-
-  //   this.cardupdate.currentnotes.subscribe(udnotes =>
-  //     this.allnotes = udnotes);
-  //   console.log('new note');
-  //   console.log('length ', this.allnotes.length);
-  //   this.getNote();
-
-  // }
-
-  // getNote() {
-  //   this.cardupdate.currentnotes.subscribe(udnotes =>
-  //     this.allnotes = udnotes);
-  //   console.log('new note');
-  //   console.log('length ', this.allnotes.length);
-
-  // }
-  // getNote() {
-  //   this.httpService.getRequest1('/user/note/list')
-  //     .subscribe(
-
-  //       (response) => {
-  //         console.log('success get notes', response);
-  //         this.data = response['body'];
-  //         console.log('in response', this.data);
-  //       },
-  //       (error) => {
-  //         console.log('error', error);
-  //       }
-  //     );
-  // }
-
-// }

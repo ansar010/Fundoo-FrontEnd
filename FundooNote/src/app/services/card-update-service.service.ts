@@ -8,15 +8,17 @@ import { HttpserviceService } from './httpservice.service';
 export class CardUpdateServiceService {
 
   private obtainNotes = new BehaviorSubject([]);
-
   private isArchive = 'false';
   private isTrash = 'false';
-
 
   private isLabelOnNotes: boolean = false;
   private labelName: string;
 
   currentNotes = this.obtainNotes.asObservable();
+
+
+  // searchText = new BehaviorSubject('');
+  // current_search  = this.searchText.asObservable();
 
   constructor(private httpService: HttpserviceService) {
     console.log('update card constructor');
@@ -78,84 +80,18 @@ export class CardUpdateServiceService {
           console.log(error);
         }
       );
-    // this.notecrud.labelNotes(label).subscribe(
-    //   response =>
-    //   {
-    //     this.allNotes2.next(response);
-    //     console.log(response);
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // )
   }
 
-searchNotes(textToSearch:String){
-  this.httpService.getSearchedNotes('note/searchnotes/'+textToSearch).subscribe(
-    response=>{
-      this.obtainNotes.next(response);
-    }
-  )
+  searchNotes(textToSearch: String) {
+    this.httpService.getSearchedNotes('note/searchnotes/' + textToSearch).subscribe(
+      response => {
+        this.obtainNotes.next(response);
+      }
+    );
+  }
+
+  // searchNotes(textToSearch: string) {
+  //   console.log('service' + textToSearch);
+  //   this.searchText.next(textToSearch);
+  // }
 }
-}
-
-// labelNotes( label:string)
-//   {
-//     this.labelName=label;
-//     this.isLabelNotes=true;
-//     this.notecrud.labelNotes(label).subscribe(
-//       response =>
-//       {
-//         this.allNotes2.next(response);
-//         console.log(response);
-//       },
-//       error => {
-//         console.log(error);
-//       }
-//     )
-//   }
-// updateMessage(){
-
-// }
-// changemessage() {
-//     this.httpService.noteGetRequest().subscribe(
-//     response => {
-
-//       console.log(response);
-//       this.obtainNotes.next(response);
-//     },
-//     error => {
-//       console.log(error);
-//     }
-//   )
-// }
-// }
-//   private allNotes = new BehaviorSubject([]);
-
-//   currentnotes = this.allNotes.asObservable();
-
-//   constructor(private httpService: HttpserviceService) {
-
-//     console.log('card constructor');
-
-//     this.httpService.noteGetRequest().subscribe(
-//       response => {
-//         console.log('response');
-
-//         this.allNotes.next(response);
-
-//       },
-
-//       error => {
-//         console.log(error);
-//       }
-//     );
-
-//   }
-
-//   ngOnInit(): void {
-
-//   }
-
-
-// }
